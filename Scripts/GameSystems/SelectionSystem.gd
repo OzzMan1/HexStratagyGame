@@ -7,7 +7,7 @@ var current_selected_unit : Unit
 
 
 func get_clicked_object(player_controller : PlayerController, pos): 
-	var unit_list_local = player_controller.unit_grid_manager.unit_list_local
+	var unit_list_local = player_controller.player_data.unit_list_local
 	if unit_list_local.has(pos):
 		return unit_list_local.get(pos)
 	return null
@@ -15,7 +15,7 @@ func get_clicked_object(player_controller : PlayerController, pos):
 
 func select_unit(player_controller : PlayerController, pos : Vector2i):	
 	#Get reference to unit at pos 
-	current_selected_unit = player_controller.unit_grid_manager.unit_list_local.get(pos)
+	current_selected_unit = player_controller.player_data.unit_list_local.get(pos)
 	
 	var axial_pos = path_finder.oddr_to_axial(pos)
 	path_finder.shortest_path_to_all_tiles(player_controller,axial_pos)

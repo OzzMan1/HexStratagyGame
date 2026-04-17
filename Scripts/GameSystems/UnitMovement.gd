@@ -5,6 +5,9 @@ extends Node
 @onready var grid_manager: Node2D = %GridManager
 @onready var path_finder: Node2D = %GameSystems/PathFinder
 @onready var unit_movemement_overlay = %UnitMovementOverlay
+@onready var unit_manager = %UnitManager
+
+
 
 var all_paths_offset : Array[Array] 
 var all_path_map_unit : Dictionary[Unit, Array] 
@@ -58,7 +61,7 @@ func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, 
 		unit_map_prev_target.set(selected_unit,[prev,target])
 		
 		# Pass it to grid manager to update unit coords
-		player_controller.unit_grid_manager.update_unit_list_local(selected_unit,target,prev)
+		unit_manager.update_unit_list_local(player_controller, selected_unit,target,prev)
 		# Pass it to unit overlay
 		unit_movemement_overlay.move_unit_overlay_update(path_in_range_oddr.duplicate(true),path_oddr.duplicate(true))
 		selected_unit.update_current_number_of_moves(path_in_range.size() - 1)
@@ -86,7 +89,7 @@ func undo_unit_path(player_controller : PlayerController,  selected_unit : Unit)
 			var unit_prev = unit_map_prev_target.get(unit)[0]
 			#print("Unit move to be undone ", unit ," unit prev ", unit_prev,  " unit_target ", unit_target )
 			# assing it backwards
-			player_controller.unit_grid_manager.update_unit_list_local(unit,unit_prev,unit_target) 
+			unit_manager.update_unit_list_local( player_controller, unit,unit_prev,unit_target) 
 			#print("after one undo ", grid_manager.get_unit_list_local())
 
 			unit.reset_alpha_value()

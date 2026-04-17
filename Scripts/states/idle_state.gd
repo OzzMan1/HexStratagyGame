@@ -17,7 +17,7 @@ func handle_input(player_controller, event) -> void:
 			# enter select state
 		
 		else:
-			player_controller.unit_grid_manager.spawn_unit_test(player_controller.get_local_mouse_position())
+			player_controller.unit_manager.spawn_unit_test(player_controller,player_controller.get_local_mouse_position())
 	if event.is_action_pressed("space"):
 		player_controller.unit_movement.display_unit_orders()
 	elif event.is_action_released("space"):

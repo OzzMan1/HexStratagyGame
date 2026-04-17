@@ -9,11 +9,8 @@ class_name PlayerController
 @onready var unit_selection = %SelectionSystem
 
 @onready var unit_movemement_overlay = %UnitMovementOverlay
-
-@onready var unit_grid_manager = $unit_grid_manager
-
-
-@export var archer_scene: PackedScene
+@onready var unit_manager = %UnitManager
+@onready var player_data = $PlayerData
 
 
 
@@ -31,10 +28,7 @@ func axial_to_oddr(hex: Vector2i) -> Vector2i:
 ##### HELPER FUNCTIONS ################################
 func return_mouse_pos():
 	return grid_manager.get_tile_pos(get_local_mouse_position())
-	
-func return_archer_scene():
-	return 	archer_scene
-	
+
 
 ############# STATE MANAGEMENT #########################
 
@@ -53,7 +47,7 @@ func _input(event):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	player_data.test()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
