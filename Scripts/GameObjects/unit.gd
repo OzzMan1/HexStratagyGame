@@ -25,17 +25,13 @@ func deselect(player_controller):
 func update_current_number_of_moves(number_of_moves_used : int):
 	current_num_of_moves = current_num_of_moves - number_of_moves_used
 	
-func set_alpha_value():
+func reset_alpha_value():
 	sprite2d.self_modulate.a = 1
 
-func on_move_unit(player_controller, selected_unit : Unit, new_pos : Vector2i, previous_pos : Vector2i ):
+func set_alpha_value():
 	sprite2d.self_modulate.a = 0.5
-	var arr = player_controller.unit_movement.set_unit_path(player_controller,selected_unit,new_pos,previous_pos)
 	
-	if arr.size() != 0:
-		current_pos = previous_pos
-		current_path = arr[0]
-		current_path_in_range = arr[1]
+
 
 func get_new_pos():
 	return current_path_in_range[0]

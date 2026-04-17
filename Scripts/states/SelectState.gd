@@ -31,7 +31,11 @@ func handle_input(player_controller, event) -> void:
 	elif event.is_action_pressed("Rclick"):
 		#var pos = player_controller.return_mouse_pos()
 		if selected_object is Unit:
-			selected_object.on_move_unit(player_controller,selected_object,pos,selected_pos)
+			#player_controller : PlayerController,  selected_unit : Unit, new_pos : Vector2i, previous_pos : Vector2i
+
+			player_controller.unit_movement.set_unit_path(player_controller, selected_object, pos,selected_pos)
+			
+
 	elif event.is_action_pressed("undo_movement"):
 		if selected_object is Unit:
 			# Call undo movement 

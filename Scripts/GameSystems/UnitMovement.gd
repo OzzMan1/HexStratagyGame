@@ -4,7 +4,6 @@ extends Node
 # VARIABLES
 @onready var grid_manager: Node2D = %GridManager
 @onready var path_finder: Node2D = %GameSystems/PathFinder
-@onready var playerController : Node2D = %PlayerController
 @onready var unit_movemement_overlay = %UnitMovementOverlay
 
 var all_paths_offset : Array[Array] 
@@ -36,10 +35,11 @@ func calculate_unit_move_path(new_pos : Vector2i, previous_pos : Vector2i):
    				"in_range": path_in_range}
 
 # Given a unit and a target, paths finds the path to get to target
-func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, new_pos : Vector2i, previous_pos : Vector2i ) -> Variant:	
+func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, new_pos : Vector2i, previous_pos : Vector2i ):	
 	#  Check the new position is in the game bounds 
 	if grid_manager.check_bounds(new_pos):
-		
+		selected_unit.set_alpha_value()
+
 		# calculate unit path
 		var results = calculate_unit_move_path(new_pos,previous_pos)
 		var path = results.get("full_path")
@@ -62,9 +62,7 @@ func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, 
 		# Pass it to unit overlay
 		unit_movemement_overlay.move_unit_overlay_update(path_in_range_oddr.duplicate(true),path_oddr.duplicate(true))
 		selected_unit.update_current_number_of_moves(path_in_range.size() - 1)
-		return [path,path_in_range]
-	else:
-		return []
+
 
 func undo_unit_path(player_controller : PlayerController,  selected_unit : Unit):
 	if unit_map_prev_target.has(selected_unit):
@@ -91,7 +89,7 @@ func undo_unit_path(player_controller : PlayerController,  selected_unit : Unit)
 			player_controller.unit_grid_manager.update_unit_list_local(unit,unit_prev,unit_target) 
 			#print("after one undo ", grid_manager.get_unit_list_local())
 
-			unit.set_alpha_value()
+			unit.reset_alpha_value()
 			var numnber_of_moves_to_refund = all_path_map_unit.get(unit)[1].size() - 1
 			unit.update_current_number_of_moves(-numnber_of_moves_to_refund)
 			unit_map_prev_target.erase(unit)

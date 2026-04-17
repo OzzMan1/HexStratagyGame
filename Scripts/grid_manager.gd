@@ -61,7 +61,7 @@ func get_unit_list_local():
 func end_turn_move_update(unit : Unit, dest : Vector2i):
 	unit.position = get_world_pos(dest)
 	unit.tile_pos = dest 
-	unit.set_alpha_value()
+	unit.reset_alpha_value()
 
 #
 #func update_unit_list_local(unit : Unit, target: Vector2i, previous_pos : Variant = null):		

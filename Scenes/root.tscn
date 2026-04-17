@@ -47,10 +47,6 @@ sources/0 = SubResource("TileSetAtlasSource_dun2r")
 texture = ExtResource("6_ckhy6")
 margins = Vector2i(0, 16)
 texture_region_size = Vector2i(48, 48)
-1:14/0 = 0
-4:14/0 = 0
-7:14/0 = 0
-10:14/0 = 0
 0:4/0 = 0
 1:4/0 = 0
 2:4/0 = 0
@@ -78,12 +74,6 @@ tile_set = SubResource("TileSet_r3lo5")
 
 [node name="unit_movement_order" type="TileMapLayer" parent="Tilemaps"]
 unique_name_in_owner = true
-tile_set = SubResource("TileSet_qtxxq")
-
-[node name="Test" type="TileMapLayer" parent="Tilemaps"]
-unique_name_in_owner = true
-visible = false
-tile_map_data = PackedByteArray("AAACAP3/AQABAAMAAAAEAPr/AQABAAMAAAABAPr/AQABAAMAAAA=")
 tile_set = SubResource("TileSet_qtxxq")
 
 [node name="GridManager" parent="." instance=ExtResource("1_8pvmw")]
