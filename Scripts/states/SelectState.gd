@@ -9,7 +9,6 @@ var selected_object : Selectable
 func _init(pos: Vector2i, _selected_object : Selectable) -> void:
 	selected_pos = pos
 	selected_object = _selected_object
-
 # when we enter select state(just clicked a selectable object, we call that objects select function)
 func enter(player_controller) -> void:
 	selected_object.on_select(player_controller,selected_pos)
