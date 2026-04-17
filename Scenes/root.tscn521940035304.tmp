@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=4 uid="uid://0wj8aqudqite"]
+
+[ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
+[ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/player_controller.gd" id="1_c3mwy"]
+[ext_resource type="Texture2D" uid="uid://dcgdn0nc6bq28" path="res://Assets/HexMapTest.png" id="1_i04dx"]
+[ext_resource type="PackedScene" uid="uid://dqj862qxe4ob0" path="res://Scenes/archer.tscn" id="2_vnucn"]
+[ext_resource type="Script" uid="uid://s8uobqsipu01" path="res://Scripts/test.gd" id="5_4g5cr"]
+[ext_resource type="Texture2D" uid="uid://dp0ryb03nfp7o" path="res://Assets/possible_movement.png" id="5_ckhy6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pvmw"]
+texture = ExtResource("1_i04dx")
+2:15/0 = 0
+3:15/0 = 0
+1:15/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vnucn"]
+tile_shape = 3
+sources/0 = SubResource("TileSetAtlasSource_8pvmw")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dun2r"]
+texture = ExtResource("5_ckhy6")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_r3lo5"]
+tile_shape = 3
+sources/0 = SubResource("TileSetAtlasSource_dun2r")
+
+[node name="root" type="Node2D"]
+
+[node name="PlayerController" type="Node2D" parent="."]
+script = ExtResource("1_c3mwy")
+
+[node name="GameManager" parent="." instance=ExtResource("1_8pvmw")]
+unique_name_in_owner = true
+archer_scene = ExtResource("2_vnucn")
+
+[node name="Tilemaps" type="Node2D" parent="GameManager"]
+
+[node name="map_layer" type="TileMapLayer" parent="GameManager/Tilemaps"]
+tile_map_data = PackedByteArray("AAAAAAIAAAACAA8AAAACAAEAAAACAA8AAAAAAAMAAAACAA8AAAACAAMAAAACAA8AAAAAAAQAAAACAA8AAAAAAAUAAAACAA8AAAABAAQAAAADAA8AAAACAAQAAAADAA8AAAACAAUAAAACAA8AAAADAAQAAAACAA8AAAAAAAAAAAACAA8AAAABAAMAAAACAA8AAAADAAEAAAACAA8AAAADAAMAAAACAA8AAAADAAUAAAACAA8AAAACAAAAAAACAA8AAAABAAEAAAABAA8AAAABAAAAAAACAA8AAAADAAAAAAACAA8AAAABAAIAAAABAA8AAAAAAAEAAAACAA8AAAABAAUAAAACAA8AAAACAAIAAAABAA8AAAADAAIAAAACAA8AAAA=")
+tile_set = SubResource("TileSet_vnucn")
+navigation_enabled = false
+
+[node name="movement_map" type="TileMapLayer" parent="GameManager/Tilemaps"]
+tile_set = SubResource("TileSet_r3lo5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="test" type="Node2D" parent="."]
+script = ExtResource("5_4g5cr")

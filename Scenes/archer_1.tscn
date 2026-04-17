@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqj862qxe4ob0"]
+
+[ext_resource type="Script" uid="uid://batjkl7nisu2f" path="res://Scripts/GameObjects/unit.gd" id="1_7qbr0"]
+[ext_resource type="Texture2D" uid="uid://dpweu5x5ufw5l" path="res://Assets/archer.png" id="2_7m603"]
+[ext_resource type="Script" uid="uid://cy7noca3q1erw" path="res://Scripts/GameObjects/Selectable.gd" id="3_7m603"]
+
+[node name="Archer" type="Node2D"]
+script = ExtResource("1_7qbr0")
+unit_name = "Archer"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_7m603")
+
+[node name="Selectable" type="Node2D" parent="."]
+script = ExtResource("3_7m603")
