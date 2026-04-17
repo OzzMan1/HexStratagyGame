@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dwyvjjh1028xn" path="res://Assets/possible_movement_unit_order.png" id="6_ckhy6"]
 [ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/PathFinder.gd" id="6_dun2r"]
 [ext_resource type="Script" uid="uid://ce1gx6wk2aqll" path="res://Scripts/GameSystems/UnitMovement.gd" id="7_r3lo5"]
-[ext_resource type="Script" path="res://Scripts/GameSystems/SelectionSystem.gd" id="8_qtxxq"]
+[ext_resource type="Script" uid="uid://ckha2g8x03qqq" path="res://Scripts/GameSystems/SelectionSystem.gd" id="8_qtxxq"]
 [ext_resource type="Script" uid="uid://c5qo1inocw736" path="res://Scripts/UI/UnitMovementOverlay.gd" id="9_8fnbn"]
 [ext_resource type="Script" uid="uid://qnn8of0rdcpi" path="res://Scripts/GameSystems/TurnManager.gd" id="9_a6f85"]
 [ext_resource type="Script" uid="uid://dyqfo36eyv86m" path="res://Scripts/Player Controller/unit_grid_manager.gd" id="12_fu36u"]
