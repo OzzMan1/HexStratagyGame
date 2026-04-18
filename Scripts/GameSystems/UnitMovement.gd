@@ -87,10 +87,8 @@ func undo_unit_path(player_controller : PlayerController,  selected_unit : Unit)
 		for unit in conflicting_units:
 			var unit_target = unit_map_prev_target.get(unit)[1]
 			var unit_prev = unit_map_prev_target.get(unit)[0]
-			#print("Unit move to be undone ", unit ," unit prev ", unit_prev,  " unit_target ", unit_target )
 			# assing it backwards
 			unit_manager.update_unit_list_local( player_controller, unit,unit_prev,unit_target) 
-			#print("after one undo ", grid_manager.get_unit_list_local())
 
 			unit.reset_alpha_value()
 			var numnber_of_moves_to_refund = all_path_map_unit.get(unit)[1].size() - 1

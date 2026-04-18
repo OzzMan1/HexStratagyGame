@@ -24,6 +24,6 @@ func handle_input(player_controller, event) -> void:
 		player_controller.unit_movemement_overlay.clear_overlay_maps()
 	elif event.is_action_pressed("enter"):
 		player_controller.unit_movement.implement_move_orders()	
-	
+
 	#elif event.is_action_pressed("EndTurnTemp"):
 			#player_controller.end_turn_request()
