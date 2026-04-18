@@ -5,6 +5,8 @@ class_name Unit
 @onready var sprite2d : Sprite2D = $Sprite2D
 
 var health = 5
+@export var initiative : int
+
 @export var unit_name : String 
 @export var number_of_moves = 2
 var current_num_of_moves = number_of_moves

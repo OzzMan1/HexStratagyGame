@@ -1,7 +1,6 @@
 extends Node
 
 @onready var grid_manager: Node2D = %GridManager
-@onready var unit_manager: Node2D = %UnitManager
 
 
 

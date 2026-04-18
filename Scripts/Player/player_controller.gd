@@ -10,8 +10,8 @@ class_name PlayerController
 @onready var player_data = $PlayerData
 @onready var player_manager: Node2D = $".."
 
-@export var player_id : int
 
+@export var player_id : int
 var isActive : bool = false
 
 

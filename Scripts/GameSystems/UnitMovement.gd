@@ -65,6 +65,8 @@ func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, 
 		# Pass it to unit overlay
 		unit_movemement_overlay.move_unit_overlay_update(path_in_range_oddr.duplicate(true),path_oddr.duplicate(true))
 		selected_unit.update_current_number_of_moves(path_in_range.size() - 1)
+		
+		
 
 
 func undo_unit_path(player_controller : PlayerController,  selected_unit : Unit):
@@ -96,6 +98,7 @@ func undo_unit_path(player_controller : PlayerController,  selected_unit : Unit)
 			unit_map_prev_target.erase(unit)
 
 func implement_move_orders():
+
 	for unit in all_path_map_unit.keys():
 		var path_in_range = all_path_map_unit.get(unit)[1]
 
