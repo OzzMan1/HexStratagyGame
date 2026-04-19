@@ -18,7 +18,7 @@ func exit(player_controller) -> void:
 	
 func handle_input(player_controller, event) -> void:
 
-	var pos = player_controller.return_mouse_pos()
+	var pos : Vector2i = player_controller.return_mouse_pos()
 	if event.is_action_pressed("click"):
 
 		#var pos = player_controller.return_mouse_pos()
@@ -40,6 +40,3 @@ func handle_input(player_controller, event) -> void:
 		if selected_object is Unit:
 			# Call undo movement 
 			player_controller.unit_movement.undo_unit_path(player_controller,selected_object)
-	elif event.is_action_pressed("space"):
-		player_controller.set_state(IdleState.new())
-		player_controller.unit_movement.display_unit_orders()

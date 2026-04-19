@@ -6,16 +6,16 @@ extends Node2D
 var current_selected_unit : Unit 
 
 
-func get_clicked_object(player_controller : PlayerController, pos): 
-	var unit_list_local = player_controller.player_data.unit_list_local
-	if unit_list_local.has(pos):
-		return unit_list_local.get(pos)
+func get_clicked_object(player_controller : PlayerController, pos : Vector2i): 
+	var target_to_unit = player_controller.player_data.target_to_unit
+	if target_to_unit.has(pos):
+		return target_to_unit.get(pos)
 	return null
 
 
 func select_unit(player_controller : PlayerController, pos : Vector2i):	
 	#Get reference to unit at pos 
-	current_selected_unit = player_controller.player_data.unit_list_local.get(pos)
+	current_selected_unit = player_controller.player_data.target_to_unit.get(pos)
 	
 	var axial_pos = path_finder.oddr_to_axial(pos)
 	path_finder.shortest_path_to_all_tiles(player_controller,axial_pos)

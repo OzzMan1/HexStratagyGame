@@ -44,7 +44,7 @@ func neighbours(player_controller : PlayerController,  current_position:Vector2i
 	var possible_directions: Array[Vector2i] = []
 	for direction in directions: 
 		var new_dir = direction + current_position
-		if grid_manager.check_bounds(axial_to_oddr(new_dir)) and !player_controller.player_data.unit_list_local.has(axial_to_oddr(new_dir)):
+		if grid_manager.check_bounds(axial_to_oddr(new_dir)) and !player_controller.player_data.target_to_unit.has(axial_to_oddr(new_dir)):
 				possible_directions.append(new_dir)
 		
 	return possible_directions
