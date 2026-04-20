@@ -34,10 +34,11 @@ var terrain_grid : Dictionary = {
 	Vector2i(3,4): preload("res://Resources/plains.tres"),
 	Vector2i(3,5): preload("res://Resources/plains.tres"),
 }
-var unit_list_local = {}
 
-# 
-# Unit Global liost 
+# Unit Global list 
+var unit_list_global = {}
+
+
 
 func check_bounds(tile_pos: Vector2i) -> bool:
 	var x = tile_pos.x
@@ -55,9 +56,7 @@ func get_world_pos(tile_pos : Vector2i) -> Vector2:
 	return tile_map_layer.map_to_local(tile_pos) 
 
 
-func get_unit_list_local():
-	return unit_list_local
-#
+
 func end_turn_move_update(unit : Unit, dest : Vector2i):
 	unit.position = get_world_pos(dest)
 	unit.tile_pos = dest 

@@ -6,10 +6,11 @@ var local_unit_orders : Array[unit_order]
 var unit_order_stack : Dictionary[Unit,Array]
 var target_to_unit : Dictionary[Vector2i, Unit]
 
+var has_ended_turn : bool = false
+
 @export var archer_scene: PackedScene
 
 @export var player_name : String 
-
 
 
 

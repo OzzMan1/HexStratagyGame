@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://0wj8aqudqite"]
+[gd_scene load_steps=23 format=4 uid="uid://0wj8aqudqite"]
 
 [ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
 [ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_c3mwy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dwyvjjh1028xn" path="res://Assets/possible_movement_unit_order.png" id="6_ckhy6"]
 [ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/PathFinder.gd" id="6_dun2r"]
 [ext_resource type="Script" uid="uid://ce1gx6wk2aqll" path="res://Scripts/GameSystems/UnitMovement.gd" id="7_r3lo5"]
+[ext_resource type="Script" uid="uid://d1553cudjkvi7" path="res://Scripts/GameSystems/EndTurn/unit_behaviour_resolver.gd" id="8_hv1ua"]
 [ext_resource type="Script" uid="uid://ckha2g8x03qqq" path="res://Scripts/GameSystems/SelectionSystem.gd" id="8_qtxxq"]
 [ext_resource type="Script" uid="uid://c5qo1inocw736" path="res://Scripts/UI/UnitMovementOverlay.gd" id="9_8fnbn"]
 [ext_resource type="Script" uid="uid://qnn8of0rdcpi" path="res://Scripts/GameSystems/TurnManager.gd" id="9_a6f85"]
@@ -98,6 +99,9 @@ script = ExtResource("8_qtxxq")
 
 [node name="TurnManagment" type="Node2D" parent="GameSystems"]
 script = ExtResource("9_a6f85")
+
+[node name="unit_behaviour_resolver" type="Node2D" parent="GameSystems/TurnManagment"]
+script = ExtResource("8_hv1ua")
 
 [node name="UI" type="Node2D" parent="."]
 

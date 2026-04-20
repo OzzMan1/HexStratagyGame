@@ -14,8 +14,7 @@ func handle_input(player_controller, event) -> void:
 			player_controller.set_state(SelectState.new(pos, clicked))
 		else:
 			player_controller.unit_manager.spawn_unit_test(player_controller,player_controller.get_local_mouse_position())
-	elif event.is_action_pressed("enter"):
-		player_controller.unit_movement.implement_move_orders()	
+
 
 	#elif event.is_action_pressed("EndTurnTemp"):
 			#player_controller.end_turn_request()

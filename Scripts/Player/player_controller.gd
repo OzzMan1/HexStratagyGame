@@ -54,6 +54,9 @@ func _input(event):
 	elif event.is_action_pressed("player2"):
 		print("test2")
 		player_manager.set_player(1)
+	elif event.is_action_pressed("end_turn"):
+		# turn manager end turn 
+		set_state(IdleState.new())
 	if not isActive:
 			return
 	state.handle_input(self, event)
