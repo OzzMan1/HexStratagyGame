@@ -15,7 +15,6 @@ var tile_pos : Vector2i
 
 var current_path : Array
 var current_path_in_range : Array
-
 var current_pos : Vector2i
 
 func on_select(player_controller,selected_pos):
@@ -33,8 +32,7 @@ func reset_alpha_value():
 func set_alpha_value():
 	sprite2d.self_modulate.a = 0.5
 	
-
-
+	
 func get_new_pos():
 	return current_path_in_range[0]
 

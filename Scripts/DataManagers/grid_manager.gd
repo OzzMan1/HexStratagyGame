@@ -35,6 +35,11 @@ var terrain_grid : Dictionary = {
 	Vector2i(3,5): preload("res://Resources/plains.tres"),
 }
 
+
+var re_grid : Dictionary = {
+	Vector2i(0,3) : preload("res://Resources/iron.tres")
+} 
+
 # Unit Global list 
 var unit_list_global = {}
 

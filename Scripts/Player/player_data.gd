@@ -12,8 +12,9 @@ var has_ended_turn : bool = false
 
 @export var player_name : String 
 
-
-
+# For cycling objects
+var last_clicked_pos : Vector2i
+var last_clicked_object
 func get_archer_scene():
 	return 	archer_scene
 

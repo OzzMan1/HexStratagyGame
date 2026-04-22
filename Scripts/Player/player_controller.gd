@@ -10,6 +10,10 @@ class_name PlayerController
 @onready var player_data = $PlayerData
 @onready var player_manager: Node2D = $".."
 
+## TDSystems 
+@onready var build_td: Node2D = $"../../GameSystems/TileDevelopmentSystems/build_td"
+
+
 
 @export var player_id : int
 var isActive : bool = false
@@ -48,10 +52,10 @@ func set_state(new_state : State):
 
 func _input(event):
 	
-	if event.is_action_pressed("player1"):
+	if event.is_action_pressed("1"):
 		print("test1")
 		player_manager.set_player(0)
-	elif event.is_action_pressed("player2"):
+	elif event.is_action_pressed("2"):
 		print("test2")
 		player_manager.set_player(1)
 	elif event.is_action_pressed("end_turn"):
@@ -64,7 +68,6 @@ func _input(event):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

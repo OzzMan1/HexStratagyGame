@@ -20,14 +20,6 @@ var distance = {}
 # Store tiles in range of currently selected unit
 var new_tiles_in_range
 
-# GET/SET FUNCITONS 
-#
-#func get_prev():
-	#return prev
-#
-#func get_new_tiles_in_range():
-	#return new_tiles_in_range
-
 
 func oddr_to_axial(hex: Vector2i):
 	var q = hex.x - (hex.y - (hex.y & 1)) /2 

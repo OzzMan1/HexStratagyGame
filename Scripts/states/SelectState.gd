@@ -34,7 +34,7 @@ func handle_input(player_controller, event) -> void:
 			#player_controller : PlayerController,  selected_unit : Unit, new_pos : Vector2i, previous_pos : Vector2i
 
 			player_controller.unit_movement.set_unit_path(player_controller, selected_object, pos,selected_pos)
-			
+	# I Rclick IS realased
 
 	elif event.is_action_pressed("undo_movement"):
 		if selected_object is Unit:

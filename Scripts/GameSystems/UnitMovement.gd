@@ -3,7 +3,7 @@ extends Node
 
 # VARIABLES
 @onready var grid_manager: Node2D = %GridManager
-@onready var path_finder: Node2D = %GameSystems/PathFinder
+@onready var path_finder: Node2D = %PathFinder
 @onready var unit_movemement_overlay = %UnitMovementOverlay
 @onready var unit_manager = %UnitManager
 
@@ -13,7 +13,7 @@ var all_paths_offset : Array[Array]
 var all_path_map_unit : Dictionary[Unit, Array] 
 var unit_map_prev_target : Dictionary[Unit,Array]
 
-
+## make it display while holding right click
 
 func calculate_unit_move_path(new_pos : Vector2i, previous_pos : Vector2i):
 # we convert to axial coordiantes as that.....
@@ -63,13 +63,15 @@ func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, 
 		var new_unit_order = unit_order.new(prev,target, selected_unit,path_in_range_oddr.size())
 		unit_manager.update_unit_list_local(player_controller,selected_unit, new_unit_order)
 		
-		
+		## Move to new funciton
 		selected_unit.update_current_number_of_moves(path_in_range.size()-1)
-		
-		print("unit order stack ", player_controller.player_data.unit_order_stack)
-		
 
 
+
+## NEW function called when right click is released, commits move orders   
+		
+
+### REMOVE
 func undo_unit_path(player_controller : PlayerController,  selected_unit : Unit):
 	# If the player has made a move order, we want them to be able to undo the move 
 	# The player should select the moved unit and press crtl z 

@@ -1,16 +1,52 @@
 extends Node2D
 
-@onready var path_finder: Node2D = %GameSystems/PathFinder
+@onready var path_finder: Node2D = %PathFinder
 @onready var unit_movemement_overlay = %UnitMovementOverlay
 
 var current_selected_unit : Unit 
 
 
-func get_clicked_object(player_controller : PlayerController, pos : Vector2i): 
+
+# click, get first object
+# click again, get second object
+
+#
+
+var objects_at_pos = []
+
+
+func get_objects_at_pos(player_controller : PlayerController, objects_at_pos, clicked_pos : Vector2i):
+
 	var target_to_unit = player_controller.player_data.target_to_unit
-	if target_to_unit.has(pos):
-		return target_to_unit.get(pos)
+	if target_to_unit.has(clicked_pos):
+		objects_at_pos.append(target_to_unit.get(clicked_pos))
+	
+
+	if player_controller.grid_manager.re_grid.has(clicked_pos):
+		if player_controller.grid_manager.re_grid[clicked_pos].resource_improvment_type == "iron":
+			objects_at_pos.append(player_controller.grid_manager.re_grid[clicked_pos].resource_improvment_type)
+	
+	
+# [unit, iron]
+func get_clicked_object(player_controller : PlayerController, clicked_pos : Vector2i): 
+	# if the user has clicked this position before then we remove the last clicked item 
+	get_objects_at_pos(player_controller,objects_at_pos,clicked_pos)  
+	print(objects_at_pos)
+	if player_controller.player_data.last_clicked_pos == clicked_pos:
+		objects_at_pos.pop_front() 
+		print(objects_at_pos.front())
+		return objects_at_pos.front()
+	else:		
+		return objects_at_pos.front()
+	player_controller.player_data.last_clicked_pos = clicked_pos
+
+		
+	var target_to_unit = player_controller.player_data.target_to_unit
+	if target_to_unit.has(clicked_pos):
+		return target_to_unit.get(clicked_pos)
 	return null
+
+
 
 
 func select_unit(player_controller : PlayerController, pos : Vector2i):	
