@@ -18,10 +18,10 @@ var current_path_in_range : Array
 var current_pos : Vector2i
 
 func on_select(player_controller,selected_pos):
-	player_controller.unit_selection.select_unit(player_controller,selected_pos)
+	player_controller.selection_system.select_unit(player_controller,selected_pos)
 	
 func deselect(player_controller):
-	player_controller.unit_movemement_overlay.clear_overlay_maps()
+	player_controller.overlay_tilemap.clear_overlay_maps()
 	
 func update_current_number_of_moves(number_of_moves_used : int):
 	current_num_of_moves = current_num_of_moves - number_of_moves_used

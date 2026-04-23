@@ -3,16 +3,23 @@ extends Node2D
 class_name PlayerController 
 
 @onready var grid_manager: Node2D = %GridManager
-@onready var unit_movement = %UnitMovement
-@onready var unit_selection = %SelectionSystem
-@onready var unit_movemement_overlay = %UnitMovementOverlay
-@onready var unit_manager = %UnitManager
+@onready var selection_system = %SelectionSystem
+@onready var tile_developement_manager: Node2D = $"../../DataManagers/TileDevelopementManager"
+
+#Player
 @onready var player_data = $PlayerData
 @onready var player_manager: Node2D = $".."
+# Units
+@onready var unit_manager = %UnitManager
+@onready var unit_movement = %UnitMovement
 
 ## TDSystems 
 @onready var build_td: Node2D = $"../../GameSystems/TileDevelopmentSystems/build_td"
 
+#UI
+@onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"
+#Display
+@onready var overlay_map = %OverlayUI
 
 
 @export var player_id : int

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ResourceImprovementData" load_steps=2 format=3 uid="uid://bmp0ixqbsflnb"]
+
+[ext_resource type="Script" uid="uid://usoyn3yk7nsu" path="res://Scripts/Resources/resource_improvement.gd" id="1_7u5sx"]
+
+[resource]
+script = ExtResource("1_7u5sx")
+resource_improvment_type = "stone"
+metadata/_custom_type_script = "uid://usoyn3yk7nsu"

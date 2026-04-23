@@ -11,14 +11,15 @@ func handle_input(player_controller, event) -> void:
 	if event.is_action_pressed("click"):
 
 		var pos = player_controller.return_mouse_pos()
-		var clicked = player_controller.unit_selection.get_clicked_object(player_controller,pos)
-
+		var clicked = player_controller.selection_system.get_clicked_object(player_controller,pos)
 		if clicked != null:
 			player_controller.set_state(SelectState.new(pos, clicked))
-	
 	if event.is_action_pressed("b"):	 
-		#player_controller.set_state(BuildState.new())
-		pass
+		print("in build mode ")
+
+		player_controller.set_state(BuildState.new())
+		
+	
 
 	#  Go into selection state
 	# elif press build RE button

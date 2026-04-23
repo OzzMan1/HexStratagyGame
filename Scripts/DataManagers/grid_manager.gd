@@ -34,16 +34,20 @@ var terrain_grid : Dictionary = {
 	Vector2i(3,4): preload("res://Resources/plains.tres"),
 	Vector2i(3,5): preload("res://Resources/plains.tres"),
 }
-
-
 var re_grid : Dictionary = {
-	Vector2i(0,3) : preload("res://Resources/iron.tres")
+	Vector2i(0,3) : preload("res://Resources/iron.tres"),
+	Vector2i(1,5) : preload("res://Resources/stone.tres"),
+	Vector2i(0,5) : preload("res://Resources/stone.tres"),	
+	Vector2i(2,1) : preload("res://Resources/forest.tres"),
+	Vector2i(3,1) : preload("res://Resources/forest.tres"),
+	Vector2i(3,0) : preload("res://Resources/forest.tres")
+
 } 
 
+
+
 # Unit Global list 
-var unit_list_global = {}
-
-
+var unit_list = {}
 
 func check_bounds(tile_pos: Vector2i) -> bool:
 	var x = tile_pos.x
@@ -59,39 +63,3 @@ func get_tile_pos(world_pos : Vector2) -> Vector2i:
 
 func get_world_pos(tile_pos : Vector2i) -> Vector2:
 	return tile_map_layer.map_to_local(tile_pos) 
-
-
-
-func end_turn_move_update(unit : Unit, dest : Vector2i):
-	unit.position = get_world_pos(dest)
-	unit.tile_pos = dest 
-	unit.reset_alpha_value()
-
-#
-#func update_unit_list_local(unit : Unit, target: Vector2i, previous_pos : Variant = null):		
-		## assign it to the unit grid
-		#unit_list_local.set(target,unit)
-		## erase the value at the previous position
-		#if unit_list_local.has(previous_pos):
-			#unit_list_local.erase(previous_pos)
-		 #
-		## move units position 
-		#unit.position = get_world_pos(target)
-		#unit.tile_pos = target 
-#
-#
-#func spawn_unit_test(mouse_pos):
-	#
-	#var tile_pos = get_tile_pos(mouse_pos)
-	## Check if Unit is there, if not then we can spawn a new unit and add it as a child
-	#if !unit_list_local.has(tile_pos):
-		#var new_unit = archer_scene.instantiate()
-		#update_unit_list_local(new_unit,tile_pos)	
-		##print("Grid manager spwan unit test: ", unit_list_local)
-		#new_unit.position = get_world_pos(tile_pos)
-		#new_unit.tile_pos = tile_pos 
-		#add_child(new_unit)
-	#elif unit_list_local.has(tile_pos): 
-		#print("Cant build here, there is unit: ", unit_list_local.get(tile_pos).name)
-
-#=

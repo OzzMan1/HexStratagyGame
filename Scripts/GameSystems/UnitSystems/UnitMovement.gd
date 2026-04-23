@@ -4,7 +4,7 @@ extends Node
 # VARIABLES
 @onready var grid_manager: Node2D = %GridManager
 @onready var path_finder: Node2D = %PathFinder
-@onready var unit_movemement_overlay = %UnitMovementOverlay
+@onready var overlay_tilemap = %OverlayUI
 @onready var unit_manager = %UnitManager
 
 
@@ -53,7 +53,7 @@ func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, 
 		var path_oddr = path.map(func(x): return path_finder.axial_to_oddr(x))
 		
 		# Pass it to unit overlay
-		unit_movemement_overlay.move_unit_overlay_update(path_in_range_oddr.duplicate(true),path_oddr.duplicate(true))
+		overlay_tilemap.move_unit_overlay_update(path_in_range_oddr.duplicate(true),path_oddr.duplicate(true))
 		
 		
 		# Create unit prev, target
@@ -108,7 +108,6 @@ func undo_unit_path(player_controller : PlayerController,  selected_unit : Unit)
 	
 		unit.reset_alpha_value()
 		unit.update_current_number_of_moves(-(current_order.number_of_moves-1))
-		print("unit order stack ", player_controller.player_data.unit_order_stack)
 
 
 func implement_move_orders():
@@ -117,7 +116,7 @@ func implement_move_orders():
 		var path_in_range = all_path_map_unit.get(unit)[1]
 
 		grid_manager.end_turn_move_update(unit,path_in_range[0])
-	unit_movemement_overlay.clear_overlay_maps()
+	overlay_tilemap.clear_overlay_maps()
 	#clear all path orders
 	all_paths_offset.clear()
 	all_path_map_unit.clear()

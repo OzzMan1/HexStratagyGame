@@ -1,20 +1,35 @@
 extends Node
 
 
-
+# Unit info
 var local_unit_orders : Array[unit_order]
 var unit_order_stack : Dictionary[Unit,Array]
 var target_to_unit : Dictionary[Vector2i, Unit]
-
-var has_ended_turn : bool = false
-
 @export var archer_scene: PackedScene
 
+
+var has_ended_turn : bool = false
 @export var player_name : String 
 
 # For cycling objects
 var last_clicked_pos : Vector2i
-var last_clicked_object
+var last_clicked_index : int
+
+# currnet build object 
+var build_obj : Buildable
+
+# resources
+var resources_amount : Dictionary[String,int] = {
+	"stone" : 100,
+	"timber" : 100, 
+	"iron_ore": 100,  
+	}
+
+
+
+
+
+
 func get_archer_scene():
 	return 	archer_scene
 

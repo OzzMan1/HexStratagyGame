@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dajtjq7436wrb"]
 
-[ext_resource type="Script" uid="uid://batjkl7nisu2f" path="res://Scripts/Data/GameObjects/unit.gd" id="1_86im6"]
+[ext_resource type="Script" uid="uid://batjkl7nisu2f" path="res://Scripts/ClassInstances/unit.gd" id="1_86im6"]
 [ext_resource type="Texture2D" uid="uid://boaepcunbwjfd" path="res://Assets/Archer_2.png" id="2_86im6"]
 
 [node name="Archer" type="Node2D"]
