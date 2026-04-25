@@ -13,6 +13,7 @@ func _init(pos: Vector2i, _selected_object ) -> void:
 func enter(player_controller) -> void:
 	if selected_object.has_method("on_select"):
 		selected_object.on_select(player_controller,selected_pos)
+	
 
 # when we deselect (exiting the selec)
 func exit(player_controller) -> void:
@@ -37,9 +38,9 @@ func handle_input(player_controller, event) -> void:
 			#player_controller : PlayerController,  selected_unit : Unit, new_pos : Vector2i, previous_pos : Vector2i
 
 			player_controller.unit_movement.set_unit_path(player_controller, selected_object, pos,selected_pos)
-	# I Rclick IS realased
-
-	elif event.is_action_pressed("undo_movement"):
-		if selected_object is Unit:
-			# Call undo movement 
-			player_controller.unit_movement.undo_unit_path(player_controller,selected_object)
+		if selected_object is Road:
+			player_controller.build_road.create_road_path(player_controller,selected_pos,pos)
+			player_controller.set_state(IdleState.new())
+	elif event.is_action_pressed("b"):
+		print("in build mode ")
+		player_controller.set_state(BuildState.new())

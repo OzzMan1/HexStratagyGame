@@ -10,7 +10,11 @@ var number_of_processed_goods_produced : int
 var number_of_goods_consumed : int
 
 # what resources do you need to build
-#var resource_cost : 
+
+var resource_cost = {
+	ResourceTypes.Type.STONE: 30,
+	ResourceTypes.Type.TIMBER: 40,
+}
 # for different values it needs to store integers 
 
 func _init() -> void:

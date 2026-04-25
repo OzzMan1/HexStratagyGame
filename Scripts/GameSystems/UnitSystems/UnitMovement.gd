@@ -20,7 +20,7 @@ func calculate_unit_move_path(new_pos : Vector2i, previous_pos : Vector2i):
 		new_pos = path_finder.oddr_to_axial(new_pos)
 		previous_pos = path_finder.oddr_to_axial(previous_pos)
 	
-		# Work backwards from the new position accessing the previous node in  the shortest path
+		# Work backwards from the new position accessing the previous node in the shortest path
 		var current_pos = path_finder.prev[new_pos]
 		var path : Array[Vector2i] = [current_pos]
 		while current_pos != previous_pos:

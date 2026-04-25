@@ -15,6 +15,7 @@ class_name PlayerController
 
 ## TDSystems 
 @onready var build_td: Node2D = $"../../GameSystems/TileDevelopmentSystems/build_td"
+@onready var build_road: Node2D = $"../../GameSystems/TileDevelopmentSystems/build_road"
 
 #UI
 @onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"

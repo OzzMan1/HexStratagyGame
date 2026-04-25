@@ -35,6 +35,7 @@ func get_objects_at_pos(player_controller : PlayerController, clicked_pos : Vect
 # [unit, iron, sheep]
 func get_clicked_object(player_controller : PlayerController, clicked_pos : Vector2i): 
 	# if the user has clicked this position before then we iterate the last clicked item 
+	
 	var objects = get_objects_at_pos(player_controller,clicked_pos)  
 
 	if objects.is_empty():
@@ -45,6 +46,8 @@ func get_clicked_object(player_controller : PlayerController, clicked_pos : Vect
 	else:
 		player_controller.player_data.last_clicked_index = 0
 		player_controller.player_data.last_clicked_pos = clicked_pos
+	
+	
 	return objects[player_controller.player_data.last_clicked_index]
 	
 
@@ -53,7 +56,6 @@ func get_clicked_object(player_controller : PlayerController, clicked_pos : Vect
 	#if target_to_unit.has(clicked_pos):
 		#return target_to_unit.get(clicked_pos)
 	#return null
-
 
 func select_unit(player_controller : PlayerController, pos : Vector2i):	
 	#Get reference to unit at pos 

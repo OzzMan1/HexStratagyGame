@@ -3,18 +3,22 @@ extends Node2D
 @onready var overlay_map: TileMapLayer = %overlay_map
 @onready var unit_movement_map: TileMapLayer = %unit_movement_order
 
-@onready var tile_development_map: TileMapLayer = $"../../Tilemaps/tile_development_map"
+@onready var tile_development_map: TileMapLayer = %tile_development_map
 
 ## Overlay Coords TD RE 
 var RE_to_overlay_coord : Dictionary[String,Vector2i] = {
 	"iron" : Vector2i(0,1),
 	"forest" : Vector2i(1,1),
 	"stone" : Vector2i(0,1),
-	"industrial" : Vector2i(0,4)
+	"industrial" : Vector2i(0,4),
+	"road" : Vector2i(2,1),
 }
 
 
 
+#  
+
+# Need to create a central overlay 
 
 
 func update_overlay(tiles_to_overlay,overlay_coord):
@@ -32,9 +36,11 @@ func tile_development_overlay(tiles_to_overlay):
 	
 	update_overlay(tiles_to_overlay,Vector2i(2,0))
 
-func update_tile_developments(tile, td):
-	print(RE_to_overlay_coord.get(td))
-	tile_development_map.set_cell(tile,0,RE_to_overlay_coord.get(td))
+
+func update_tile_developments(tile, td,atlas):
+	tile_development_map.set_cell(tile,atlas,RE_to_overlay_coord.get(td))
+
+
 
 
 func move_unit_overlay_update(path_in_range,path):

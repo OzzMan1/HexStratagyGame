@@ -19,13 +19,10 @@ var last_clicked_index : int
 var build_obj : Buildable
 
 # resources
-var resources_amount : Dictionary[String,int] = {
-	"stone" : 100,
-	"timber" : 100, 
-	"iron_ore": 100,  
-	}
-
-
+var resources_amount = {
+	ResourceTypes.Type.STONE: 500,
+	ResourceTypes.Type.TIMBER: 500,
+}
 
 
 
