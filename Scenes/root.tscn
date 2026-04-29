@@ -268,7 +268,7 @@ script = ExtResource("5_hv1ua")
 
 [node name="Roads" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
 
-[node name="build_road" type="Node2D" parent="GameSystems/TileDevelopmentSystems/Roads"]
+[node name="create_road" type="Node2D" parent="GameSystems/TileDevelopmentSystems/Roads"]
 unique_name_in_owner = true
 script = ExtResource("17_2mc6k")
 

@@ -3,7 +3,6 @@ extends Node
 # Enum for road types 
 @onready var path_finder: Node2D = %PathFinder
 @onready var tile_development_map: TileMapLayer = %tile_development_map
-@onready var overlay_ui: Node2D = %OverlayUI
 
 enum Directions {
 	TOP_LEFT,
@@ -31,17 +30,10 @@ var axial_vector_to_direction : Dictionary[Vector2i, Directions] = {
 	Vector2i(-1, 0) : Directions.LEFT, 
 }
 
-func create_road_display(path : Array):
+func create_road_display(path : Array) -> Array:
 		var tile_map_coords = []
 		var target = path.back()
-		# check road length 
-		
-		# length 1 
-		
-		# length 2 
-		
 
-		# length 3 
 		if path.size() >= 3: 
 			
 			var last = path[0]
@@ -53,9 +45,10 @@ func create_road_display(path : Array):
 				current =  path[i]
 				next = path[i+1]
 				tile_map_coords.append(decide_which_road(current, last, next)) 
-				print(tile_map_coords)
 		
-		overlay_ui.road_overlay(tile_map_coords,path)
+		# We need to save road path and which tile map coords to use
+		return tile_map_coords
+		
 
 
 func decide_which_road(current_pos : Vector2i, last_pos : Vector2i, next_pos : Vector2i ):
@@ -68,7 +61,6 @@ func decide_which_road(current_pos : Vector2i, last_pos : Vector2i, next_pos : V
 	var previous_pos_dir = axial_vector_to_direction.get(last_pos - current_pos)
 	var next_pos_dir = axial_vector_to_direction.get(next_pos - current_pos)
 	var next_prev = [next_pos_dir,previous_pos_dir]
-	print("next_prev ", next_prev)
 	match next_prev:
 		# Diagonal left
 		

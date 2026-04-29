@@ -6,6 +6,7 @@ extends Node
 
 @onready var tile_developement_manager: Node2D = $"../../../../DataManagers/TileDevelopementManager"
 
+@onready var build_td: Node2D = $"../../build_td"
 
 func path_finder_road_cost(pos : Vector2i ) -> int: 
 	if grid_manager.terrain_grid.get(pos).name == "water":
@@ -32,22 +33,7 @@ func create_road_path(player_controller : PlayerController, start_pos : Vector2i
 	
 	
 	var path_oddr = path.map(func(x): return path_finder.axial_to_oddr(x))
+	var tile_map_coords = road_ui.create_road_display(path_oddr)
 	
-	# Display overlay of road,
-	# Display the total cost of the road
-	road_ui.create_road_display(path_oddr)
-	# remove road from current obj
-	player_controller.player_data.build_obj = null
+	build_td.build_road(player_controller, path_oddr, tile_map_coords)
 	
-
-
-
-	#path_finder.new_tiles_in_range = path_finder.find_in_range()
-	#var tiles_in_range_offset = path_finder.new_tiles_in_range.map(func(x): return path_finder.axial_to_oddr(x))
-	
-
-	
-		
-# Then check how much of the path we can afford
-
-#

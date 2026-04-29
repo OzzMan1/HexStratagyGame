@@ -27,10 +27,13 @@ func handle_input(player_controller, event) -> void:
 
 		#var pos = player_controller.return_mouse_pos()
 		var clicked = player_controller.selection_system.get_clicked_object(player_controller,pos)
+	
+			#player_controller.set_state(IdleState.new())
 		if clicked != null: 
 			player_controller.set_state(SelectState.new(pos,clicked))
 		else:
 			player_controller.set_state(IdleState.new())
+	
 	
 	elif event.is_action_pressed("Rclick"):
 		#var pos = player_controller.return_mouse_pos()
@@ -39,8 +42,9 @@ func handle_input(player_controller, event) -> void:
 
 			player_controller.unit_movement.set_unit_path(player_controller, selected_object, pos,selected_pos)
 		if selected_object is Road:
-			player_controller.build_road.create_road_path(player_controller,selected_pos,pos)
-			player_controller.set_state(IdleState.new())
+			player_controller.create_road.create_road_path(player_controller,selected_pos,pos)
+			#player_controller.player_data.is_building_road = false
+	
 	elif event.is_action_pressed("b"):
 		print("in build mode ")
 		player_controller.set_state(BuildState.new())

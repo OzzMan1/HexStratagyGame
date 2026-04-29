@@ -18,6 +18,7 @@ var last_clicked_index : int
 # currnet build object 
 var build_obj : Buildable
 
+
 # resources
 var resources_amount = {
 	ResourceTypes.Type.STONE: 500,

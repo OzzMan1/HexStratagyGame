@@ -11,7 +11,6 @@ var overlay_atlas_id = 0
 
 # Tile Development overlay data 
 var re_highlight = Vector2i(2,0)
-var road_atlas_id = 1 
 
 var select_unit_highlight = Vector2i(0,0)
 ## Overlay Coords TD RE 
@@ -35,12 +34,7 @@ func central_overlay_update(tile_map_coord, atlas_id, atlas_coord):
 	#for tile_map_coord in tiles_to_overlay:
 		#overlay_map.set_cell(tile_map_coord,atlas_id,atlas_coord)
 #
-func road_overlay(atlas_coords : Array, path : Array):
-	overlay_init()
-	var index = 1
-	for atlas_coord in atlas_coords: 
-		central_overlay_update(path[index],road_atlas_id,atlas_coord)
-		index +=1
+
 
 
 func RE_overlay(tiles_to_overlay):
