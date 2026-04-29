@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://0wj8aqudqite"]
+[gd_scene load_steps=35 format=4 uid="uid://0wj8aqudqite"]
 
 [ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
 [ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_c3mwy"]
@@ -10,8 +10,9 @@
 [ext_resource type="Script" uid="uid://vr5pau7jkyu2" path="res://Scripts/GameSystems/TileDevelopment/build_td.gd" id="5_hv1ua"]
 [ext_resource type="Texture2D" uid="uid://dwyvjjh1028xn" path="res://Assets/possible_movement_unit_order.png" id="6_ckhy6"]
 [ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/GeneralSystems/PathFinder.gd" id="6_dun2r"]
-[ext_resource type="Script" uid="uid://b1ton6yoxd6lr" path="res://Scripts/UI/road_ui.gd" id="7_qoxdu"]
+[ext_resource type="Script" uid="uid://b1ton6yoxd6lr" path="res://Scripts/GameSystems/TileDevelopment/road_display.gd" id="7_qoxdu"]
 [ext_resource type="Script" uid="uid://ce1gx6wk2aqll" path="res://Scripts/GameSystems/UnitSystems/UnitMovement.gd" id="7_r3lo5"]
+[ext_resource type="Script" uid="uid://doroc5hi67t1m" path="res://Scripts/UI/tile_development_ui.gd" id="7_teq3f"]
 [ext_resource type="Script" uid="uid://ckha2g8x03qqq" path="res://Scripts/GameSystems/GeneralSystems/SelectionSystem.gd" id="8_qtxxq"]
 [ext_resource type="Script" uid="uid://c5qo1inocw736" path="res://Scripts/UI/overlay.gd" id="9_8fnbn"]
 [ext_resource type="Script" uid="uid://qnn8of0rdcpi" path="res://Scripts/GameSystems/EndTurn/TurnManager.gd" id="9_a6f85"]
@@ -65,10 +66,25 @@ texture_region_size = Vector2i(48, 48)
 1:0/0 = 0
 2:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoxdu"]
+texture = ExtResource("4_j8vvb")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_ogk07"]
 tile_shape = 3
 tile_size = Vector2i(48, 48)
 sources/0 = SubResource("TileSetAtlasSource_epnj5")
+sources/1 = SubResource("TileSetAtlasSource_qoxdu")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ogk07"]
 texture = ExtResource("1_fu36u")
@@ -196,9 +212,9 @@ tile_set = SubResource("TileSet_qtxxq")
 unique_name_in_owner = true
 script = ExtResource("9_8fnbn")
 
-[node name="RoadUI" type="Node2D" parent="UI"]
+[node name="TileDevelopmentUI" type="Node2D" parent="UI"]
 unique_name_in_owner = true
-script = ExtResource("7_qoxdu")
+script = ExtResource("7_teq3f")
 
 [node name="PlayerManager" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -250,8 +266,15 @@ script = ExtResource("9_a6f85")
 [node name="build_td" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
 script = ExtResource("5_hv1ua")
 
-[node name="build_road" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+[node name="Roads" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+
+[node name="build_road" type="Node2D" parent="GameSystems/TileDevelopmentSystems/Roads"]
+unique_name_in_owner = true
 script = ExtResource("17_2mc6k")
+
+[node name="road_display" type="Node2D" parent="GameSystems/TileDevelopmentSystems/Roads"]
+unique_name_in_owner = true
+script = ExtResource("7_qoxdu")
 
 [node name="DataManagers" type="Node2D" parent="."]
 

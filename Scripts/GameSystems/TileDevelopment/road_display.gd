@@ -3,7 +3,7 @@ extends Node
 # Enum for road types 
 @onready var path_finder: Node2D = %PathFinder
 @onready var tile_development_map: TileMapLayer = %tile_development_map
-
+@onready var overlay_ui: Node2D = %OverlayUI
 
 enum Directions {
 	TOP_LEFT,
@@ -40,6 +40,7 @@ func create_road_display(path : Array):
 		
 		# length 2 
 		
+
 		# length 3 
 		if path.size() >= 3: 
 			
@@ -54,16 +55,7 @@ func create_road_display(path : Array):
 				tile_map_coords.append(decide_which_road(current, last, next)) 
 				print(tile_map_coords)
 		
-		update_tile_map_display_roads(tile_map_coords,path)
-		
-
-func update_tile_map_display_roads(tile_map_coords : Array, path : Array):
-	var index = 1
-	for tile in tile_map_coords: 
-		tile_development_map.set_cell(path[index],1,tile)
-		index +=1
-		
-	
+		overlay_ui.road_overlay(tile_map_coords,path)
 
 
 func decide_which_road(current_pos : Vector2i, last_pos : Vector2i, next_pos : Vector2i ):

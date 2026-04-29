@@ -15,12 +15,13 @@ class_name PlayerController
 
 ## TDSystems 
 @onready var build_td: Node2D = $"../../GameSystems/TileDevelopmentSystems/build_td"
-@onready var build_road: Node2D = $"../../GameSystems/TileDevelopmentSystems/build_road"
+@onready var build_road: Node2D = %build_road
 
 #UI
 @onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"
 #Display
 @onready var overlay_map = %OverlayUI
+@onready var tile_development_map: Node2D = %TileDevelopmentUI
 
 
 @export var player_id : int

@@ -26,7 +26,7 @@ func _on_re_button_toggled(toggled_on: bool) -> void:
 		# toggle off all other buttons
 		
 		var tiles = player_controller.build_td.find_resource_improvements(player_controller)
-		player_controller.overlay_map.tile_development_overlay(tiles)
+		player_controller.overlay_map.RE_overlay(tiles)
 		player_controller.player_data.build_obj = ResourceExtraction.new()
 		
 	else:

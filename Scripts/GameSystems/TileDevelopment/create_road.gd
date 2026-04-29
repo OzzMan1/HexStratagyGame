@@ -1,10 +1,10 @@
 extends Node
 @onready var path_finder: Node2D = %PathFinder
 
-@onready var road_ui: Node2D = %RoadUI
+@onready var road_ui: Node2D = %road_display
 @onready var grid_manager: Node2D = %GridManager
 
-@onready var tile_developement_manager: Node2D = $"../../../DataManagers/TileDevelopementManager"
+@onready var tile_developement_manager: Node2D = $"../../../../DataManagers/TileDevelopementManager"
 
 
 func path_finder_road_cost(pos : Vector2i ) -> int: 
@@ -12,6 +12,7 @@ func path_finder_road_cost(pos : Vector2i ) -> int:
 		return 1000 
 	else:
 		return 1
+
 func create_road_path(player_controller : PlayerController, start_pos : Vector2i, target_pos : Vector2i ):
 
 	target_pos = path_finder.oddr_to_axial(target_pos)
@@ -34,9 +35,8 @@ func create_road_path(player_controller : PlayerController, start_pos : Vector2i
 	
 	# Display overlay of road,
 	# Display the total cost of the road
-	
-	
 	road_ui.create_road_display(path_oddr)
+	# remove road from current obj
 	player_controller.player_data.build_obj = null
 	
 
