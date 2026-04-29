@@ -32,17 +32,18 @@ func axial_to_oddr(hex: Vector2i) -> Vector2i:
 	return Vector2i(col, row)
 
 
-func neighbours(player_controller : PlayerController,  current_position:Vector2i) -> Array[Vector2i]:  
+# check which tiles are immediatley avaialbe
+func neighbours(player_controller : PlayerController,  current_position:Vector2i, mapping_to_check ) -> Array[Vector2i]:  
 	var possible_directions: Array[Vector2i] = []
 	for direction in directions: 
 		var new_dir = direction + current_position
-		if grid_manager.check_bounds(axial_to_oddr(new_dir)) and !player_controller.player_data.target_to_unit.has(axial_to_oddr(new_dir)):
+		if grid_manager.check_bounds(axial_to_oddr(new_dir)) and !mapping_to_check.has(axial_to_oddr(new_dir)):
 				possible_directions.append(new_dir)
 		
 	return possible_directions
 
 # Dijkstra's algorithm to find the shortest path to all tiles (from a given)
-func shortest_path_to_all_tiles(player_controller : PlayerController,  start):
+func shortest_path_to_all_tiles(player_controller : PlayerController,  start, cost_func: Callable, mapping_to_check):
 	var visited = []
 	var queue := [ { "pos": start, "cost": 0 } ]
 
@@ -59,21 +60,22 @@ func shortest_path_to_all_tiles(player_controller : PlayerController,  start):
 		var current = queue.pop_front()
 		
 		var current_pos = current["pos"]
-		var current_cost: int = current["cost"]
+		var current_cost : int = current["cost"]
 		#print(distance)
 		visited.append(current_pos)
 		
-		for v in neighbours(player_controller,current_pos):
+		for v in neighbours(player_controller,current_pos, mapping_to_check):
 			# Get terrain cost
-			var terrain_cost = (grid_manager.terrain_grid.get(axial_to_oddr(v))).movement_cost
-		
+			#var terrain_cost = (grid_manager.terrain_grid.get(axial_to_oddr(v))).movement_cost
+			
+			var cost = cost_func.call(axial_to_oddr(v))
+			
 			# check if current distance of the neighbour is greater than new cost (terrain + current_node)
-			if distance[v] > terrain_cost + current_cost and v not in visited:
+			if distance[v] > cost + current_cost and v not in visited:
 				# update the neighbour cost with better travel cost 
-				distance[v] = terrain_cost + current_cost
+				distance[v] = cost + current_cost
 				
 				#update previous node of neighbour to be current
-				
 				prev[v] = current_pos
 				queue.append({ "pos": v, "cost": distance[v] } )
 

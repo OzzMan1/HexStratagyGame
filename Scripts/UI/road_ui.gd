@@ -31,8 +31,6 @@ var axial_vector_to_direction : Dictionary[Vector2i, Directions] = {
 	Vector2i(-1, 0) : Directions.LEFT, 
 }
 
-
-
 func create_road_display(path : Array):
 		var tile_map_coords = []
 		var target = path.back()
@@ -124,15 +122,3 @@ func decide_which_road(current_pos : Vector2i, last_pos : Vector2i, next_pos : V
 		[Directions.TOP_LEFT, Directions.BOTTOM_RIGHT], \
 		[Directions.BOTTOM_RIGHT, Directions.TOP_LEFT]:
 			return Vector2i(2,1)
-# we take the axial of last and next pos
-# PreviousPos - Current Po
-#   (0,1) - (0,0) 
-# = (0,1)
-# Next Pos - CurrentPos 
-# = (0,-1) - (0,0)
-# = (0,-1)
-
-# var previous_pos_dir = axial_vector_to_direction(diff_prev)
-# var next_pos_dir = axial_vector_to_direction(diff_next)
-# 
-# if next pos 

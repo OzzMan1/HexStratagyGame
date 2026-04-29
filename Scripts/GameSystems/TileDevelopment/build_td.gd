@@ -45,9 +45,15 @@ func build_industiral(player_controller,clicked_tile,build_obj,pos):
 	else: 
 		print("cant build there")
 
-
 func find_resource_improvements(player_controller):
 	var tiles = []
 	for tile in player_controller.grid_manager.re_grid.keys():
 		tiles.append(tile)
 	return tiles
+
+
+# Build Road function (roads_to_build : Array )
+# calculate the total resources of the all roads, roads_to_build.size() * resource_cost of road 
+# add it to dictionary [resource : amount] 
+# Check if balance is enough 
+# Check
