@@ -14,7 +14,7 @@ class_name PlayerController
 @onready var unit_movement = %UnitMovement
 
 ## TDSystems 
-@onready var build_td: Node2D = $"../../GameSystems/TileDevelopmentSystems/build_td"
+@onready var build_td: Node2D = %build_td
 @onready var create_road: Node2D = %create_road
 
 #UI

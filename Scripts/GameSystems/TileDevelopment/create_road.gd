@@ -4,9 +4,9 @@ extends Node
 @onready var road_ui: Node2D = %road_direction
 @onready var grid_manager: Node2D = %GridManager
 
-@onready var tile_developement_manager: Node2D = $"../../../../DataManagers/TileDevelopementManager"
+@onready var tile_developement_manager: Node2D = %TileDevelopementManager
 
-@onready var build_td: Node2D = $"../../build_td"
+@onready var build_td: Node2D = %build_td
 
 func path_finder_road_cost(player_controller : PlayerController, pos : Vector2i ) -> int: 
 	if grid_manager.terrain_grid.get(pos).name == "water":

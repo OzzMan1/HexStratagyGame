@@ -301,6 +301,7 @@ script = ExtResource("9_a6f85")
 [node name="TileDevelopmentSystems" type="Node2D" parent="GameSystems"]
 
 [node name="build_td" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
 script = ExtResource("5_hv1ua")
 
 [node name="create_road" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
