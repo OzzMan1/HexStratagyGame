@@ -67,8 +67,12 @@ func select_unit(player_controller : PlayerController, pos : Vector2i):
 	path_finder.new_tiles_in_range = path_finder.find_in_range(current_selected_unit.current_num_of_moves)
 	var tiles_in_range_offset = path_finder.new_tiles_in_range.map(func(x): return path_finder.axial_to_oddr(x))
 	
-
 	overlay_tilemap.select_unit(tiles_in_range_offset)
 
 	
+	
+	# SELECT TD 
+	
+	# PLAYER clicks on TD 
+	# Opens UI 
 	

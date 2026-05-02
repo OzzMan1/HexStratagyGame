@@ -19,9 +19,11 @@ class_name PlayerController
 
 #UI
 @onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"
+
 #Display
 @onready var overlay_map = %OverlayUI
 @onready var tile_development_map: Node2D = %TileDevelopmentUI
+@onready var road_display: Node2D = %RoadDisplay
 
 
 @export var player_id : int

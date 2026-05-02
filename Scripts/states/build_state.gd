@@ -5,9 +5,6 @@ class_name BuildState
 
 var build_obj : Buildable
 
-#
-#func _init(_build_obj : Buildable):
-	#build_obj = _build_obj
 
 
 
@@ -18,7 +15,9 @@ func handle_input(player_controller, event) -> void:
 		# if player build obj is not null	
 		
 		if build_obj is Road: 
-			player_controller.set_state(SelectState.new(player_controller.return_mouse_pos(),build_obj))
+			var pos = player_controller.return_mouse_pos()
+			if player_controller.grid_manager.check_bounds(pos):
+				player_controller.set_state(SelectState.new(player_controller.return_mouse_pos(),build_obj))
 		
 		if build_obj is TileDevelopment:
 			var pos = player_controller.return_mouse_pos()

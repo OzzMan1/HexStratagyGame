@@ -64,18 +64,13 @@ func build_road(player_controller : PlayerController, road_path : Array, tile_ma
 	# calculate the total resources of the all roads, roads_to_build.size() * resource_cost of road 
 	var road = Road.new()
 	var can_build = true
-	
 	can_build = check_balance(player_controller,road,road_path.size())
 	
 	if can_build:	
 		ammend_balance(player_controller,road,road_path.size())
 		# Build road
-		player_controller.tile_development_map.display_road(road_path,tile_map_coords)
-	
-
-
-# Build Road function (roads_to_build : Array )
-# calculate the total resources of the all roads, roads_to_build.size() * resource_cost of road 
-# add it to dictionary [resource : amount] 
-# Check if balance is enough 
-# Check
+		player_controller.road_display.display_road(road_path,tile_map_coords)
+		for pos in road_path: 
+			# Create road section and store pos update tile pos
+			player_controller.tile_developement_manager.update_road_list(pos,road)
+		

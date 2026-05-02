@@ -33,17 +33,20 @@ func axial_to_oddr(hex: Vector2i) -> Vector2i:
 
 
 # check which tiles are immediatley avaialbe
-func neighbours(player_controller : PlayerController,  current_position:Vector2i, mapping_to_check ) -> Array[Vector2i]:  
+func neighbours(player_controller : PlayerController,  current_position:Vector2i, mapping_to_check = null ) -> Array[Vector2i]:  
 	var possible_directions: Array[Vector2i] = []
 	for direction in directions: 
 		var new_dir = direction + current_position
-		if grid_manager.check_bounds(axial_to_oddr(new_dir)) and !mapping_to_check.has(axial_to_oddr(new_dir)):
+		if mapping_to_check != null:
+			if grid_manager.check_bounds(axial_to_oddr(new_dir)) and !mapping_to_check.has(axial_to_oddr(new_dir)):
+					possible_directions.append(new_dir)
+		else: 
+			if grid_manager.check_bounds(axial_to_oddr(new_dir)): 
 				possible_directions.append(new_dir)
-		
 	return possible_directions
 
 # Dijkstra's algorithm to find the shortest path to all tiles (from a given)
-func shortest_path_to_all_tiles(player_controller : PlayerController,  start, cost_func: Callable, mapping_to_check):
+func shortest_path_to_all_tiles(player_controller : PlayerController,  start, cost_func: Callable, mapping_to_check = null):
 	var visited = []
 	var queue := [ { "pos": start, "cost": 0 } ]
 
@@ -68,7 +71,7 @@ func shortest_path_to_all_tiles(player_controller : PlayerController,  start, co
 			# Get terrain cost
 			#var terrain_cost = (grid_manager.terrain_grid.get(axial_to_oddr(v))).movement_cost
 			
-			var cost = cost_func.call(axial_to_oddr(v))
+			var cost = cost_func.call(player_controller,axial_to_oddr(v))
 			
 			# check if current distance of the neighbour is greater than new cost (terrain + current_node)
 			if distance[v] > cost + current_cost and v not in visited:
