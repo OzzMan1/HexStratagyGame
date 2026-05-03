@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://0wj8aqudqite"]
+[gd_scene load_steps=42 format=4 uid="uid://0wj8aqudqite"]
 
 [ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
 [ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_c3mwy"]
@@ -23,8 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://dajtjq7436wrb" path="res://Scenes/archer_2.tscn" id="14_imcog"]
 [ext_resource type="Script" uid="uid://wgps7k4iggq6" path="res://Scripts/GameSystems/TileDevelopment/create_road.gd" id="17_2mc6k"]
 [ext_resource type="Script" uid="uid://cfutnddqgqshx" path="res://Scripts/DataManagers/tile_development_manager.gd" id="17_epnj5"]
+[ext_resource type="Script" uid="uid://0kutlgyry0x0" path="res://Scripts/GameSystems/GeneralSystems/BFS.gd" id="18_lb85r"]
+[ext_resource type="Script" uid="uid://btikchq0pwo0v" path="res://Scripts/GameSystems/GeneralSystems/neighbour.gd" id="19_k8rbf"]
 [ext_resource type="Script" uid="uid://8yu8rvxc1ndp" path="res://Scripts/Display/create_road_display.gd" id="20_capts"]
 [ext_resource type="Script" uid="uid://b2ekeebrhrcbd" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="21_s4qac"]
+[ext_resource type="Script" uid="uid://dr3mawcjckm0j" path="res://Scripts/GameSystems/TileDevelopment/td_connections.gd" id="23_642p6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20eh2"]
 texture = ExtResource("1_fu36u")
@@ -193,13 +196,13 @@ size_flags_vertical = 8
 script = ExtResource("2_dw4fd")
 
 [node name="GoodsProduced" type="Label" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
-unique_name_in_owner = true
 layout_mode = 2
 text = "Goods Produced: "
 
-[node name="Button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+[node name="td_connection_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
 layout_mode = 2
 mouse_filter = 1
+toggle_mode = true
 text = "TD Connections"
 
 [node name="Tilemaps" type="Node2D" parent="."]
@@ -267,11 +270,11 @@ script = ExtResource("7_teq3f")
 unique_name_in_owner = true
 script = ExtResource("8_capts")
 
-[node name="OverlayUI" type="Node2D" parent="."]
+[node name="UI" type="Node2D" parent="."]
+
+[node name="OverlayUI" type="Node2D" parent="UI"]
 unique_name_in_owner = true
 script = ExtResource("9_8fnbn")
-
-[node name="UI" type="Node2D" parent="."]
 
 [node name="PlayerManager" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -306,6 +309,14 @@ script = ExtResource("8_qtxxq")
 unique_name_in_owner = true
 script = ExtResource("6_dun2r")
 
+[node name="BFS" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("18_lb85r")
+
+[node name="neighbour" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("19_k8rbf")
+
 [node name="UnitSystems" type="Node2D" parent="GameSystems"]
 unique_name_in_owner = true
 
@@ -332,6 +343,10 @@ script = ExtResource("17_2mc6k")
 unique_name_in_owner = true
 script = ExtResource("21_s4qac")
 
+[node name="td_connections" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("23_642p6")
+
 [node name="DataManagers" type="Node2D" parent="."]
 
 [node name="GridManager" parent="DataManagers" instance=ExtResource("1_8pvmw")]
@@ -350,3 +365,4 @@ script = ExtResource("17_epnj5")
 [connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/I_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_i_button_toggled"]
 [connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/T_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_t_button_toggled"]
 [connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/Road_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_road_button_toggled"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/SelectTDMenu/td_connection_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_td_connection_button_toggled"]

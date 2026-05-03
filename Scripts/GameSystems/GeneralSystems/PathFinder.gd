@@ -77,6 +77,7 @@ func shortest_path_to_all_tiles(player_controller : PlayerController,  start, co
 			if distance[v] > cost + current_cost and v not in visited:
 				# update the neighbour cost with better travel cost 
 				distance[v] = cost + current_cost
+			
 				
 				#update previous node of neighbour to be current
 				prev[v] = current_pos

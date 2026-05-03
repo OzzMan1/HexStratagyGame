@@ -5,12 +5,17 @@ class_name Industrial
 
 var td_type : String = "industrial"
 
+#TD information
+var td_connections 
+var range = 4
+
+
 # job informaiton
 var number_of_processed_goods_produced : int = 0
 var good_produced : Good  
 var number_of_goods_consumed : int = 0
 
-var td_connections 
+
 
 
 func on_select(player_controller,selected_pos):

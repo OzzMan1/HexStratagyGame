@@ -21,7 +21,6 @@ func toggle_of_all_buttons_except(exception_button : Button = null):
 	
 func _on_re_button_toggled(toggled_on: bool) -> void:
 	toggle_of_all_buttons_except(re_button)
-	print("here")
 	if toggled_on:
 		# toggle off all other buttons
 		

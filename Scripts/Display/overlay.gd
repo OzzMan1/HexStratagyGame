@@ -11,6 +11,8 @@ var overlay_atlas_id = 0
 
 # Tile Development overlay data 
 var re_highlight = Vector2i(2,0)
+var possible_td_connection = Vector2i(0,0)
+
 
 var select_unit_highlight = Vector2i(0,0)
 ## Overlay Coords TD RE 
@@ -41,6 +43,11 @@ func RE_overlay(tiles_to_overlay):
 	overlay_init()
 	for tile_map_coord in tiles_to_overlay:
 		overlay_map.set_cell(tile_map_coord,overlay_atlas_id,re_highlight)
+
+func td_connection_overlay(tiles_to_overlay):
+	overlay_init()
+	for tile_map_coord in tiles_to_overlay:
+		overlay_map.set_cell(tile_map_coord,overlay_atlas_id,possible_td_connection)
 
 
 # move to new file
