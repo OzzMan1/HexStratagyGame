@@ -7,8 +7,10 @@ var road_list : Dictionary[Vector2i,Road]
 # Road section
 
 
-func update_tile_development_list(position : Vector2i, tile_development : TileDevelopment): 
+func update_tile_development_list( player_controller : PlayerController, position : Vector2i, tile_development : TileDevelopment): 
 	tile_development_list.set(position,tile_development)
+	player_controller.player_data.player_tile_to_TD.set(position,tile_development)
+
 	
 func update_road_list(position : Vector2i, road : Road): 
 	road_list.set(position,road)

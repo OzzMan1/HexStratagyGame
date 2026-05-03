@@ -6,24 +6,31 @@ class_name Industrial
 var td_type : String = "industrial"
 
 # job informaiton
-var number_of_processed_goods_produced : int 
-var number_of_goods_consumed : int
+var number_of_processed_goods_produced : int = 0
+var good_produced : Good  
+var number_of_goods_consumed : int = 0
 
-# var list of connections
-
-# A Industrial tile ships its goods, to all TD's its connected to 
-
-# TD's can only be connected through a road connection 
-# We have road sections, at least two end points 
+var td_connections 
 
 
+func on_select(player_controller,selected_pos):
+	player_controller.select_td.select_industiral(player_controller,selected_pos,self)
+
+func deselect(player_controller):
+	player_controller.select_td.deselect_industiral(player_controller)
 
 # what resources do you need to build
 var resource_cost = {
-	ResourceTypes.Type.STONE: 30,
-	ResourceTypes.Type.TIMBER: 40,
+	GoodsDatabase.stone: 30,
+	GoodsDatabase.timber: 40,
 }
+
+
 # for different values it needs to store integers 
+
+
+	
+
 
 func _init() -> void:
 	pass

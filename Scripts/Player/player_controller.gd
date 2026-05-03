@@ -2,9 +2,13 @@ extends Node2D
 
 class_name PlayerController 
 
+
+#DATA 
 @onready var grid_manager: Node2D = %GridManager
-@onready var selection_system = %SelectionSystem
 @onready var tile_developement_manager: Node2D = $"../../DataManagers/TileDevelopementManager"
+
+@onready var selection_system = %SelectionSystem
+
 
 #Player
 @onready var player_data = $PlayerData
@@ -13,12 +17,16 @@ class_name PlayerController
 @onready var unit_manager = %UnitManager
 @onready var unit_movement = %UnitMovement
 
+
+
 ## TDSystems 
 @onready var build_td: Node2D = %build_td
 @onready var create_road: Node2D = %create_road
+@onready var select_td: Node2D = %select_td
 
 #UI
 @onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"
+@onready var select_td_menu: VBoxContainer = %SelectTDMenu
 
 #Display
 @onready var overlay_map = %OverlayUI
@@ -28,6 +36,10 @@ class_name PlayerController
 
 @export var player_id : int
 var isActive : bool = false
+
+
+func check_td_belongs_to_player(pos) -> bool:
+	return player_data.player_tile_to_TD.has(pos)
 
 
 func oddr_to_axial(hex: Vector2i):
@@ -59,8 +71,14 @@ func set_state(new_state : State):
 
 
 			
-		
-
+func is_mouse_over_ui() -> bool:
+	var control = get_viewport().gui_get_hovered_control()
+	
+	if control == null:
+		return false
+	
+	# Only block if it's an interactive UI element
+	return control is Button
 func _input(event):
 	
 	if event.is_action_pressed("1"):
@@ -78,6 +96,7 @@ func _input(event):
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(Engine.get_frames_per_second() )  
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -22,10 +22,11 @@ var build_obj : Buildable
 var player_tile_to_TD : Dictionary[Vector2i, TileDevelopment] 
 
 
+
 # resources
 var resources_amount = {
-	ResourceTypes.Type.STONE: 500,
-	ResourceTypes.Type.TIMBER: 500,
+	GoodsDatabase.stone : 500,
+	GoodsDatabase.timber: 500,
 }
 
 

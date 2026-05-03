@@ -9,42 +9,43 @@ extends Node2D
 var grid_x_max = 3
 var grid_y_max = 5
 var terrain_grid : Dictionary = {
-	Vector2i(0,0): preload("res://Resources/plains.tres"),
-	Vector2i(0,1): preload("res://Resources/plains.tres"),
-	Vector2i(0,2): preload("res://Resources/plains.tres"),
-	Vector2i(0,3): preload("res://Resources/plains.tres"),
-	Vector2i(0,4): preload("res://Resources/plains.tres"),
-	Vector2i(0,5): preload("res://Resources/plains.tres"),
-	Vector2i(1,0): preload("res://Resources/plains.tres"),
-	Vector2i(1,1): preload("res://Resources/water.tres"),
-	Vector2i(1,2): preload("res://Resources/water.tres"),
-	Vector2i(1,3): preload("res://Resources/plains.tres"),
-	Vector2i(1,4): preload("res://Resources/plains.tres"),
-	Vector2i(1,5): preload("res://Resources/plains.tres"),
-	Vector2i(2,0): preload("res://Resources/plains.tres"),
-	Vector2i(2,1): preload("res://Resources/plains.tres"),
-	Vector2i(2,2): preload("res://Resources/water.tres"),
-	Vector2i(2,3): preload("res://Resources/plains.tres"),
-	Vector2i(2,4): preload("res://Resources/plains.tres"),
-	Vector2i(2,5): preload("res://Resources/plains.tres"),
-	Vector2i(3,0): preload("res://Resources/plains.tres"),
-	Vector2i(3,1): preload("res://Resources/plains.tres"),
-	Vector2i(3,2): preload("res://Resources/plains.tres"),
-	Vector2i(3,3): preload("res://Resources/plains.tres"),
-	Vector2i(3,4): preload("res://Resources/plains.tres"),
-	Vector2i(3,5): preload("res://Resources/plains.tres"),
+	Vector2i(0,0): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(0,1): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(0,2): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(0,3): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(0,4): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(0,5): preload("res://Resources/Terrain/plains.tres"),
+
+	Vector2i(1,0): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(1,1): preload("res://Resources/Terrain/water.tres"),
+	Vector2i(1,2): preload("res://Resources/Terrain/water.tres"),
+	Vector2i(1,3): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(1,4): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(1,5): preload("res://Resources/Terrain/plains.tres"),
+
+	Vector2i(2,0): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(2,1): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(2,2): preload("res://Resources/Terrain/water.tres"),
+	Vector2i(2,3): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(2,4): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(2,5): preload("res://Resources/Terrain/plains.tres"),
+
+	Vector2i(3,0): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(3,1): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(3,2): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(3,3): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(3,4): preload("res://Resources/Terrain/plains.tres"),
+	Vector2i(3,5): preload("res://Resources/Terrain/plains.tres"),
 }
+
 var re_grid : Dictionary = {
-	Vector2i(0,3) : preload("res://Resources/iron.tres"),
-	Vector2i(1,5) : preload("res://Resources/stone.tres"),
-	Vector2i(0,5) : preload("res://Resources/stone.tres"),	
-	Vector2i(2,1) : preload("res://Resources/forest.tres"),
-	Vector2i(3,1) : preload("res://Resources/forest.tres"),
-	Vector2i(3,0) : preload("res://Resources/forest.tres")
-
-} 
-
-
+	Vector2i(0,3): preload("res://Resources/TileImprovements/iron.tres"),
+	Vector2i(1,5): preload("res://Resources/TileImprovements/stone.tres"),
+	Vector2i(0,5): preload("res://Resources/TileImprovements/stone.tres"),
+	Vector2i(2,1): preload("res://Resources/TileImprovements/forest.tres"),
+	Vector2i(3,1): preload("res://Resources/TileImprovements/forest.tres"),
+	Vector2i(3,0): preload("res://Resources/TileImprovements/forest.tres"),
+}
 
 # Unit Global list 
 var unit_list = {}
