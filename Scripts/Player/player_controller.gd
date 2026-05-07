@@ -23,6 +23,8 @@ class_name PlayerController
 @onready var build_td: Node2D = %build_td
 @onready var create_road: Node2D = %create_road
 @onready var select_td: Node2D = %select_td
+@onready var td_connections: Node2D = %td_connections
+
 
 #UI
 @onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"
@@ -38,10 +40,6 @@ class_name PlayerController
 var isActive : bool = false
 
 
-func check_td_belongs_to_player(pos) -> bool:
-	return player_data.player_tile_to_TD.has(pos)
-
-
 func oddr_to_axial(hex: Vector2i):
 	var q = hex.x - (hex.y - (hex.y & 1)) /2 
 	var r = hex.y
@@ -51,11 +49,14 @@ func axial_to_oddr(hex: Vector2i) -> Vector2i:
 	var col = hex.x + (hex.y - (hex.y & 1)) / 2
 	var row = hex.y
 	return Vector2i(col, row)
-#
+	
 
 ##### HELPER FUNCTIONS ################################
 func return_mouse_pos():
 	return grid_manager.get_tile_pos(get_local_mouse_position())
+
+func check_td_belongs_to_player(pos) -> bool:
+	return player_data.player_tile_to_TD.has(pos)
 
 
 ############# STATE MANAGEMENT #########################
@@ -64,6 +65,7 @@ func return_mouse_pos():
 var state : State = IdleState.new()
 func set_state(new_state : State):
 	if state:
+		#print("exiting state: ", state.state_name, " going to state: ", new_state.state_name )
 		state.exit(self)
 	state = new_state
 	if state:
@@ -87,17 +89,26 @@ func _input(event):
 	elif event.is_action_pressed("2"):
 		print("test2")
 		player_manager.set_player(1)
-	elif event.is_action_pressed("end_turn"):
+	elif event.is_action_pressed("end_turn") or event.is_action("escape"):
 		# turn manager end turn 
 		set_state(IdleState.new())
 	if not isActive:
 			return
 	state.handle_input(self, event)
-	
+
+
+##### SIGNAL RECIEVER ###### 
+
+func on_interaction_started(interaction: Interaction,player):
+	if player == self:
+		player.set_state(InteractionState.new(interaction))
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(Engine.get_frames_per_second() )  
-	pass
+	select_td_menu.interaction_started.connect(on_interaction_started)
+
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

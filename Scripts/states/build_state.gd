@@ -5,6 +5,11 @@ class_name BuildState
 
 var build_obj : Buildable
 
+var state_name : String = "Build"
+
+
+
+
 
 
 
@@ -23,7 +28,7 @@ func handle_input(player_controller, event) -> void:
 			var pos = player_controller.return_mouse_pos()
 			var clicked = player_controller.selection_system.get_clicked_object(player_controller,pos)
 			player_controller.build_td.build_td(player_controller,clicked,build_obj,pos)
-			
+	
 	elif event.is_action_pressed("b"):
 		player_controller.set_state(IdleState.new())
 
@@ -37,6 +42,6 @@ func exit(player_controller) -> void:
 	player_controller.build_td_menu.toggle_of_all_buttons_except()
 	player_controller.build_td_menu.visible = false
 	player_controller.overlay_map.clear_overlay_maps()
-	pass
+	
 
 	

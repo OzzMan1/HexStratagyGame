@@ -1,17 +1,19 @@
 extends Node
 
-@onready var select_td_menu: VBoxContainer = %SelectTDMenu
 
 
-
-func select_industiral(player_controller : PlayerController,pos ,industrial_obj : Industrial):
+func select_TD(player_controller : PlayerController,pos, td_obj : TileDevelopment):
 	if player_controller.check_td_belongs_to_player(pos):
-		select_td_menu.player_controller = player_controller
-		player_controller.player_data.selected_td = industrial_obj
+		player_controller.player_data.selected_td = td_obj
 		player_controller.player_data.selected_td_pos = pos
-		select_td_menu.update_good_produced_ui(industrial_obj.good_produced,industrial_obj.number_of_processed_goods_produced)
+		player_controller.select_td_menu.set_up_menu(td_obj)
 		player_controller.select_td_menu.visible = true 
-	
+		player_controller.select_td_menu.toggle_connection_button()
 
-func deselect_industiral(player_controller : PlayerController):
+		if td_obj.has_method("update_ui"):
+			td_obj.update_ui(player_controller.select_td_menu)
+
+
+func deselect_TD(player_controller : PlayerController):
 	player_controller.select_td_menu.visible = false 
+	player_controller.overlay_map.clear_overlay_maps()

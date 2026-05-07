@@ -4,6 +4,7 @@ class_name SelectState
 
 var selected_pos : Vector2i
 var selected_object 
+var state_name : String = "Select"
 
 
 func _init(pos: Vector2i, _selected_object ) -> void:
@@ -11,7 +12,9 @@ func _init(pos: Vector2i, _selected_object ) -> void:
 	selected_object = _selected_object
 # when we enter select state(just clicked a selectable object, we call that objects select function)
 func enter(player_controller) -> void:
+	print("entering select state ")
 	if selected_object.has_method("on_select"):
+		
 		selected_object.on_select(player_controller,selected_pos)
 	#print("current state is ", player_controller.state)
 	#player_controller.player_data.last_clicked_pos = null
@@ -50,3 +53,4 @@ func handle_input(player_controller, event) -> void:
 	elif event.is_action_pressed("b"):
 		print("in build mode ")
 		player_controller.set_state(BuildState.new())
+	

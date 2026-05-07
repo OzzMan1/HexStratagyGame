@@ -21,9 +21,12 @@ func _ready() -> void:
 
 
 func set_player(player_index : int):
-	print(current_player)
+
 	current_player.isActive = false
 	current_player = player_list[player_index]
 	current_player.isActive = true
+	
+	print(current_player)
+	
 	
 	

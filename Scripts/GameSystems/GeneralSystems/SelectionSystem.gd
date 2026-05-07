@@ -7,13 +7,6 @@ var current_selected_unit : Unit
 
 
 
-# click, get first object
-# click again, get second object
-
-
-
-
-
 func get_objects_at_pos(player_controller : PlayerController, clicked_pos : Vector2i):
 
 	var objects_at_pos = []
@@ -42,7 +35,7 @@ func get_objects_at_pos(player_controller : PlayerController, clicked_pos : Vect
 
 	return objects_at_pos
 	
-# [unit, iron, sheep]
+
 func get_clicked_object(player_controller : PlayerController, clicked_pos : Vector2i): 
 	# if the user has clicked this position before then we iterate the last clicked item 
 	
@@ -76,6 +69,7 @@ func select_unit(player_controller : PlayerController, pos : Vector2i):
 	path_finder.new_tiles_in_range = path_finder.find_in_range(current_selected_unit.current_num_of_moves)
 	var tiles_in_range_offset = path_finder.new_tiles_in_range.map(func(x): return path_finder.axial_to_oddr(x))
 	
+	# change to players overlay 
 	overlay_tilemap.select_unit(tiles_in_range_offset)
 
 	

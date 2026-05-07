@@ -2,6 +2,7 @@ extends State
 
 class_name IdleState
 
+var state_name : String = "Idle"
 
 
 

@@ -71,6 +71,9 @@ texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoxdu"]
 texture = ExtResource("4_j8vvb")
@@ -199,11 +202,23 @@ script = ExtResource("2_dw4fd")
 layout_mode = 2
 text = "Goods Produced: "
 
+[node name="TD_connection" type="Label" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Sending to: "
+
 [node name="td_connection_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
 layout_mode = 2
 mouse_filter = 1
 toggle_mode = true
 text = "TD Connections"
+
+[node name="change_good_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Change good"
+
+[node name="expand_td_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Expand"
 
 [node name="Tilemaps" type="Node2D" parent="."]
 
