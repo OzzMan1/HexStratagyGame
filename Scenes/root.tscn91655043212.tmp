@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://0wj8aqudqite"]
+[gd_scene load_steps=43 format=4 uid="uid://0wj8aqudqite"]
 
 [ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
 [ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_c3mwy"]
@@ -28,9 +28,7 @@
 [ext_resource type="Script" uid="uid://btikchq0pwo0v" path="res://Scripts/GameSystems/GeneralSystems/neighbour.gd" id="19_k8rbf"]
 [ext_resource type="Script" uid="uid://8yu8rvxc1ndp" path="res://Scripts/Display/create_road_display.gd" id="20_capts"]
 [ext_resource type="Script" uid="uid://b2ekeebrhrcbd" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="21_s4qac"]
-[ext_resource type="Script" uid="uid://bok3rodajm74c" path="res://Scripts/GameSystems/GeneralSystems/dependency_graph.gd" id="21_vdqvo"]
 [ext_resource type="Script" uid="uid://dr3mawcjckm0j" path="res://Scripts/GameSystems/TileDevelopment/td_connections.gd" id="23_642p6"]
-[ext_resource type="Script" uid="uid://b13prvwl71uf8" path="res://Scripts/GameSystems/TileDevelopment/td_system.gd" id="27_8p807"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20eh2"]
 texture = ExtResource("1_fu36u")
@@ -252,17 +250,17 @@ offset_bottom = 434.0
 [node name="items" type="VBoxContainer" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer"]
 layout_mode = 2
 
-[node name="sword" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
-layout_mode = 2
-text = "sword"
-
 [node name="tool" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
 layout_mode = 2
 text = "tool"
 
-[node name="iron_ingot" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
+[node name="sword" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
 layout_mode = 2
-text = "iron ingot"
+text = "sword"
+
+[node name="Button3" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
+layout_mode = 2
+text = "other"
 
 [node name="Tilemaps" type="Node2D" parent="."]
 
@@ -376,10 +374,6 @@ script = ExtResource("18_lb85r")
 unique_name_in_owner = true
 script = ExtResource("19_k8rbf")
 
-[node name="Dependency_graph" type="Node2D" parent="GameSystems/GlobalSystems"]
-unique_name_in_owner = true
-script = ExtResource("21_vdqvo")
-
 [node name="UnitSystems" type="Node2D" parent="GameSystems"]
 unique_name_in_owner = true
 
@@ -410,10 +404,6 @@ script = ExtResource("21_s4qac")
 unique_name_in_owner = true
 script = ExtResource("23_642p6")
 
-[node name="td_system" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
-unique_name_in_owner = true
-script = ExtResource("27_8p807")
-
 [node name="DataManagers" type="Node2D" parent="."]
 
 [node name="GridManager" parent="DataManagers" instance=ExtResource("1_8pvmw")]
@@ -437,4 +427,3 @@ script = ExtResource("17_epnj5")
 [connection signal="toggled" from="Canvas/menu/HBoxContainer/SelectTDMenu/change_good_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_change_good_button_toggled"]
 [connection signal="text_changed" from="Canvas/menu/ChangeGoodMenu/search_bar" to="Canvas/menu/ChangeGoodMenu" method="_on_search_bar_text_changed"]
 [connection signal="pressed" from="Canvas/menu/ChangeGoodMenu/ScrollContainer/items/tool" to="Canvas/menu/ChangeGoodMenu" method="_on_tool_pressed"]
-[connection signal="pressed" from="Canvas/menu/ChangeGoodMenu/ScrollContainer/items/iron_ingot" to="Canvas/menu/ChangeGoodMenu" method="_on_iron_ingot_pressed"]

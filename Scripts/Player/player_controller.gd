@@ -24,16 +24,25 @@ class_name PlayerController
 @onready var create_road: Node2D = %create_road
 @onready var select_td: Node2D = %select_td
 @onready var td_connections: Node2D = %td_connections
+@onready var td_system: Node2D = %td_system
+
+@onready var dependency_graph: Node2D = %Dependency_graph
 
 
 #UI
 @onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"
 @onready var select_td_menu: VBoxContainer = %SelectTDMenu
+@onready var change_good_menu: Control = %ChangeGoodMenu
+
+
 
 #Display
 @onready var overlay_map = %OverlayUI
 @onready var tile_development_map: Node2D = %TileDevelopmentUI
 @onready var road_display: Node2D = %RoadDisplay
+
+
+
 
 
 @export var player_id : int
@@ -56,8 +65,14 @@ func return_mouse_pos():
 	return grid_manager.get_tile_pos(get_local_mouse_position())
 
 func check_td_belongs_to_player(pos) -> bool:
-	return player_data.player_tile_to_TD.has(pos)
+	return player_data.all_players_TD.has(pos)
 
+func get_all_ResourceExtractors():
+	var re_list = []
+	for td in player_data.all_players_TD.values():
+		if td is ResourceExtraction:
+			re_list.append(td)
+	return re_list
 
 ############# STATE MANAGEMENT #########################
 
@@ -79,8 +94,16 @@ func is_mouse_over_ui() -> bool:
 	if control == null:
 		return false
 	
-	# Only block if it's an interactive UI element
-	return control is Button
+# Only block if it's an interactive UI element
+	return (
+		control is Button
+		or control is LineEdit
+		or control is TextEdit
+		or control is OptionButton
+	)
+	
+
+	
 func _input(event):
 	
 	if event.is_action_pressed("1"):
@@ -92,6 +115,7 @@ func _input(event):
 	elif event.is_action_pressed("end_turn") or event.is_action("escape"):
 		# turn manager end turn 
 		set_state(IdleState.new())
+	
 	if not isActive:
 			return
 	state.handle_input(self, event)

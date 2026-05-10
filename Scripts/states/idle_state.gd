@@ -17,9 +17,9 @@ func handle_input(player_controller, event) -> void:
 			player_controller.set_state(SelectState.new(pos, clicked))
 	if event.is_action_pressed("b"):	 
 		print("in build mode ")
-
 		player_controller.set_state(BuildState.new())
-		
+
+
 	
 
 	#  Go into selection state

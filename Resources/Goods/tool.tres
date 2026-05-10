@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="Good" load_steps=3 format=3 uid="uid://b7v3wf5kd07yl"]
+[gd_resource type="Resource" script_class="Good" load_steps=4 format=3 uid="uid://b7v3wf5kd07yl"]
 
-[ext_resource type="Resource" uid="uid://c8mol3f3j2ut3" path="res://Resources/Recipes/tool_recipe.tres" id="1_c54vy"]
 [ext_resource type="Script" uid="uid://cukcgv523u1m0" path="res://Scripts/ClassInstances/Goods/good.gd" id="2_duqp2"]
+[ext_resource type="Resource" uid="uid://c43b36g0l6puw" path="res://Resources/Goods/timber.tres" id="3_8fd3c"]
+[ext_resource type="Resource" uid="uid://7ut0p2ur1sq7" path="res://Resources/Goods/iron_ingot.tres" id="3_c54vy"]
 
 [resource]
 script = ExtResource("2_duqp2")
 name = "tool"
 isRaw = false
-good_recipe = ExtResource("1_c54vy")
+input = Dictionary[ExtResource("2_duqp2"), int]({
+ExtResource("3_8fd3c"): 10,
+ExtResource("3_c54vy"): 5
+})
+output = 5
 metadata/_custom_type_script = "uid://cukcgv523u1m0"

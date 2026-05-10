@@ -12,6 +12,10 @@ extends Node
 @onready var overlay_ui: Node2D = %OverlayUI
 @onready var player_controller: PlayerController = %PlayerController
 
+# menus 
+@onready var change_good_menu: Control = %ChangeGoodMenu
+
+
 signal interaction_started(interaction : Interaction, player : PlayerController)
 signal interaction_stoped(player : PlayerController)
 
@@ -29,6 +33,7 @@ func set_up_menu(td_obj : TileDevelopment):
 		Industrial:
 			pass
 		ResourceExtraction:
+			print("here")
 			change_good_button.visible = false 
 		Trade:
 			change_good_button.visible = false 
@@ -50,6 +55,11 @@ func _on_td_connection_button_toggled(toggled_on: bool) -> void:
 		# Call interaction stopped -> go to previous state
 		overlay_ui.clear_overlay_maps() 
 		
-		
-		
-		
+
+
+func _on_change_good_button_pressed() -> void:
+	if change_good_menu.visible == false: 
+		change_good_menu.visible = true # Replace with function body.
+	else: 
+		change_good_menu.visible = false
+ # Replace with function body.

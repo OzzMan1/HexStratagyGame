@@ -44,7 +44,7 @@ func build_resource_extraction(player_controller,clicked_tile,build_obj,pos):
 		player_controller.tile_developement_manager.update_tile_development_list(player_controller ,pos,build_obj)
 		player_controller.tile_development_map.update_tile_development_tile_map(pos, clicked_tile.resource_improvment_type) 
 		
-		build_obj.number_of_processed_goods_produced = 20 
+		build_obj.number_of_good_produced = 20 
 		match clicked_tile.resource_improvment_type:
 			"forest":
 				build_obj.good_produced = GoodsDatabase.timber 

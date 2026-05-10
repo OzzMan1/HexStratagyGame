@@ -21,9 +21,11 @@ func enter(player_controller) -> void:
 	#player_controller.player_data.last_clicked_index = null
 # when we deselect (exiting the selec)
 func exit(player_controller) -> void:
+	print("exit select state")
 	if selected_object.has_method("deselect"):
 		selected_object.deselect(player_controller)
-		
+	
+	
 
 func handle_input(player_controller, event) -> void:
 
@@ -31,6 +33,7 @@ func handle_input(player_controller, event) -> void:
 	if event.is_action_pressed("click"):
 		
 		if player_controller.is_mouse_over_ui():
+			print("click ui")
 			return
 		var clicked = player_controller.selection_system.get_clicked_object(player_controller,pos)
 	
@@ -49,7 +52,10 @@ func handle_input(player_controller, event) -> void:
 		if selected_object is Road:
 			player_controller.create_road.create_road_path(player_controller,selected_pos,pos)
 			#player_controller.player_data.is_building_road = false
-	
+	elif event.is_action_pressed("t"):
+		print("selected td update economy ", player_controller.player_data.selected_td)
+		player_controller.td_system.update_economy_from_td(player_controller)
+		
 	elif event.is_action_pressed("b"):
 		print("in build mode ")
 		player_controller.set_state(BuildState.new())

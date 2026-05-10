@@ -19,7 +19,7 @@ var last_clicked_index : int
 var build_obj : Buildable
 
 # Tile Developments 
-var player_tile_to_TD : Dictionary[Vector2i, TileDevelopment] 
+var all_players_TD : Dictionary[Vector2i, TileDevelopment] 
 # selecting tile developments
 var selected_td : TileDevelopment
 var selected_td_pos : Vector2i
