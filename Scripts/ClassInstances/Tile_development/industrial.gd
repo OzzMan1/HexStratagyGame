@@ -1,29 +1,24 @@
 extends TileDevelopment
 
-
 class_name Industrial 
 
 var td_type : String = "industrial"
 
+var expansion_level : int = 1 
 var range = 4
-#TD information
-# who are you sending goods to
-var td_connections : Dictionary[Vector2i, TileDevelopment]
-var possible_td_connections  : Dictionary[Vector2i,TileDevelopment]
 
-# Not for resource extraction 
-var incoming_td_connections : Dictionary[Vector2i, TileDevelopment]
 
 # job informaiton
 var good_produced : Good  
 var number_of_good_produced : int = 0
 
 
+var capacity : int = 100 
+
+
 
 # Incoming goods 
-var incoming_goods : Dictionary[Good, int]
-var exported_goods : Dictionary[Good, int]
-var good_stockpile : Dictionary[Good, int]
+
 
 
 

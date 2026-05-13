@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://0wj8aqudqite"]
+[gd_scene load_steps=45 format=4 uid="uid://0wj8aqudqite"]
 
 [ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
 [ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_c3mwy"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="2_dw4fd"]
 [ext_resource type="PackedScene" uid="uid://dqj862qxe4ob0" path="res://Scenes/archer_1.tscn" id="2_vnucn"]
 [ext_resource type="Script" uid="uid://b2f46kan1s8d4" path="res://Scripts/UI/change_good_menu.gd" id="3_k8rbf"]
-[ext_resource type="Script" uid="uid://bqmq1qq85man6" path="res://Scripts/UI/ui_menu.gd" id="4_c7unf"]
 [ext_resource type="Texture2D" uid="uid://c4nspdcoinhrj" path="res://Assets/roads.png" id="4_j8vvb"]
 [ext_resource type="Texture2D" uid="uid://dp0ryb03nfp7o" path="res://Assets/possible_movement.png" id="5_ckhy6"]
 [ext_resource type="Script" uid="uid://vr5pau7jkyu2" path="res://Scripts/GameSystems/TileDevelopment/build_td.gd" id="5_hv1ua"]
@@ -31,8 +30,7 @@
 [ext_resource type="Script" uid="uid://b2ekeebrhrcbd" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="21_s4qac"]
 [ext_resource type="Script" uid="uid://bok3rodajm74c" path="res://Scripts/GameSystems/GeneralSystems/dependency_graph.gd" id="21_vdqvo"]
 [ext_resource type="Script" uid="uid://dr3mawcjckm0j" path="res://Scripts/GameSystems/TileDevelopment/td_connections.gd" id="23_642p6"]
-[ext_resource type="Script" uid="uid://b13prvwl71uf8" path="res://Scripts/GameSystems/TileDevelopment/td_economy.gd" id="27_8p807"]
-[ext_resource type="Script" uid="uid://cliqbll3eh0u3" path="res://Scripts/GameSystems/TileDevelopment/td_system.gd" id="30_64fwa"]
+[ext_resource type="Script" uid="uid://b13prvwl71uf8" path="res://Scripts/GameSystems/TileDevelopment/td_system.gd" id="27_8p807"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20eh2"]
 texture = ExtResource("1_fu36u")
@@ -122,7 +120,6 @@ texture_region_size = Vector2i(48, 48)
 0:4/0 = 0
 1:1/0 = 0
 0:1/0 = 0
-1:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_j8vvb"]
 tile_shape = 3
@@ -159,28 +156,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
-script = ExtResource("4_c7unf")
-
-[node name="Stockpile" type="VBoxContainer" parent="Canvas/menu"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -136.0
-offset_bottom = 77.0
-grow_horizontal = 0
-
-[node name="Label" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-text = "Iron ore"
-
-[node name="Label2" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-text = "asdsadsa"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Canvas/menu"]
 layout_mode = 1
@@ -289,7 +264,7 @@ text = "tool"
 layout_mode = 2
 text = "iron ingot"
 
-[node name="End_turn" type="Button" parent="Canvas/menu"]
+[node name="Button" type="Button" parent="Canvas/menu"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -347,7 +322,6 @@ tile_set = SubResource("TileSet_capts")
 
 [node name="tile_development_map" type="TileMapLayer" parent="Tilemaps/TD"]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAAAAAAAAABAAMAAAA=")
 tile_set = SubResource("TileSet_j8vvb")
 
 [node name="unit_movement_order" type="TileMapLayer" parent="Tilemaps"]
@@ -449,13 +423,9 @@ script = ExtResource("21_s4qac")
 unique_name_in_owner = true
 script = ExtResource("23_642p6")
 
-[node name="td_economy" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
-unique_name_in_owner = true
-script = ExtResource("27_8p807")
-
 [node name="td_system" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
 unique_name_in_owner = true
-script = ExtResource("30_64fwa")
+script = ExtResource("27_8p807")
 
 [node name="TurnManager" type="Node2D" parent="GameSystems"]
 unique_name_in_owner = true
@@ -485,4 +455,3 @@ script = ExtResource("17_epnj5")
 [connection signal="text_changed" from="Canvas/menu/ChangeGoodMenu/search_bar" to="Canvas/menu/ChangeGoodMenu" method="_on_search_bar_text_changed"]
 [connection signal="pressed" from="Canvas/menu/ChangeGoodMenu/ScrollContainer/items/tool" to="Canvas/menu/ChangeGoodMenu" method="_on_tool_pressed"]
 [connection signal="pressed" from="Canvas/menu/ChangeGoodMenu/ScrollContainer/items/iron_ingot" to="Canvas/menu/ChangeGoodMenu" method="_on_iron_ingot_pressed"]
-[connection signal="pressed" from="Canvas/menu/End_turn" to="Canvas/menu" method="_on_end_turn_pressed"]

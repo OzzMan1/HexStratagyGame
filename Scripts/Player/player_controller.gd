@@ -8,6 +8,7 @@ class_name PlayerController
 @onready var tile_developement_manager: Node2D = $"../../DataManagers/TileDevelopementManager"
 
 @onready var selection_system = %SelectionSystem
+@onready var turn_manager: Node2D = %TurnManager
 
 
 #Player
@@ -24,6 +25,7 @@ class_name PlayerController
 @onready var create_road: Node2D = %create_road
 @onready var select_td: Node2D = %select_td
 @onready var td_connections: Node2D = %td_connections
+@onready var td_economy: Node2D = %td_economy
 @onready var td_system: Node2D = %td_system
 
 @onready var dependency_graph: Node2D = %Dependency_graph
@@ -115,7 +117,8 @@ func _input(event):
 	elif event.is_action_pressed("end_turn") or event.is_action("escape"):
 		# turn manager end turn 
 		set_state(IdleState.new())
-	
+	elif event.is_action_pressed("t"):
+		print(player_data.resources_amount)
 	if not isActive:
 			return
 	state.handle_input(self, event)
@@ -131,8 +134,9 @@ func on_interaction_started(interaction: Interaction,player):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	select_td_menu.interaction_started.connect(on_interaction_started)
+	player_data.city.player = self
+	tile_developement_manager.update_tile_development_list(self, player_data.city_pos ,player_data.city)
 
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

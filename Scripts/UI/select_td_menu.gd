@@ -8,6 +8,7 @@ extends Node
 
 # labels
 @onready var good_produced_label: Label = $GoodsProduced
+@onready var td_connection: Label = $TD_connection
 
 @onready var overlay_ui: Node2D = %OverlayUI
 @onready var player_controller: PlayerController = %PlayerController
@@ -29,15 +30,21 @@ func set_up_menu(td_obj : TileDevelopment):
 	change_good_button.visible = true 
 	expand_td_button.visible = true 
 	good_produced_label.visible = true 
-	match td_obj:
-		Industrial:
-			pass
-		ResourceExtraction:
-			print("here")
-			change_good_button.visible = false 
-		Trade:
-			change_good_button.visible = false 
-			good_produced_label.visible = false 
+	
+	if td_obj is Industrial: 
+		pass
+	elif td_obj is ResourceExtraction:
+		change_good_button.visible = false 
+	elif td_obj is Trade:
+		change_good_button.visible = false 
+		good_produced_label.visible = false 
+	elif td_obj is City:
+		change_good_button.visible = false 
+		good_produced_label.visible = false 			 
+		expand_td_button.visible = false
+		good_produced_label.visible = false 
+		td_connection_button.visible = false 
+		td_connection.visible = false
 
 func update_good_produced_ui(good : Good, amount : int ):
 	if good == null: 

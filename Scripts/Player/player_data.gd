@@ -24,9 +24,8 @@ var all_players_TD : Dictionary[Vector2i, TileDevelopment]
 var selected_td : TileDevelopment
 var selected_td_pos : Vector2i
 
-
-
-
+var city : TileDevelopment = City.new()
+var city_pos = Vector2i(0,0)
 
 # resources
 var resources_amount = {
@@ -34,12 +33,8 @@ var resources_amount = {
 	GoodsDatabase.timber: 500,
 }
 
-
-
-
 func get_archer_scene():
 	return 	archer_scene
-
 
 func test():
 	print(player_name)

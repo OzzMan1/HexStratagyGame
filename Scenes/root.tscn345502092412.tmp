@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://0wj8aqudqite"]
+[gd_scene load_steps=46 format=4 uid="uid://0wj8aqudqite"]
 
 [ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
 [ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_c3mwy"]
@@ -31,8 +31,7 @@
 [ext_resource type="Script" uid="uid://b2ekeebrhrcbd" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="21_s4qac"]
 [ext_resource type="Script" uid="uid://bok3rodajm74c" path="res://Scripts/GameSystems/GeneralSystems/dependency_graph.gd" id="21_vdqvo"]
 [ext_resource type="Script" uid="uid://dr3mawcjckm0j" path="res://Scripts/GameSystems/TileDevelopment/td_connections.gd" id="23_642p6"]
-[ext_resource type="Script" uid="uid://b13prvwl71uf8" path="res://Scripts/GameSystems/TileDevelopment/td_economy.gd" id="27_8p807"]
-[ext_resource type="Script" uid="uid://cliqbll3eh0u3" path="res://Scripts/GameSystems/TileDevelopment/td_system.gd" id="30_64fwa"]
+[ext_resource type="Script" uid="uid://b13prvwl71uf8" path="res://Scripts/GameSystems/TileDevelopment/td_system.gd" id="27_8p807"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20eh2"]
 texture = ExtResource("1_fu36u")
@@ -122,7 +121,6 @@ texture_region_size = Vector2i(48, 48)
 0:4/0 = 0
 1:1/0 = 0
 0:1/0 = 0
-1:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_j8vvb"]
 tile_shape = 3
@@ -160,27 +158,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("4_c7unf")
-
-[node name="Stockpile" type="VBoxContainer" parent="Canvas/menu"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -136.0
-offset_bottom = 77.0
-grow_horizontal = 0
-
-[node name="Label" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-text = "Iron ore"
-
-[node name="Label2" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-text = "asdsadsa"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Canvas/menu"]
 layout_mode = 1
@@ -347,7 +324,6 @@ tile_set = SubResource("TileSet_capts")
 
 [node name="tile_development_map" type="TileMapLayer" parent="Tilemaps/TD"]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAAAAAAAAABAAMAAAA=")
 tile_set = SubResource("TileSet_j8vvb")
 
 [node name="unit_movement_order" type="TileMapLayer" parent="Tilemaps"]
@@ -449,13 +425,9 @@ script = ExtResource("21_s4qac")
 unique_name_in_owner = true
 script = ExtResource("23_642p6")
 
-[node name="td_economy" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
-unique_name_in_owner = true
-script = ExtResource("27_8p807")
-
 [node name="td_system" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
 unique_name_in_owner = true
-script = ExtResource("30_64fwa")
+script = ExtResource("27_8p807")
 
 [node name="TurnManager" type="Node2D" parent="GameSystems"]
 unique_name_in_owner = true

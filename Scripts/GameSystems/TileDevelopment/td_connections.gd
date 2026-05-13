@@ -5,6 +5,7 @@ extends Node
 @onready var td_connections: Node2D = %td_connections
 @onready var tile_developement_manager: Node2D = %TileDevelopementManager
 @onready var overlay_ui: Node2D = %OverlayUI
+@onready var td_economy: Node2D = %td_economy
 
 
 
@@ -49,6 +50,11 @@ func add_td_connection(player_controller,pos):
 				td_to_add.incoming_td_connections.set(player_controller.player_data.selected_td_pos,
 				 player_controller.player_data.selected_td)
 				print( "td to adds list  adding ", td_to_add.incoming_td_connections)
+		
+		
+		# Update economy
+		td_economy.update_economy(player_controller)
+
 		# update ui 
 		player_controller.overlay_map.update_td_connection(player_controller.player_data.selected_td.possible_td_connections.keys(),
 		player_controller.player_data.selected_td.td_connections.keys())

@@ -1,29 +1,26 @@
 extends Node2D
 
 @onready var player_manager: Node2D = %PlayerManager
-
-
-
-	
-	
+@onready var td_system: Node2D = %td_system
 
 # when the player presses end turn
-func player_end_turn(player_controller : PlayerController, unit_order_list : Array ):
+func player_end_turn(player_controller : PlayerController ):
 	# add players data
-	
-	player_controller.player_data.has_ended_turn = true
-	# have all players ended their turn
-	
-	if have_all_players_ended_turn():
+	if !player_controller.player_data.has_ended_turn:
+		player_controller.player_data.has_ended_turn = true
+		print("player: ", player_controller.player_data.player_name, " has ended their turn ")
+	else: 
+		player_controller.player_data.has_ended_turn = false
+		print("player: ", player_controller.player_data.player_name, " has cancled their end turn ")
 		
+	# have all players ended their turn
+	if have_all_players_ended_turn():
+		for player in player_manager.get_player_list():
+			td_system.update_good_stockpile(player.player_data.all_players_TD)
+			player.td_economy.update_economy(player)
 		print("turn ended")
 
 	
-	
-		
-# cancel end turn
-func player_cancel_end_turn(player_controller : PlayerController):
-	player_controller.player_data.has_ended_turn = false
 
 func have_all_players_ended_turn() -> bool:
 	for player in player_manager.get_player_list():

@@ -8,11 +8,6 @@ var build_obj : Buildable
 var state_name : String = "Build"
 
 
-
-
-
-
-
 func handle_input(player_controller, event) -> void:
 	
 	build_obj = player_controller.player_data.build_obj

@@ -19,7 +19,8 @@ func get_objects_at_pos(player_controller : PlayerController, clicked_pos : Vect
 		# Checking for Tile Development
 	if player_controller.tile_developement_manager.tile_development_list.has(clicked_pos):
 		objects_at_pos.append(player_controller.tile_developement_manager.tile_development_list.get(clicked_pos))
-	
+		
+		
 	# Checking for Resource improvement
 	if player_controller.grid_manager.re_grid.has(clicked_pos):
 		if player_controller.grid_manager.re_grid[clicked_pos].resource_improvment_type == "iron":
