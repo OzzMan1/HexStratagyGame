@@ -17,26 +17,30 @@ class_name PlayerController
 # Units
 @onready var unit_manager = %UnitManager
 @onready var unit_movement = %UnitMovement
+@onready var unit_selection: Node2D = %UnitSelection
 
 
 
 ## TDSystems 
-@onready var build_td: Node2D = %build_td
 @onready var create_road: Node2D = %create_road
 @onready var select_td: Node2D = %select_td
 @onready var td_connections: Node2D = %td_connections
 @onready var td_economy: Node2D = %td_economy
 @onready var td_system: Node2D = %td_system
+@onready var build_system: Node2D = %build_system
+
+# Global Systems 
+
 
 @onready var dependency_graph: Node2D = %Dependency_graph
+@onready var path_finder: Node2D = %PathFinder
 
 
 #UI
 @onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"
 @onready var select_td_menu: VBoxContainer = %SelectTDMenu
 @onready var change_good_menu: Control = %ChangeGoodMenu
-
-
+@onready var city_menu: Control = %city_menu
 
 #Display
 @onready var overlay_map = %OverlayUI
@@ -129,6 +133,17 @@ func _input(event):
 func on_interaction_started(interaction: Interaction,player):
 	if player == self:
 		player.set_state(InteractionState.new(interaction))
+
+func on_build_td(player):
+	player_data.current_menu = build_td_menu
+	if player == self:
+		self.set_state(BuildState.new())
+
+func on_build_unit(player):
+	player_data.current_menu = city_menu
+	if player == self:
+		self.set_state(BuildState.new())
+
 
 
 # Called when the node enters the scene tree for the first time.

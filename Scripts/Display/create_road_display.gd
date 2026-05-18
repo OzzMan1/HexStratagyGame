@@ -5,7 +5,7 @@ extends Node
 @onready var tile_developement_manager: Node2D = %TileDevelopementManager
 
 
-enum Directions {
+enum road_dir {
 	LEFT,
 	RIGHT,
 	BOTTOM_LEFT,
@@ -14,12 +14,12 @@ enum Directions {
 	BOTTOM_RIGHT,
 } 
 var dir_to_road_atlas_coord = {
-	Directions.LEFT : Vector2i(0,0),
-	Directions.RIGHT: Vector2i(1,0),
-	Directions.BOTTOM_LEFT: Vector2i(2,0),
-	Directions.TOP_RIGHT: Vector2i(0,1),
-	Directions.TOP_LEFT: Vector2i(1,1),
-	Directions.BOTTOM_RIGHT: Vector2i(2,1),
+	road_dir.LEFT : Vector2i(0,0),
+	road_dir.RIGHT: Vector2i(1,0),
+	road_dir.BOTTOM_LEFT: Vector2i(2,0),
+	road_dir.TOP_RIGHT: Vector2i(0,1),
+	road_dir.TOP_LEFT: Vector2i(1,1),
+	road_dir.BOTTOM_RIGHT: Vector2i(2,1),
 }
 var directions: Array[Vector2i] = [
 Vector2i(-1, 0),
@@ -29,13 +29,13 @@ Vector2i(1, -1),
 Vector2i(0, -1),
 Vector2i(0, 1), 
 ]
-var axial_vector_to_direction : Dictionary[Vector2i, Directions] = {
-Vector2i(-1, 0) : Directions.LEFT,
-Vector2i(1, 0) : Directions.RIGHT,
-Vector2i(-1, 1) : Directions.BOTTOM_LEFT, 
-Vector2i(1, -1) : Directions.TOP_RIGHT, 
-Vector2i(0, -1) : Directions.TOP_LEFT,
-Vector2i(0, 1) : Directions.BOTTOM_RIGHT, 
+var axial_vector_to_direction : Dictionary[Vector2i, road_dir] = {
+Vector2i(-1, 0) : road_dir.LEFT,
+Vector2i(1, 0) : road_dir.RIGHT,
+Vector2i(-1, 1) : road_dir.BOTTOM_LEFT, 
+Vector2i(1, -1) : road_dir.TOP_RIGHT, 
+Vector2i(0, -1) : road_dir.TOP_LEFT,
+Vector2i(0, 1) : road_dir.BOTTOM_RIGHT, 
 }
 
 

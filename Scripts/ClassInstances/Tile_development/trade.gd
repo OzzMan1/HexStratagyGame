@@ -11,7 +11,13 @@ var resource_cost = {
 
 func _init() -> void:
 	pass
+#
 
+
+func set_up_select_menu(menu):
+	menu.build_unit_button.visible = false
+	menu.change_good_button.visible = false 
+	menu.good_produced_label.visible = false
 
 func add_goods_to_stockpile():
 	for good in incoming_goods:

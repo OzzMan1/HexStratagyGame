@@ -18,6 +18,8 @@ func player_end_turn(player_controller : PlayerController ):
 		for player in player_manager.get_player_list():
 			td_system.update_good_stockpile(player.player_data.all_players_TD)
 			player.td_economy.update_economy(player)
+			player.unit_manager.update_unit_movement(player.player_data.target_to_unit)
+			player_controller.player_data.has_ended_turn = false
 		print("turn ended")
 
 	

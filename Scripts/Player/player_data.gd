@@ -2,7 +2,6 @@ extends Node
 
 
 # Unit info
-var local_unit_orders : Array[unit_order]
 var unit_order_stack : Dictionary[Unit,Array]
 var target_to_unit : Dictionary[Vector2i, Unit]
 @export var archer_scene: PackedScene
@@ -16,6 +15,7 @@ var last_clicked_pos : Vector2i
 var last_clicked_index : int
 
 # currnet build object 
+var current_menu
 var build_obj : Buildable
 
 # Tile Developments 

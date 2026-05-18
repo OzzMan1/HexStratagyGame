@@ -12,10 +12,14 @@ var road_layer_arr = []
 
 
 
+
 func _ready() -> void:
 	road_layer_arr = [road_layer_left,road_layer_right,road_layer_bottom_left,road_layer_top_right,road_layer_top_left,road_layer_bottom_right]
+	
 
-func display_road(path : Array, all_layer_atlas_coords : Array,):
+func display_road(path : Array, all_layer_atlas_coords : Array):
+	
+	
 	var arr_index = 0
 	for layer_atlas_coord in all_layer_atlas_coords:
 		for pos in layer_atlas_coord.keys(): 

@@ -2,9 +2,6 @@ extends Interaction
 
 class_name td_connection_interaction
 
-# change good, click button -> new list opens 
-# can search and select good
-# press escape to close it
 
 func enter(player_controller) -> void:
 	player_controller.select_td_menu.visible = true 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://0wj8aqudqite"]
+[gd_scene load_steps=50 format=4 uid="uid://0wj8aqudqite"]
 
 [ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
 [ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_c3mwy"]
@@ -6,11 +6,12 @@
 [ext_resource type="Script" uid="uid://de0l8dy24335t" path="res://Scripts/UI/BuildTDMenu.gd" id="1_ogk07"]
 [ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="2_dw4fd"]
 [ext_resource type="PackedScene" uid="uid://dqj862qxe4ob0" path="res://Scenes/archer_1.tscn" id="2_vnucn"]
-[ext_resource type="Script" uid="uid://b2f46kan1s8d4" path="res://Scripts/UI/change_good_menu.gd" id="3_k8rbf"]
+[ext_resource type="Script" path="res://Scripts/UI/change_good_menu.gd" id="3_k8rbf"]
 [ext_resource type="Script" uid="uid://bqmq1qq85man6" path="res://Scripts/UI/ui_menu.gd" id="4_c7unf"]
 [ext_resource type="Texture2D" uid="uid://c4nspdcoinhrj" path="res://Assets/roads.png" id="4_j8vvb"]
 [ext_resource type="Script" uid="uid://s4ru06mqxaum" path="res://Scripts/UI/city_menu.gd" id="5_51qfo"]
 [ext_resource type="Texture2D" uid="uid://dp0ryb03nfp7o" path="res://Assets/possible_movement.png" id="5_ckhy6"]
+[ext_resource type="Script" uid="uid://vr5pau7jkyu2" path="res://Scripts/GameSystems/TileDevelopment/build_td.gd" id="5_hv1ua"]
 [ext_resource type="Texture2D" uid="uid://dwyvjjh1028xn" path="res://Assets/possible_movement_unit_order.png" id="6_ckhy6"]
 [ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/GeneralSystems/PathFinder.gd" id="6_dun2r"]
 [ext_resource type="Script" uid="uid://ce1gx6wk2aqll" path="res://Scripts/GameSystems/UnitSystems/UnitMovement.gd" id="7_r3lo5"]
@@ -28,8 +29,8 @@
 [ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/BFS.gd" id="18_lb85r"]
 [ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/neighbour.gd" id="19_k8rbf"]
 [ext_resource type="Script" uid="uid://8yu8rvxc1ndp" path="res://Scripts/Display/create_road_display.gd" id="20_capts"]
-[ext_resource type="Script" uid="uid://b2ekeebrhrcbd" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="21_s4qac"]
-[ext_resource type="Script" uid="uid://bok3rodajm74c" path="res://Scripts/GameSystems/GeneralSystems/dependency_graph.gd" id="21_vdqvo"]
+[ext_resource type="Script" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="21_s4qac"]
+[ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/dependency_graph.gd" id="21_vdqvo"]
 [ext_resource type="Script" uid="uid://dr3mawcjckm0j" path="res://Scripts/GameSystems/TileDevelopment/td_connections.gd" id="23_642p6"]
 [ext_resource type="Script" uid="uid://i1s2aamgheov" path="res://Scripts/GameSystems/GeneralSystems/build_system.gd" id="24_5k7ik"]
 [ext_resource type="Script" uid="uid://bkbecvbvbf5ht" path="res://Scripts/GameSystems/UnitSystems/unit_selection.gd" id="26_207an"]
@@ -487,6 +488,10 @@ unique_name_in_owner = true
 script = ExtResource("26_207an")
 
 [node name="TileDevelopmentSystems" type="Node2D" parent="GameSystems"]
+
+[node name="build_td" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("5_hv1ua")
 
 [node name="create_road" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
 unique_name_in_owner = true

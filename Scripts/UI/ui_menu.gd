@@ -14,10 +14,5 @@ func check_visibility(current_player):
 func _on_end_turn_pressed() -> void:
 	player_controller.turn_manager.player_end_turn(player_controller)
 
-# player starts with a capital city
-	# Player data capital city Vector
-	
-	# It should inh  erit tile development 
-		# Then it can be interacted with roads, td connections 
-	# it needs to store, goods
-	#  
+func _on_build_td_pressed() -> void:
+	player_controller.on_build_td(player_controller)

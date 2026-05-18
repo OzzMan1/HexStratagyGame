@@ -4,41 +4,24 @@ extends Node
 
 
 
-func update_unit_list_local(player_controller: PlayerController, unit : Unit, new_unit_order : unit_order):		
-		
-		
-		# Update unit data  
-		
-		# add order to list of orders
-		player_controller.player_data.local_unit_orders.append(new_unit_order)
-		# Add unit order
-		if player_controller.player_data.unit_order_stack.has(unit):
-			player_controller.player_data.unit_order_stack[unit].append(new_unit_order)
-		else:
-			player_controller.player_data.unit_order_stack[unit] = [new_unit_order]			
-		# update the target mapping
-		if player_controller.player_data.target_to_unit.has(new_unit_order.prev):
-			player_controller.player_data.target_to_unit.erase(new_unit_order.prev)
-		player_controller.player_data.target_to_unit.set(new_unit_order.target,unit)
-		
-		# move units position 
-		unit.position = grid_manager.get_world_pos(new_unit_order.target)
-		unit.tile_pos = new_unit_order.target 
-
-func spawn_unit_test(player_controller: PlayerController, mouse_pos):
+func create_new_unit(player_controller,position):
+	var new_unit = player_controller.player_data.get_archer_scene().instantiate()
+	update_unit_position(player_controller,new_unit,position)
+	update_unit_list(player_controller, new_unit, position)
+	add_child(new_unit)
 	
-	var tile_pos = grid_manager.get_tile_pos(mouse_pos)
-	var target_to_unit = player_controller.player_data.target_to_unit
+func update_unit_position(player_controller,unit : Unit, new_pos : Vector2i):
+	unit.position = player_controller.grid_manager.get_world_pos(new_pos)
+	unit.tile_pos = new_pos 
+func update_unit_list(player_controller,unit, target, prev = null):
+	# update players unit list
+	# Update global unit list
+	if prev != null:
+		player_controller.player_data.target_to_unit.erase(prev)
+		player_controller.grid_manager.unit_list.erase(prev)
+	player_controller.player_data.target_to_unit[target] = unit
+	player_controller.grid_manager.unit_list[target] = unit 
 
-	# Check if Unit is there, if not then we can spawn a new unit and add it as a child
-	if !target_to_unit.has(tile_pos):
-		var new_unit = player_controller.player_data.get_archer_scene().instantiate()
-		var new_unit_order = unit_order.new(tile_pos,tile_pos,new_unit,0)
-		
-		update_unit_list_local(player_controller,new_unit,new_unit_order)	
-		# Add unit as an object
-		new_unit.position = grid_manager.get_world_pos(tile_pos)
-		new_unit.tile_pos = tile_pos 
-		add_child(new_unit)
-	elif target_to_unit.has(tile_pos): 
-		print("Cant build here, there is unit: ")
+func update_unit_movement(unit_list : Dictionary):
+	for unit in unit_list.values():
+		unit.current_num_of_moves = unit.number_of_moves

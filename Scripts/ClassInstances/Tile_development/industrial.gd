@@ -19,7 +19,13 @@ var capacity : int = 100
 
 # Incoming goods 
 
+var on_select_buttons = []
+	
 
+
+func set_up_select_menu(menu):
+	menu.build_unit_button.visible = false
+	
 
 
 func update_ui(menu):
@@ -28,11 +34,6 @@ func update_ui(menu):
 		number_of_good_produced
 	)
 
-# what resources do you need to build
-var resource_cost = {
-	GoodsDatabase.stone: 30,
-	GoodsDatabase.timber: 40,
-}
 
 
 
