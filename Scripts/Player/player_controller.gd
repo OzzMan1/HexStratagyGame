@@ -63,7 +63,7 @@ var isActive : bool = false
 	# ID 
 	# city start pos 
 	# 
-func _init(id : int, _player_name: String, _player_list_index: int, _city_pos : Vector2i):
+func set_up(id : int, _player_name: String, _player_list_index: int, _city_pos : Vector2i):
 	player_id = id 
 	player_name = _player_name 
 	player_list_index = _player_list_index  

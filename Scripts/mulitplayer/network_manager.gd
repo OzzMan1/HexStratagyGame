@@ -14,7 +14,8 @@ var player_info
 
 var player_name: String = "Player"
 
-signal player_connected(id : int)
+signal player_connected()
+signal game_started
 
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -27,7 +28,7 @@ func host_game():
 	var peer_id = multiplayer.get_unique_id()
 	player_info =  { "name": player_name, "ready": false }
 	players[multiplayer.get_unique_id()] = player_info
-	player_connected.emit(peer_id)
+	player_connected.emit()
 
 func join_game():
 	var peer = ENetMultiplayerPeer.new()
@@ -45,10 +46,10 @@ func _on_player_connected(id):
 func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
 	players[new_player_id] = new_player_info
-	player_connected.emit(new_player_id)
+	player_connected.emit()
 
 func _on_connected_ok():
 	var peer_id = multiplayer.get_unique_id()
 	player_info =  { "name": player_name, "ready": false }
 	players[peer_id] = player_info
-	player_connected.emit(peer_id)
+	player_connected.emit()

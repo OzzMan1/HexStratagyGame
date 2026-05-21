@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4t2apirtr6wk"]
+
+[ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_rcyvr"]
+[ext_resource type="Script" uid="uid://don1jd7v03yjp" path="res://Scripts/Player/player_data.gd" id="2_g17un"]
+[ext_resource type="PackedScene" uid="uid://dqj862qxe4ob0" path="res://Scenes/archer_1.tscn" id="3_6mk6d"]
+
+[node name="PlayerController" type="Node2D"]
+script = ExtResource("1_rcyvr")
+
+[node name="PlayerData" type="Node2D" parent="."]
+script = ExtResource("2_g17un")
+archer_scene = ExtResource("3_6mk6d")
+player_name = "Player 1"

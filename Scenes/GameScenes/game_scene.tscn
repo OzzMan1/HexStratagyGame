@@ -1,7 +1,8 @@
-[gd_scene load_steps=49 format=4 uid="uid://csnjy7bt5tvi4"]
+[gd_scene load_steps=50 format=4 uid="uid://csnjy7bt5tvi4"]
 
 [ext_resource type="Script" uid="uid://bqmq1qq85man6" path="res://Scripts/UI/ui_menu.gd" id="1_udify"]
 [ext_resource type="Script" uid="uid://de0l8dy24335t" path="res://Scripts/UI/BuildTDMenu.gd" id="2_k2gex"]
+[ext_resource type="PackedScene" uid="uid://c4t2apirtr6wk" path="res://Scenes/GameComponents/player_controller.tscn" id="2_mhhoi"]
 [ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="3_obvom"]
 [ext_resource type="Script" uid="uid://b2f46kan1s8d4" path="res://Scripts/UI/change_good_menu.gd" id="4_olq2e"]
 [ext_resource type="Script" uid="uid://s4ru06mqxaum" path="res://Scripts/UI/city_menu.gd" id="5_w61bx"]
@@ -155,14 +156,8 @@ zoom = Vector2(1.5, 1.5)
 unique_name_in_owner = true
 script = ExtResource("14_nys34")
 
-[node name="PlayerController" type="Node2D" parent="PlayerManager"]
+[node name="PlayerController" parent="PlayerManager" instance=ExtResource("2_mhhoi")]
 unique_name_in_owner = true
-script = ExtResource("15_s0hop")
-
-[node name="PlayerData" type="Node2D" parent="PlayerManager/PlayerController"]
-script = ExtResource("16_1pnnn")
-archer_scene = ExtResource("17_1x3ex")
-player_name = "Player 1"
 
 [node name="PlayerController2" type="Node2D" parent="PlayerManager"]
 script = ExtResource("15_s0hop")

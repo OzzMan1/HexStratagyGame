@@ -9,7 +9,7 @@ extends Node
 
 func _ready() -> void:
 	NetworkManager.player_connected.connect(refresh_player_list)
-	refresh_player_list(0)
+	refresh_player_list()
 	
 func _on_start_pressed() -> void:
 	if all_players_ready():
@@ -17,8 +17,9 @@ func _on_start_pressed() -> void:
 
 
 func _on_ready_toggled(toggled_on: bool) -> void:
+	set_player_ready.rpc(toggled_on)
 # Add player to player_list when join 
-func refresh_player_list(player_id):
+func refresh_player_list():
 	   # Clear and rebuild the player list UI
 	for child in player_list.get_children():
 		child.queue_free()
@@ -36,7 +37,7 @@ func refresh_player_list(player_id):
 func set_player_ready(is_ready):
 	var id = multiplayer.get_remote_sender_id()
 	NetworkManager.players[id]["ready"] = is_ready
-	refresh_player_list(0)
+	refresh_player_list()
 
 	
 func all_players_ready():
@@ -48,3 +49,4 @@ func all_players_ready():
 @rpc("authority", "call_local", "reliable" )
 func start_game():
 	GameManager.load_scene(GameManager.MAIN_GAME)
+	NetworkManager.game_started.emit()
