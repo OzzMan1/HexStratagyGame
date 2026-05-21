@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TerrainData" load_steps=2 format=3 uid="uid://d0sp4u0wy44il"]
+
+[ext_resource type="Script" uid="uid://c7yvha5y7xygw" path="res://Scripts/Resources/terrain_data.gd" id="1_1hhk3"]
+
+[resource]
+script = ExtResource("1_1hhk3")
+name = "hill"
+movement_cost = 2
+metadata/_custom_type_script = "uid://c7yvha5y7xygw"

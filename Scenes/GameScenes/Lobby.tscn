@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4psnt3ohhtae"]
+
+[ext_resource type="Script" uid="uid://l2226ln04ug4" path="res://Scripts/mulitplayer/Lobby.gd" id="1_ghtyg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ghtyg"]
+font_size = 32
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ghtyg")
+
+[node name="TitleMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.5
+offset_right = 71.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleMargin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="TitleMargin/VBoxContainer"]
+layout_mode = 2
+text = "Welcome to lobby "
+label_settings = SubResource("LabelSettings_ghtyg")
+
+[node name="centered" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -20.0
+offset_right = 96.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerList" type="VBoxContainer" parent="centered"]
+layout_mode = 2
+
+[node name="Controls" type="HBoxContainer" parent="centered"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="centered/Controls"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="Ready" type="Button" parent="centered/Controls"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Ready"
+
+[node name="Quit" type="Button" parent="centered/Controls"]
+layout_mode = 2
+text = "Quit Game"
+
+[connection signal="pressed" from="centered/Controls/Start" to="." method="_on_start_pressed"]
+[connection signal="toggled" from="centered/Controls/Ready" to="." method="_on_ready_toggled"]

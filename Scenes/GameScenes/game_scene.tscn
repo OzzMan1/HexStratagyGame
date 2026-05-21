@@ -1,0 +1,542 @@
+[gd_scene load_steps=49 format=4 uid="uid://csnjy7bt5tvi4"]
+
+[ext_resource type="Script" uid="uid://bqmq1qq85man6" path="res://Scripts/UI/ui_menu.gd" id="1_udify"]
+[ext_resource type="Script" uid="uid://de0l8dy24335t" path="res://Scripts/UI/BuildTDMenu.gd" id="2_k2gex"]
+[ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="3_obvom"]
+[ext_resource type="Script" uid="uid://b2f46kan1s8d4" path="res://Scripts/UI/change_good_menu.gd" id="4_olq2e"]
+[ext_resource type="Script" uid="uid://s4ru06mqxaum" path="res://Scripts/UI/city_menu.gd" id="5_w61bx"]
+[ext_resource type="Texture2D" uid="uid://c6jd2xhmhv7a4" path="res://Assets/Terrain_RE_ID.png" id="6_uvj3q"]
+[ext_resource type="Texture2D" uid="uid://dp0ryb03nfp7o" path="res://Assets/possible_movement.png" id="7_mqs2o"]
+[ext_resource type="Texture2D" uid="uid://c4nspdcoinhrj" path="res://Assets/roads.png" id="8_p4uwf"]
+[ext_resource type="Texture2D" uid="uid://dwyvjjh1028xn" path="res://Assets/possible_movement_unit_order.png" id="9_atg6p"]
+[ext_resource type="Script" uid="uid://8yu8rvxc1ndp" path="res://Scripts/Display/create_road_display.gd" id="10_yf828"]
+[ext_resource type="Script" uid="uid://doroc5hi67t1m" path="res://Scripts/Display/tile_development_ui.gd" id="11_8xidt"]
+[ext_resource type="Script" uid="uid://bgp3ltync7xy3" path="res://Scripts/Display/road_display.gd" id="12_vbpv4"]
+[ext_resource type="Script" uid="uid://c5qo1inocw736" path="res://Scripts/Display/overlay.gd" id="13_ndfmf"]
+[ext_resource type="Script" uid="uid://0gr6jm1ynktj" path="res://Scripts/Player/player_manager.gd" id="14_nys34"]
+[ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="15_s0hop"]
+[ext_resource type="Script" uid="uid://don1jd7v03yjp" path="res://Scripts/Player/player_data.gd" id="16_1pnnn"]
+[ext_resource type="PackedScene" uid="uid://dqj862qxe4ob0" path="res://Scenes/archer_1.tscn" id="17_1x3ex"]
+[ext_resource type="PackedScene" uid="uid://dajtjq7436wrb" path="res://Scenes/archer_2.tscn" id="18_ql88y"]
+[ext_resource type="Script" uid="uid://ckha2g8x03qqq" path="res://Scripts/GameSystems/GeneralSystems/SelectionSystem.gd" id="19_aqnxp"]
+[ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/GeneralSystems/PathFinder.gd" id="20_t3aav"]
+[ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/BFS.gd" id="21_yj1qu"]
+[ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/neighbour.gd" id="22_asuqw"]
+[ext_resource type="Script" uid="uid://bok3rodajm74c" path="res://Scripts/GameSystems/GeneralSystems/dependency_graph.gd" id="23_4k3ma"]
+[ext_resource type="Script" uid="uid://i1s2aamgheov" path="res://Scripts/GameSystems/GeneralSystems/build_system.gd" id="24_opjrb"]
+[ext_resource type="Script" uid="uid://ce1gx6wk2aqll" path="res://Scripts/GameSystems/UnitSystems/UnitMovement.gd" id="25_kut41"]
+[ext_resource type="Script" uid="uid://bkbecvbvbf5ht" path="res://Scripts/GameSystems/UnitSystems/unit_selection.gd" id="26_b14wf"]
+[ext_resource type="Script" uid="uid://wgps7k4iggq6" path="res://Scripts/GameSystems/TileDevelopment/create_road.gd" id="27_5v1oo"]
+[ext_resource type="Script" uid="uid://b2ekeebrhrcbd" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="28_skhme"]
+[ext_resource type="Script" uid="uid://dr3mawcjckm0j" path="res://Scripts/GameSystems/TileDevelopment/td_connections.gd" id="29_a6xwo"]
+[ext_resource type="Script" uid="uid://b13prvwl71uf8" path="res://Scripts/GameSystems/TileDevelopment/td_economy.gd" id="30_1ol4r"]
+[ext_resource type="Script" uid="uid://cliqbll3eh0u3" path="res://Scripts/GameSystems/TileDevelopment/td_system.gd" id="31_2e2dr"]
+[ext_resource type="Script" uid="uid://qnn8of0rdcpi" path="res://Scripts/GameSystems/EndTurn/TurnManager.gd" id="32_k55q4"]
+[ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="33_fwp57"]
+[ext_resource type="Script" uid="uid://dyqfo36eyv86m" path="res://Scripts/DataManagers/unit_manager.gd" id="34_yp5f6"]
+[ext_resource type="Script" uid="uid://cfutnddqgqshx" path="res://Scripts/DataManagers/tile_development_manager.gd" id="35_jr3pb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20eh2"]
+texture = ExtResource("6_uvj3q")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(48, 48)
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+3:2/0 = 0
+0:2/0 = 0
+1:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vnucn"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/4 = SubResource("TileSetAtlasSource_20eh2")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hv1ua"]
+texture = ExtResource("6_uvj3q")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(48, 48)
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_epnj5"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_hv1ua")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epnj5"]
+texture = ExtResource("7_mqs2o")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoxdu"]
+texture = ExtResource("8_p4uwf")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ogk07"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_epnj5")
+sources/1 = SubResource("TileSetAtlasSource_qoxdu")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_teq3f"]
+texture = ExtResource("8_p4uwf")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_capts"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_teq3f")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ogk07"]
+texture = ExtResource("6_uvj3q")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(48, 48)
+0:4/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+1:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_j8vvb"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_ogk07")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fu36u"]
+texture = ExtResource("9_atg6p")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(48, 48)
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qtxxq"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_fu36u")
+
+[node name="GameScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(305, 185)
+zoom = Vector2(1.5, 1.5)
+
+[node name="PlayerManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("14_nys34")
+
+[node name="PlayerController" type="Node2D" parent="PlayerManager"]
+unique_name_in_owner = true
+script = ExtResource("15_s0hop")
+
+[node name="PlayerData" type="Node2D" parent="PlayerManager/PlayerController"]
+script = ExtResource("16_1pnnn")
+archer_scene = ExtResource("17_1x3ex")
+player_name = "Player 1"
+
+[node name="PlayerController2" type="Node2D" parent="PlayerManager"]
+script = ExtResource("15_s0hop")
+
+[node name="PlayerData" type="Node2D" parent="PlayerManager/PlayerController2"]
+script = ExtResource("16_1pnnn")
+archer_scene = ExtResource("18_ql88y")
+player_name = "Player 2"
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="menu" type="Control" parent="Canvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_udify")
+
+[node name="Stockpile" type="VBoxContainer" parent="Canvas/menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_bottom = 77.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="Canvas/menu/Stockpile"]
+layout_mode = 2
+text = "Iron ore"
+
+[node name="Label2" type="Label" parent="Canvas/menu/Stockpile"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Canvas/menu/Stockpile"]
+layout_mode = 2
+text = "asdsadsa"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BuildTDMenu" type="VBoxContainer" parent="Canvas/menu/HBoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_k2gex")
+
+[node name="RE_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 0
+toggle_mode = true
+text = "Resource Extraction"
+
+[node name="I_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Industrial"
+
+[node name="T_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Trade"
+
+[node name="Road_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Road"
+
+[node name="SelectTDMenu" type="VBoxContainer" parent="Canvas/menu/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("3_obvom")
+
+[node name="GoodsProduced" type="Label" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Goods Produced: "
+
+[node name="TD_connection" type="Label" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Sending to: "
+
+[node name="td_connection_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+text = "TD Connections"
+
+[node name="change_good_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Change good"
+
+[node name="expand_td_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Expand"
+
+[node name="build_unit_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Build Unit"
+
+[node name="ChangeGoodMenu" type="Control" parent="Canvas/menu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 156.0
+offset_bottom = 140.0
+grow_horizontal = 2
+script = ExtResource("4_olq2e")
+
+[node name="search_bar" type="LineEdit" parent="Canvas/menu/ChangeGoodMenu"]
+layout_mode = 0
+offset_right = 68.5625
+offset_bottom = 31.0
+placeholder_text = "search"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Canvas/menu/ChangeGoodMenu"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 34.0
+offset_right = 101.0
+offset_bottom = 434.0
+
+[node name="items" type="VBoxContainer" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer"]
+layout_mode = 2
+
+[node name="sword" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
+layout_mode = 2
+text = "sword"
+
+[node name="tool" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
+layout_mode = 2
+text = "tool"
+
+[node name="iron_ingot" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
+layout_mode = 2
+text = "iron ingot"
+
+[node name="End_turn" type="Button" parent="Canvas/menu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "End turn"
+
+[node name="Build_TD" type="Button" parent="Canvas/menu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -67.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Build TD"
+
+[node name="city_menu" type="Control" parent="Canvas/menu"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_w61bx")
+
+[node name="unit_buttons" type="VBoxContainer" parent="Canvas/menu/city_menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="archer_button" type="Button" parent="Canvas/menu/city_menu/unit_buttons"]
+layout_mode = 2
+text = "Archer"
+
+[node name="Button2" type="Button" parent="Canvas/menu/city_menu/unit_buttons"]
+layout_mode = 2
+text = "sword man"
+
+[node name="Button3" type="Button" parent="Canvas/menu/city_menu/unit_buttons"]
+layout_mode = 2
+text = "Knight"
+
+[node name="Button4" type="Button" parent="Canvas/menu/city_menu/unit_buttons"]
+layout_mode = 2
+text = "Spearman
+"
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="map_layer" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAAQABAAAAAIAAAACAAUABAAAAAIAAAADAAQABAADAAIAAAAAAAAABAACAAIAAAADAAUABAADAAIAAAABAAEABAABAAIAAAABAAIABAABAAIAAAAAAAEABAACAAIAAAABAAUABAAAAAIAAAACAAIABAABAAIAAAADAAIABAACAAIAAAABAAMABAADAAIAAAAAAAUABAAAAAIAAAABAAQABAAAAAIAAAAAAAIABAADAAIAAAACAAMABAADAAIAAAACAAQABAADAAIAAAADAAMABAADAAIAAAABAAAABAACAAIAAAAAAAMABAADAAIAAAADAAAABAACAAIAAAACAAAABAACAAIAAAACAAEABAACAAIAAAADAAEABAACAAIAAAAAAAYABAAAAAIAAAABAAYABAAAAAIAAAACAAYABAAAAAIAAAADAAYABAAAAAIAAAAAAAcABAAAAAIAAAAAAAgABAAAAAIAAAABAAgABAAAAAIAAAABAAcABAAAAAIAAAACAAgABAAAAAIAAAACAAcABAAAAAIAAAADAAgABAAAAAIAAAADAAcABAAAAAIAAAAEAAYABAAAAAIAAAAEAAcABAAAAAIAAAAEAAgABAAAAAIAAAAFAAgABAAAAAIAAAAFAAcABAAAAAIAAAAGAAgABAAAAAIAAAAFAAYABAAAAAIAAAAEAAUABAADAAIAAAAFAAUABAADAAIAAAAGAAYABAADAAIAAAAGAAcABAADAAIAAAAHAAgABAADAAIAAAAHAAcABAADAAIAAAAIAAYABAADAAIAAAAHAAYABAADAAIAAAAGAAUABAADAAIAAAAEAAQABAADAAIAAAAFAAQABAADAAIAAAAGAAQABAADAAIAAAAHAAQABAADAAIAAAAHAAUABAADAAIAAAAIAAUABAADAAIAAAAIAAcABAADAAIAAAAIAAgABAADAAIAAAAJAAgABAADAAIAAAAJAAYABAADAAIAAAAJAAcABAADAAIAAAAJAAUABAADAAIAAAAJAAQABAADAAIAAAAIAAMABAADAAIAAAAJAAMABAADAAIAAAAIAAQABAADAAIAAAAHAAMABAADAAIAAAAGAAMABAACAAIAAAAFAAMABAACAAIAAAAEAAMABAACAAIAAAAFAAIABAACAAIAAAAGAAIABAACAAIAAAAEAAIABAACAAIAAAAEAAAABAACAAIAAAAFAAAABAACAAIAAAAGAAAABAACAAIAAAAHAAAABAACAAIAAAAIAAAABAACAAIAAAAJAAEABAACAAIAAAAIAAEABAACAAIAAAAJAAIABAACAAIAAAAIAAIABAACAAIAAAAHAAEABAACAAIAAAAGAAEABAACAAIAAAAFAAEABAACAAIAAAAEAAEABAACAAIAAAAHAAIABAACAAIAAAAJAAAABAACAAIAAAA=")
+tile_set = SubResource("TileSet_vnucn")
+navigation_enabled = false
+
+[node name="resource_improvements" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAAMAAAAAAAMAAAABAAUAAAADAAEAAAAAAAUAAAADAAEAAAADAAAAAAACAAEAAAACAAEAAAACAAEAAAADAAEAAAACAAEAAAAGAAIAAAACAAEAAAAGAAMAAAACAAEAAAAHAAMAAAACAAEAAAAHAAIAAAACAAEAAAAEAAgAAAADAAEAAAAHAAAAAAAAAAMAAAAAAAgAAAAAAAMAAAAJAAQAAAADAAEAAAA=")
+tile_set = SubResource("TileSet_epnj5")
+
+[node name="overlay_map" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_ogk07")
+
+[node name="TD" type="Node2D" parent="Tilemaps"]
+
+[node name="road_layer_left" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_right" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_bottom_left" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_top_right" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_top_left" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_bottom_right" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="tile_development_map" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAMAAAAHAAcAAAABAAMAAAA=")
+tile_set = SubResource("TileSet_j8vvb")
+
+[node name="unit_movement_order" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_qtxxq")
+
+[node name="Display" type="Node2D" parent="."]
+
+[node name="road_direction" type="Node2D" parent="Display"]
+unique_name_in_owner = true
+script = ExtResource("10_yf828")
+
+[node name="TileDevelopmentUI" type="Node2D" parent="Display"]
+unique_name_in_owner = true
+script = ExtResource("11_8xidt")
+
+[node name="RoadDisplay" type="Node2D" parent="Display"]
+unique_name_in_owner = true
+script = ExtResource("12_vbpv4")
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="OverlayUI" type="Node2D" parent="UI"]
+unique_name_in_owner = true
+script = ExtResource("13_ndfmf")
+
+[node name="GameSystems" type="Node2D" parent="."]
+
+[node name="GlobalSystems" type="Node2D" parent="GameSystems"]
+
+[node name="SelectionSystem" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("19_aqnxp")
+
+[node name="PathFinder" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("20_t3aav")
+
+[node name="BFS" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("21_yj1qu")
+
+[node name="neighbour" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("22_asuqw")
+
+[node name="Dependency_graph" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("23_4k3ma")
+
+[node name="build_system" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("24_opjrb")
+
+[node name="UnitSystems" type="Node2D" parent="GameSystems"]
+unique_name_in_owner = true
+
+[node name="UnitMovement" type="Node2D" parent="GameSystems/UnitSystems"]
+unique_name_in_owner = true
+script = ExtResource("25_kut41")
+
+[node name="Combat(future)" type="Node2D" parent="GameSystems/UnitSystems"]
+
+[node name="UnitSelection" type="Node2D" parent="GameSystems/UnitSystems"]
+unique_name_in_owner = true
+script = ExtResource("26_b14wf")
+
+[node name="TileDevelopmentSystems" type="Node2D" parent="GameSystems"]
+
+[node name="create_road" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("27_5v1oo")
+
+[node name="select_td" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("28_skhme")
+
+[node name="td_connections" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("29_a6xwo")
+
+[node name="td_economy" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("30_1ol4r")
+
+[node name="td_system" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("31_2e2dr")
+
+[node name="TurnManager" type="Node2D" parent="GameSystems"]
+unique_name_in_owner = true
+script = ExtResource("32_k55q4")
+
+[node name="DataManagers" type="Node2D" parent="."]
+
+[node name="GridManager" parent="DataManagers" instance=ExtResource("33_fwp57")]
+unique_name_in_owner = true
+archer_scene = ExtResource("17_1x3ex")
+
+[node name="UnitManager" type="Node2D" parent="DataManagers"]
+unique_name_in_owner = true
+script = ExtResource("34_yp5f6")
+
+[node name="TileDevelopementManager" type="Node2D" parent="DataManagers"]
+unique_name_in_owner = true
+script = ExtResource("35_jr3pb")
+
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/RE_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_re_button_toggled"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/I_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_i_button_toggled"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/T_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_t_button_toggled"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/Road_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_road_button_toggled"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/SelectTDMenu/td_connection_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_td_connection_button_toggled"]
+[connection signal="pressed" from="Canvas/menu/HBoxContainer/SelectTDMenu/change_good_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_change_good_button_pressed"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/SelectTDMenu/change_good_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_change_good_button_toggled"]
+[connection signal="pressed" from="Canvas/menu/HBoxContainer/SelectTDMenu/build_unit_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_build_unit_button_pressed"]
+[connection signal="text_changed" from="Canvas/menu/ChangeGoodMenu/search_bar" to="Canvas/menu/ChangeGoodMenu" method="_on_search_bar_text_changed"]
+[connection signal="pressed" from="Canvas/menu/ChangeGoodMenu/ScrollContainer/items/tool" to="Canvas/menu/ChangeGoodMenu" method="_on_tool_pressed"]
+[connection signal="pressed" from="Canvas/menu/ChangeGoodMenu/ScrollContainer/items/iron_ingot" to="Canvas/menu/ChangeGoodMenu" method="_on_iron_ingot_pressed"]
+[connection signal="pressed" from="Canvas/menu/End_turn" to="Canvas/menu" method="_on_end_turn_pressed"]
+[connection signal="pressed" from="Canvas/menu/Build_TD" to="Canvas/menu" method="_on_build_td_pressed"]
+[connection signal="pressed" from="Canvas/menu/city_menu/unit_buttons/archer_button" to="Canvas/menu/city_menu" method="_on_archer_button_pressed"]

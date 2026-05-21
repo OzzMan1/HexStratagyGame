@@ -21,6 +21,14 @@ func create_td():
 	var td = ResourceExtraction.new()
 	tile_map_img = clicked_tile.resource_improvment_type
 	td.number_of_good_produced = 20 
+	match clicked_tile.resource_improvment_type:
+			"forest":
+				td.good_produced = GoodsDatabase.timber 
+			"stone":
+				td.good_produced = GoodsDatabase.stone 
+			"iron":
+				td.good_produced = GoodsDatabase.iron_ore  
+
 	return td
 
 func can_build() -> bool:

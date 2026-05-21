@@ -20,7 +20,6 @@ class_name PlayerController
 @onready var unit_selection: Node2D = %UnitSelection
 
 
-
 ## TDSystems 
 @onready var create_road: Node2D = %create_road
 @onready var select_td: Node2D = %select_td
@@ -30,8 +29,6 @@ class_name PlayerController
 @onready var build_system: Node2D = %build_system
 
 # Global Systems 
-
-
 @onready var dependency_graph: Node2D = %Dependency_graph
 @onready var path_finder: Node2D = %PathFinder
 
@@ -48,11 +45,37 @@ class_name PlayerController
 @onready var road_display: Node2D = %RoadDisplay
 
 
+# Network ID 
+var player_id : int
+var player_name : String 
+# players postion in player list
+var player_list_index : int 
 
 
+var city : TileDevelopment = City.new()
+var city_pos
 
-@export var player_id : int
+
 var isActive : bool = false
+
+
+# we need to assign: 
+	# ID 
+	# city start pos 
+	# 
+func _init(id : int, _player_name: String, _player_list_index: int, _city_pos : Vector2i):
+	player_id = id 
+	player_name = _player_name 
+	player_list_index = _player_list_index  
+	city_pos = _city_pos
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	select_td_menu.interaction_started.connect(on_interaction_started)
+	city.player = self
+	tile_developement_manager.update_tile_development_list(self, city_pos ,player_data.city)
+
+
 
 
 func oddr_to_axial(hex: Vector2i):
@@ -91,8 +114,6 @@ func set_state(new_state : State):
 	state = new_state
 	if state:
 		state.enter(self)
-
-
 			
 func is_mouse_over_ui() -> bool:
 	var control = get_viewport().gui_get_hovered_control()
@@ -143,15 +164,3 @@ func on_build_unit(player):
 	player_data.current_menu = city_menu
 	if player == self:
 		self.set_state(BuildState.new())
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	select_td_menu.interaction_started.connect(on_interaction_started)
-	player_data.city.player = self
-	tile_developement_manager.update_tile_development_list(self, player_data.city_pos ,player_data.city)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

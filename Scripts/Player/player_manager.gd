@@ -1,8 +1,8 @@
 extends Node
 
+@onready var player_controller: PlayerController = %PlayerController
 
-@onready var player_controller_2: PlayerController = $PlayerController2
-@onready var player_controller: PlayerController = $PlayerController
+
 var player_list : Array[PlayerController]
 var current_player : PlayerController
 @onready var menu: Control = $"../Canvas/menu"
@@ -18,10 +18,7 @@ func _ready() -> void:
 	player_list = [player_controller]
 	current_player = player_list[0]
 	print(player_list)
-
 	
-
-
 func set_player(player_index : int):
 
 	current_player.isActive = false

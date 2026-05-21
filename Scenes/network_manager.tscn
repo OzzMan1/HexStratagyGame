@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdal56ceqau6f"]
+
+[ext_resource type="Script" uid="uid://eg6qj8g64t3e" path="res://Scripts/mulitplayer/network_manager.gd" id="1_tbq58"]
+
+[node name="NetworkManager" type="Node"]
+script = ExtResource("1_tbq58")
