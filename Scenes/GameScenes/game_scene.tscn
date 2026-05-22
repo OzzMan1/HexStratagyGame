@@ -1,8 +1,7 @@
-[gd_scene load_steps=50 format=4 uid="uid://csnjy7bt5tvi4"]
+[gd_scene load_steps=46 format=4 uid="uid://csnjy7bt5tvi4"]
 
 [ext_resource type="Script" uid="uid://bqmq1qq85man6" path="res://Scripts/UI/ui_menu.gd" id="1_udify"]
 [ext_resource type="Script" uid="uid://de0l8dy24335t" path="res://Scripts/UI/BuildTDMenu.gd" id="2_k2gex"]
-[ext_resource type="PackedScene" uid="uid://c4t2apirtr6wk" path="res://Scenes/GameComponents/player_controller.tscn" id="2_mhhoi"]
 [ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="3_obvom"]
 [ext_resource type="Script" uid="uid://b2f46kan1s8d4" path="res://Scripts/UI/change_good_menu.gd" id="4_olq2e"]
 [ext_resource type="Script" uid="uid://s4ru06mqxaum" path="res://Scripts/UI/city_menu.gd" id="5_w61bx"]
@@ -15,10 +14,7 @@
 [ext_resource type="Script" uid="uid://bgp3ltync7xy3" path="res://Scripts/Display/road_display.gd" id="12_vbpv4"]
 [ext_resource type="Script" uid="uid://c5qo1inocw736" path="res://Scripts/Display/overlay.gd" id="13_ndfmf"]
 [ext_resource type="Script" uid="uid://0gr6jm1ynktj" path="res://Scripts/Player/player_manager.gd" id="14_nys34"]
-[ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="15_s0hop"]
-[ext_resource type="Script" uid="uid://don1jd7v03yjp" path="res://Scripts/Player/player_data.gd" id="16_1pnnn"]
 [ext_resource type="PackedScene" uid="uid://dqj862qxe4ob0" path="res://Scenes/archer_1.tscn" id="17_1x3ex"]
-[ext_resource type="PackedScene" uid="uid://dajtjq7436wrb" path="res://Scenes/archer_2.tscn" id="18_ql88y"]
 [ext_resource type="Script" uid="uid://ckha2g8x03qqq" path="res://Scripts/GameSystems/GeneralSystems/SelectionSystem.gd" id="19_aqnxp"]
 [ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/GeneralSystems/PathFinder.gd" id="20_t3aav"]
 [ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/BFS.gd" id="21_yj1qu"]
@@ -155,17 +151,6 @@ zoom = Vector2(1.5, 1.5)
 [node name="PlayerManager" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("14_nys34")
-
-[node name="PlayerController" parent="PlayerManager" instance=ExtResource("2_mhhoi")]
-unique_name_in_owner = true
-
-[node name="PlayerController2" type="Node2D" parent="PlayerManager"]
-script = ExtResource("15_s0hop")
-
-[node name="PlayerData" type="Node2D" parent="PlayerManager/PlayerController2"]
-script = ExtResource("16_1pnnn")
-archer_scene = ExtResource("18_ql88y")
-player_name = "Player 2"
 
 [node name="Canvas" type="CanvasLayer" parent="."]
 

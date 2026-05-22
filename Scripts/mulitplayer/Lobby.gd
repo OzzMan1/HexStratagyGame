@@ -12,6 +12,8 @@ func _ready() -> void:
 	refresh_player_list()
 	
 func _on_start_pressed() -> void:
+	print("all ready? ", all_players_ready())
+	print("players: ", NetworkManager.players)
 	if all_players_ready():
 		start_game.rpc()
 
@@ -41,6 +43,7 @@ func set_player_ready(is_ready):
 
 	
 func all_players_ready():
+
 	for player in NetworkManager.players:
 		if NetworkManager.players[player]["ready"] == false:
 			return false
@@ -48,5 +51,7 @@ func all_players_ready():
 
 @rpc("authority", "call_local", "reliable" )
 func start_game():
-	GameManager.load_scene(GameManager.MAIN_GAME)
-	NetworkManager.game_started.emit()
+	print("start load scene")
+	await GameManager.load_scene(GameManager.MAIN_GAME)
+	print("load scene finished")
+	#NetworkManager.game_started.emit()
