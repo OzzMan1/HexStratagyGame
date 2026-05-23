@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var grid_manager: Node2D = %GridManager
+@onready var grid_manager: Node2D = get_tree().current_scene.find_child("GridManager", true, false)
 
 var directions: Array[Vector2i] = [
 Vector2i(0, -1),

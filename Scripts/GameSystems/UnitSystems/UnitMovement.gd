@@ -2,7 +2,7 @@ extends Node
 
 
 # VARIABLES
-@onready var grid_manager: Node2D = %GridManager
+@onready var grid_manager: Node2D = get_tree().current_scene.find_child("GridManager", true, false)
 @onready var path_finder: Node2D = %PathFinder
 @onready var overlay_tilemap = %OverlayUI
 @onready var unit_manager = %UnitManager

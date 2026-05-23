@@ -1,10 +1,6 @@
-[gd_scene load_steps=46 format=4 uid="uid://csnjy7bt5tvi4"]
+[gd_scene load_steps=42 format=4 uid="uid://csnjy7bt5tvi4"]
 
-[ext_resource type="Script" uid="uid://bqmq1qq85man6" path="res://Scripts/UI/ui_menu.gd" id="1_udify"]
-[ext_resource type="Script" uid="uid://de0l8dy24335t" path="res://Scripts/UI/BuildTDMenu.gd" id="2_k2gex"]
-[ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="3_obvom"]
-[ext_resource type="Script" uid="uid://b2f46kan1s8d4" path="res://Scripts/UI/change_good_menu.gd" id="4_olq2e"]
-[ext_resource type="Script" uid="uid://s4ru06mqxaum" path="res://Scripts/UI/city_menu.gd" id="5_w61bx"]
+[ext_resource type="Script" uid="uid://dm012ocekevyp" path="res://Scripts/UI/UI_manager.gd" id="1_02qka"]
 [ext_resource type="Texture2D" uid="uid://c6jd2xhmhv7a4" path="res://Assets/Terrain_RE_ID.png" id="6_uvj3q"]
 [ext_resource type="Texture2D" uid="uid://dp0ryb03nfp7o" path="res://Assets/possible_movement.png" id="7_mqs2o"]
 [ext_resource type="Texture2D" uid="uid://c4nspdcoinhrj" path="res://Assets/roads.png" id="8_p4uwf"]
@@ -18,7 +14,7 @@
 [ext_resource type="Script" uid="uid://ckha2g8x03qqq" path="res://Scripts/GameSystems/GeneralSystems/SelectionSystem.gd" id="19_aqnxp"]
 [ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/GeneralSystems/PathFinder.gd" id="20_t3aav"]
 [ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/BFS.gd" id="21_yj1qu"]
-[ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/neighbour.gd" id="22_asuqw"]
+[ext_resource type="Script" uid="uid://btikchq0pwo0v" path="res://Scripts/GameSystems/GeneralSystems/neighbour.gd" id="22_asuqw"]
 [ext_resource type="Script" uid="uid://bok3rodajm74c" path="res://Scripts/GameSystems/GeneralSystems/dependency_graph.gd" id="23_4k3ma"]
 [ext_resource type="Script" uid="uid://i1s2aamgheov" path="res://Scripts/GameSystems/GeneralSystems/build_system.gd" id="24_opjrb"]
 [ext_resource type="Script" uid="uid://ce1gx6wk2aqll" path="res://Scripts/GameSystems/UnitSystems/UnitMovement.gd" id="25_kut41"]
@@ -148,210 +144,13 @@ sources/0 = SubResource("TileSetAtlasSource_fu36u")
 position = Vector2(305, 185)
 zoom = Vector2(1.5, 1.5)
 
+[node name="UIManager" type="Node" parent="."]
+script = ExtResource("1_02qka")
+
 [node name="PlayerManager" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("14_nys34")
-
-[node name="Canvas" type="CanvasLayer" parent="."]
-
-[node name="menu" type="Control" parent="Canvas"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-script = ExtResource("1_udify")
-
-[node name="Stockpile" type="VBoxContainer" parent="Canvas/menu"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -136.0
-offset_bottom = 77.0
-grow_horizontal = 0
-
-[node name="Label" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-text = "Iron ore"
-
-[node name="Label2" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="Canvas/menu/Stockpile"]
-layout_mode = 2
-text = "asdsadsa"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="BuildTDMenu" type="VBoxContainer" parent="Canvas/menu/HBoxContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("2_k2gex")
-
-[node name="RE_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-theme_override_font_sizes/font_size = 0
-toggle_mode = true
-text = "Resource Extraction"
-
-[node name="I_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
-layout_mode = 2
-toggle_mode = true
-text = "Industrial"
-
-[node name="T_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
-layout_mode = 2
-toggle_mode = true
-text = "Trade"
-
-[node name="Road_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
-layout_mode = 2
-toggle_mode = true
-text = "Road"
-
-[node name="SelectTDMenu" type="VBoxContainer" parent="Canvas/menu/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-script = ExtResource("3_obvom")
-
-[node name="GoodsProduced" type="Label" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
-layout_mode = 2
-text = "Goods Produced: "
-
-[node name="TD_connection" type="Label" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
-layout_mode = 2
-text = "Sending to: "
-
-[node name="td_connection_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
-layout_mode = 2
-mouse_filter = 1
-toggle_mode = true
-text = "TD Connections"
-
-[node name="change_good_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
-layout_mode = 2
-text = "Change good"
-
-[node name="expand_td_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
-layout_mode = 2
-text = "Expand"
-
-[node name="build_unit_button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
-layout_mode = 2
-text = "Build Unit"
-
-[node name="ChangeGoodMenu" type="Control" parent="Canvas/menu"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 156.0
-offset_bottom = 140.0
-grow_horizontal = 2
-script = ExtResource("4_olq2e")
-
-[node name="search_bar" type="LineEdit" parent="Canvas/menu/ChangeGoodMenu"]
-layout_mode = 0
-offset_right = 68.5625
-offset_bottom = 31.0
-placeholder_text = "search"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Canvas/menu/ChangeGoodMenu"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 34.0
-offset_right = 101.0
-offset_bottom = 434.0
-
-[node name="items" type="VBoxContainer" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer"]
-layout_mode = 2
-
-[node name="sword" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
-layout_mode = 2
-text = "sword"
-
-[node name="tool" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
-layout_mode = 2
-text = "tool"
-
-[node name="iron_ingot" type="Button" parent="Canvas/menu/ChangeGoodMenu/ScrollContainer/items"]
-layout_mode = 2
-text = "iron ingot"
-
-[node name="End_turn" type="Button" parent="Canvas/menu"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -75.0
-offset_top = -31.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "End turn"
-
-[node name="Build_TD" type="Button" parent="Canvas/menu"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -73.0
-offset_top = -67.0
-offset_bottom = -36.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Build TD"
-
-[node name="city_menu" type="Control" parent="Canvas/menu"]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_w61bx")
-
-[node name="unit_buttons" type="VBoxContainer" parent="Canvas/menu/city_menu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="archer_button" type="Button" parent="Canvas/menu/city_menu/unit_buttons"]
-layout_mode = 2
-text = "Archer"
-
-[node name="Button2" type="Button" parent="Canvas/menu/city_menu/unit_buttons"]
-layout_mode = 2
-text = "sword man"
-
-[node name="Button3" type="Button" parent="Canvas/menu/city_menu/unit_buttons"]
-layout_mode = 2
-text = "Knight"
-
-[node name="Button4" type="Button" parent="Canvas/menu/city_menu/unit_buttons"]
-layout_mode = 2
-text = "Spearman
-"
 
 [node name="Tilemaps" type="Node2D" parent="."]
 
@@ -495,7 +294,6 @@ script = ExtResource("32_k55q4")
 [node name="DataManagers" type="Node2D" parent="."]
 
 [node name="GridManager" parent="DataManagers" instance=ExtResource("33_fwp57")]
-unique_name_in_owner = true
 archer_scene = ExtResource("17_1x3ex")
 
 [node name="UnitManager" type="Node2D" parent="DataManagers"]
@@ -505,18 +303,3 @@ script = ExtResource("34_yp5f6")
 [node name="TileDevelopementManager" type="Node2D" parent="DataManagers"]
 unique_name_in_owner = true
 script = ExtResource("35_jr3pb")
-
-[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/RE_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_re_button_toggled"]
-[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/I_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_i_button_toggled"]
-[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/T_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_t_button_toggled"]
-[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/Road_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_road_button_toggled"]
-[connection signal="toggled" from="Canvas/menu/HBoxContainer/SelectTDMenu/td_connection_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_td_connection_button_toggled"]
-[connection signal="pressed" from="Canvas/menu/HBoxContainer/SelectTDMenu/change_good_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_change_good_button_pressed"]
-[connection signal="toggled" from="Canvas/menu/HBoxContainer/SelectTDMenu/change_good_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_change_good_button_toggled"]
-[connection signal="pressed" from="Canvas/menu/HBoxContainer/SelectTDMenu/build_unit_button" to="Canvas/menu/HBoxContainer/SelectTDMenu" method="_on_build_unit_button_pressed"]
-[connection signal="text_changed" from="Canvas/menu/ChangeGoodMenu/search_bar" to="Canvas/menu/ChangeGoodMenu" method="_on_search_bar_text_changed"]
-[connection signal="pressed" from="Canvas/menu/ChangeGoodMenu/ScrollContainer/items/tool" to="Canvas/menu/ChangeGoodMenu" method="_on_tool_pressed"]
-[connection signal="pressed" from="Canvas/menu/ChangeGoodMenu/ScrollContainer/items/iron_ingot" to="Canvas/menu/ChangeGoodMenu" method="_on_iron_ingot_pressed"]
-[connection signal="pressed" from="Canvas/menu/End_turn" to="Canvas/menu" method="_on_end_turn_pressed"]
-[connection signal="pressed" from="Canvas/menu/Build_TD" to="Canvas/menu" method="_on_build_td_pressed"]
-[connection signal="pressed" from="Canvas/menu/city_menu/unit_buttons/archer_button" to="Canvas/menu/city_menu" method="_on_archer_button_pressed"]

@@ -15,7 +15,6 @@ var player_info
 var player_name: String = "Player"
 
 signal player_connected
-signal game_started
 
 
 func _ready() -> void:

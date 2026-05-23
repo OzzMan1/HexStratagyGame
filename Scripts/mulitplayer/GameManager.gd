@@ -10,39 +10,64 @@ const START_MENU = preload("res://Scenes/GameScenes/StartMenu.tscn")
 
 # Game Components
 const PlayerScene = preload("res://Scenes/GameComponents/player_controller.tscn")
+const UIScene = preload("res://Scenes/UI/menu_canvas.tscn")
 
 
-signal scene_loaded
+signal players_created 
 
 func _ready() -> void:
-	NetworkManager.game_started.connect(create_players)
+	pass
+
+
 
 func create_players():
-	#var player_manager = get_tree().root.get_node("GameScene/PlayerManager")	# Set up player funciton
-	# for each player in Game manager list, we need to set them up and assign them to player manager
-	print(get_tree().current_scene.get_path())
-	var player_manager =  get_tree().current_scene.get_node("PlayerManager")
+
 	
-	print(player_manager)
-	print(NetworkManager.players)
-	print("Test")
-	for player in NetworkManager.players:
-		var current_num_players = NetworkManager.players.size()
-		var player_name = NetworkManager.players[player]["name"]
-		var city_pos = generate_player_city_pos(current_num_players)
-		
-		var player_controller = PlayerScene.instantiate()
-		player_controller.set_up(player, player_name, current_num_players,city_pos)
-		
-		player_to_PC[player] = player_controller 
-		player_manager.add_child(player_controller)
 	
-		# func _init(id : int, _player_name: String, _player_list_index: int, _city_pos : Vector2i):
-		#player_to_PC[player] = PlayerController.new(player, player_name, current_num_players,city_pos)
+	var player_name = NetworkManager.players[player]["name"]
+	var city_pos = generate_player_city_pos()
+	
+	var player_controller = PlayerScene.instantiate()
+	player_controller.name = player_name
+	player_controller.set_up(player, player_name, 0,city_pos)
+
+	player_to_PC[player] = player_controller 
+	player_manager.add_child(player_controller)
 		
-		print("player_name ", player_name)
-		print(current_num_players)
-		print(city_pos)
+	
+
+# func create_players():
+# 	#var player_manager = get_tree().root.get_node("GameScene/PlayerManager")	# Set up player funciton
+# 	# for each player in Game manager list, we need to set them up and assign them to player manager
+# 	print(get_tree().current_scene.get_path())
+# 	var player_manager =  get_tree().current_scene.get_node("PlayerManager")
+	
+# 	print(player_manager)
+# 	print(NetworkManager.players)
+	
+# 	var index = 0 
+
+# 	for player in NetworkManager.players:
+# 		index +=1 
+# 		var player_name = NetworkManager.players[player]["name"]
+# 		var city_pos = generate_player_city_pos(index)
+		
+# 		var player_controller = PlayerScene.instantiate()
+# 		player_controller.name = player_name
+# 		player_controller.set_up(player, player_name, index,city_pos)
+
+# 		player_to_PC[player] = player_controller 
+# 		player_manager.add_child(player_controller)
+		
+	
+
+
+# Player needs references to induvidual UI objects 
+# SO we should assign them to the main UI script
+
+
+
+
 
 func generate_player_city_pos(player_pos: int):
 	match player_pos:
@@ -52,9 +77,4 @@ func generate_player_city_pos(player_pos: int):
 			return Vector2i(7,7)
 
 func load_scene(scene: PackedScene):
-
-
 	get_tree().change_scene_to_packed(scene)
-	# Wait until the scene is assigned
-
-	print("finished")

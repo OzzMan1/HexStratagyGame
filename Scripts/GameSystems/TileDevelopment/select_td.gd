@@ -19,4 +19,4 @@ func select_TD(player_controller : PlayerController,pos, td_obj : TileDevelopmen
 func deselect_TD(player_controller : PlayerController):
 	player_controller.select_td_menu.visible = false 
 	player_controller.change_good_menu.visible = false
-	player_controller.overlay_map.clear_overlay_maps()
+	player_controller.overlay.clear_overlay_maps()

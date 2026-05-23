@@ -1,8 +1,8 @@
 extends Node
-@onready var path_finder: Node2D = %PathFinder
+@onready var path_finder = get_tree().current_scene.find_child("PathFinder", true, false)
 
 @onready var road_ui: Node2D = %road_direction
-@onready var grid_manager: Node2D = %GridManager
+@onready var grid_manager: Node2D = get_tree().current_scene.find_child("GridManager", true, false)
 
 @onready var tile_developement_manager: Node2D = %TileDevelopementManager
 

@@ -1,0 +1,221 @@
+[gd_scene load_steps=6 format=3 uid="uid://drwspm1atc4m4"]
+
+[ext_resource type="Script" uid="uid://bqmq1qq85man6" path="res://Scripts/UI/ui_menu.gd" id="1_acy2b"]
+[ext_resource type="Script" uid="uid://de0l8dy24335t" path="res://Scripts/UI/BuildTDMenu.gd" id="2_d5eeo"]
+[ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="3_u0fu6"]
+[ext_resource type="Script" uid="uid://b2f46kan1s8d4" path="res://Scripts/UI/change_good_menu.gd" id="4_38mxq"]
+[ext_resource type="Script" uid="uid://s4ru06mqxaum" path="res://Scripts/UI/city_menu.gd" id="5_qkvxe"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_acy2b")
+
+[node name="Stockpile" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_bottom = 77.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="Stockpile"]
+layout_mode = 2
+text = "Iron ore"
+
+[node name="Label2" type="Label" parent="Stockpile"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Stockpile"]
+layout_mode = 2
+text = "asdsadsa"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BuildTDMenu" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_d5eeo")
+
+[node name="RE_button" type="Button" parent="HBoxContainer/BuildTDMenu"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 0
+toggle_mode = true
+text = "Resource Extraction"
+
+[node name="I_button" type="Button" parent="HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Industrial"
+
+[node name="T_button" type="Button" parent="HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Trade"
+
+[node name="Road_button" type="Button" parent="HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Road"
+
+[node name="SelectTDMenu" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("3_u0fu6")
+
+[node name="GoodsProduced" type="Label" parent="HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Goods Produced: "
+
+[node name="TD_connection" type="Label" parent="HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Sending to: "
+
+[node name="td_connection_button" type="Button" parent="HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+text = "TD Connections"
+
+[node name="change_good_button" type="Button" parent="HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Change good"
+
+[node name="expand_td_button" type="Button" parent="HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Expand"
+
+[node name="build_unit_button" type="Button" parent="HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+text = "Build Unit"
+
+[node name="ChangeGoodMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 156.0
+offset_bottom = 140.0
+grow_horizontal = 2
+script = ExtResource("4_38mxq")
+
+[node name="search_bar" type="LineEdit" parent="ChangeGoodMenu"]
+layout_mode = 0
+offset_right = 68.5625
+offset_bottom = 31.0
+placeholder_text = "search"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChangeGoodMenu"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 34.0
+offset_right = 101.0
+offset_bottom = 434.0
+
+[node name="items" type="VBoxContainer" parent="ChangeGoodMenu/ScrollContainer"]
+layout_mode = 2
+
+[node name="sword" type="Button" parent="ChangeGoodMenu/ScrollContainer/items"]
+layout_mode = 2
+text = "sword"
+
+[node name="tool" type="Button" parent="ChangeGoodMenu/ScrollContainer/items"]
+layout_mode = 2
+text = "tool"
+
+[node name="iron_ingot" type="Button" parent="ChangeGoodMenu/ScrollContainer/items"]
+layout_mode = 2
+text = "iron ingot"
+
+[node name="End_turn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "End turn"
+
+[node name="Build_TD" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -67.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Build TD"
+
+[node name="city_menu" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_qkvxe")
+
+[node name="unit_buttons" type="VBoxContainer" parent="city_menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="archer_button" type="Button" parent="city_menu/unit_buttons"]
+layout_mode = 2
+text = "Archer"
+
+[node name="Button2" type="Button" parent="city_menu/unit_buttons"]
+layout_mode = 2
+text = "sword man"
+
+[node name="Button3" type="Button" parent="city_menu/unit_buttons"]
+layout_mode = 2
+text = "Knight"
+
+[node name="Button4" type="Button" parent="city_menu/unit_buttons"]
+layout_mode = 2
+text = "Spearman
+"
+
+[node name="MenuCanvas" type="CanvasLayer" parent="."]
+
+[connection signal="toggled" from="HBoxContainer/BuildTDMenu/RE_button" to="HBoxContainer/BuildTDMenu" method="_on_re_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/BuildTDMenu/I_button" to="HBoxContainer/BuildTDMenu" method="_on_i_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/BuildTDMenu/T_button" to="HBoxContainer/BuildTDMenu" method="_on_t_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/BuildTDMenu/Road_button" to="HBoxContainer/BuildTDMenu" method="_on_road_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/SelectTDMenu/td_connection_button" to="HBoxContainer/SelectTDMenu" method="_on_td_connection_button_toggled"]
+[connection signal="pressed" from="HBoxContainer/SelectTDMenu/change_good_button" to="HBoxContainer/SelectTDMenu" method="_on_change_good_button_pressed"]
+[connection signal="toggled" from="HBoxContainer/SelectTDMenu/change_good_button" to="HBoxContainer/SelectTDMenu" method="_on_change_good_button_toggled"]
+[connection signal="pressed" from="HBoxContainer/SelectTDMenu/build_unit_button" to="HBoxContainer/SelectTDMenu" method="_on_build_unit_button_pressed"]
+[connection signal="text_changed" from="ChangeGoodMenu/search_bar" to="ChangeGoodMenu" method="_on_search_bar_text_changed"]
+[connection signal="pressed" from="ChangeGoodMenu/ScrollContainer/items/tool" to="ChangeGoodMenu" method="_on_tool_pressed"]
+[connection signal="pressed" from="ChangeGoodMenu/ScrollContainer/items/iron_ingot" to="ChangeGoodMenu" method="_on_iron_ingot_pressed"]
+[connection signal="pressed" from="End_turn" to="." method="_on_end_turn_pressed"]
+[connection signal="pressed" from="Build_TD" to="." method="_on_build_td_pressed"]
+[connection signal="pressed" from="city_menu/unit_buttons/archer_button" to="city_menu" method="_on_archer_button_pressed"]

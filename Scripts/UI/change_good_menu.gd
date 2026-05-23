@@ -1,8 +1,13 @@
 extends Node
 var matches = []
-@onready var items : Array = $ScrollContainer/items.get_children()
 
-@onready var player_controller: PlayerController = %PlayerController
+@onready var items : Array = $ScrollContainer/items.get_children()
+var player_controller: PlayerController
+
+@onready var menu: Control = $".."
+
+func _ready() -> void:
+	player_controller = menu.player_controller
 
 func _on_search_bar_text_changed(new_text: String):
 	matches.clear()

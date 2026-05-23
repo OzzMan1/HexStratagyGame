@@ -3,47 +3,53 @@ extends Node2D
 class_name PlayerController 
 
 
-#DATA 
-@onready var grid_manager: Node2D = %GridManager
-@onready var tile_developement_manager: Node2D = $"../../DataManagers/TileDevelopementManager"
+###### GLOBAL 
 
-@onready var selection_system = %SelectionSystem
-@onready var turn_manager: Node2D = %TurnManager
+# DATA
+@onready var grid_manager = get_tree().current_scene.find_child("GridManager", true, false)
+@onready var tile_developement_manager = get_tree().current_scene.find_child("TileDevelopementManager", true, false)
 
+@onready var selection_system = get_tree().current_scene.find_child("SelectionSystem", true, false)
+@onready var turn_manager = get_tree().current_scene.find_child("TurnManager", true, false)
 
-#Player
-@onready var player_data = $PlayerData
-@onready var player_manager: Node2D = $".."
+# Player
+@onready var player_manager = get_tree().current_scene.find_child("PlayerManager", true, false)
+
 # Units
-@onready var unit_manager = %UnitManager
-@onready var unit_movement = %UnitMovement
-@onready var unit_selection: Node2D = %UnitSelection
+@onready var unit_manager = get_tree().current_scene.find_child("UnitManager", true, false)
+@onready var unit_movement = get_tree().current_scene.find_child("UnitMovement", true, false)
+@onready var unit_selection = get_tree().current_scene.find_child("UnitSelection", true, false)
 
+# TDSystems
+@onready var create_road = get_tree().current_scene.find_child("create_road", true, false)
+@onready var select_td = get_tree().current_scene.find_child("select_td", true, false)
+@onready var td_connections = get_tree().current_scene.find_child("td_connections", true, false)
+@onready var td_economy = get_tree().current_scene.find_child("td_economy", true, false)
+@onready var td_system = get_tree().current_scene.find_child("td_system", true, false)
+@onready var build_system = get_tree().current_scene.find_child("build_system", true, false)
 
-## TDSystems 
-@onready var create_road: Node2D = %create_road
-@onready var select_td: Node2D = %select_td
-@onready var td_connections: Node2D = %td_connections
-@onready var td_economy: Node2D = %td_economy
-@onready var td_system: Node2D = %td_system
-@onready var build_system: Node2D = %build_system
+# Global Systems
+@onready var dependency_graph = get_tree().current_scene.find_child("Dependency_graph", true, false)
+@onready var path_finder = get_tree().current_scene.find_child("PathFinder", true, false)
 
-# Global Systems 
-@onready var dependency_graph: Node2D = %Dependency_graph
-@onready var path_finder: Node2D = %PathFinder
+# Display Tile Maps 
+@onready var tile_development_map = get_tree().current_scene.find_child("TileDevelopmentUI", true, false)
+@onready var road_display = get_tree().current_scene.find_child("RoadDisplay", true, false)
 
+###### Player Specific
 
-#UI
-@onready var build_td_menu: VBoxContainer = $"../../Canvas/menu/HBoxContainer/BuildTDMenu"
-@onready var select_td_menu: VBoxContainer = %SelectTDMenu
-@onready var change_good_menu: Control = %ChangeGoodMenu
-@onready var city_menu: Control = %city_menu
+# Display System
+@onready var overlay = get_tree().current_scene.find_child("OverlayUI", true, false)
 
-#Display
-@onready var overlay_map = %OverlayUI
-@onready var tile_development_map: Node2D = %TileDevelopmentUI
-@onready var road_display: Node2D = %RoadDisplay
+# UI
+var menu: Control 
+var build_td_menu
+var select_td_menu 
+var change_good_menu 
+var city_menu 
 
+# Player
+@onready var player_data = $PlayerData
 
 # Network ID 
 var player_id : int
@@ -63,18 +69,31 @@ var isActive : bool = false
 	# ID 
 	# city start pos 
 	# 
+func _ready() -> void:
+	#select_td_menu.interaction_started.connect(on_interaction_started)
+	city.player = self
+
+	#tile_developement_manager.update_tile_development_list(self, city_pos ,player_data.city)
+
+
+func set_player_ui(player_ui):
+	menu = player_ui
+	build_td_menu = menu.build_td_menu
+	select_td_menu = menu.select_td_menu
+	change_good_menu = menu.change_good_menu
+	city_menu = menu.city_menu
+
+
 func set_up(id : int, _player_name: String, _player_list_index: int, _city_pos : Vector2i):
 	player_id = id 
 	player_name = _player_name 
 	player_list_index = _player_list_index  
 	city_pos = _city_pos
-
+	print("player name ", player_name)
+	print("player id ", player_id)
+	print("player list index ", player_list_index)
+	print("player city pos ", city_pos)
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	select_td_menu.interaction_started.connect(on_interaction_started)
-	city.player = self
-	tile_developement_manager.update_tile_development_list(self, city_pos ,player_data.city)
-
 
 
 

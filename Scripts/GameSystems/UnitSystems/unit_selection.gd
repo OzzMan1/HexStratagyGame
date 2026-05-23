@@ -20,6 +20,6 @@ func select_unit(player_controller : PlayerController, pos : Vector2i):
 	current_selected_unit.tiles_in_range = new_tiles_in_range
 	
 	var tiles_in_range_offset = new_tiles_in_range.map(func(x): return player_controller.path_finder.axial_to_oddr(x))
-	player_controller.overlay_map.select_unit(tiles_in_range_offset)
+	player_controller.overlay.select_unit(tiles_in_range_offset)
 
 	

@@ -11,14 +11,13 @@ extends Node
 @onready var good_produced_label: Label = $GoodsProduced
 @onready var td_connection: Label = $TD_connection
 
-@onready var overlay_ui: Node2D = %OverlayUI
-@onready var player_controller: PlayerController = %PlayerController
+@onready var player_controller: PlayerController 
 
 # menus 
-@onready var change_good_menu: Control = %ChangeGoodMenu
 
 var button_label_list = []
 
+@onready var menu: Control = $"../.."
 
 
 signal interaction_started(interaction : Interaction, player : PlayerController)
@@ -27,7 +26,8 @@ signal interaction_stoped(player : PlayerController)
 func _ready() -> void:
 	button_label_list = [td_connection_button,change_good_button,expand_td_button,
 build_unit_button,good_produced_label,td_connection]
-
+	player_controller = menu.player_controller
+	
 func toggle_connection_button():
 	td_connection_button.button_pressed = false 
 
@@ -51,15 +51,15 @@ func _on_td_connection_button_toggled(toggled_on: bool) -> void:
 	else: 
 		# Future 
 		# Call interaction stopped -> go to previous state
-		overlay_ui.clear_overlay_maps() 
+		player_controller.overlay_ui.clear_overlay_maps() 
 		
 
 
 func _on_change_good_button_pressed() -> void:
-	if change_good_menu.visible == false: 
-		change_good_menu.visible = true # Replace with function body.
+	if player_controller.change_good_menu.visible == false: 
+		player_controller.change_good_menu.visible = true # Replace with function body.
 	else: 
-		change_good_menu.visible = false
+		player_controller.change_good_menu.visible = false
  # Replace with function body.
 
 

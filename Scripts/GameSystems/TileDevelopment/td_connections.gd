@@ -28,7 +28,7 @@ func get_all_possible_td_connections(player_controller : PlayerController):
 			player_controller.player_data.selected_td.possible_td_connections.set(pos, 
 			player_controller.player_data.all_players_TD.get(pos))
 	
-	player_controller.overlay_map.update_td_connection(player_controller.player_data.selected_td.possible_td_connections.keys(),
+	player_controller.overlay.update_td_connection(player_controller.player_data.selected_td.possible_td_connections.keys(),
 	player_controller.player_data.selected_td.td_connections.keys())
 
 
