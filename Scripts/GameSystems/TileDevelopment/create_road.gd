@@ -8,6 +8,7 @@ extends Node
 
 
 func path_finder_road_cost(player_controller : PlayerController, pos : Vector2i ) -> int: 
+
 	if grid_manager.terrain_grid.get(pos).name == "water":
 		return 1000 
 	elif player_controller.tile_developement_manager.road_list.has(pos):
@@ -34,8 +35,9 @@ func create_road_path(player_controller : PlayerController, start_pos : Vector2i
 	
 	
 	
-	
+	# [Vector2i]
 	var path_oddr = path.map(func(x): return path_finder.axial_to_oddr(x))
+	# [Vector2i]
 	var tile_map_coords = road_ui.create_road_display(path_oddr)
 	
 	return [path_oddr, tile_map_coords]

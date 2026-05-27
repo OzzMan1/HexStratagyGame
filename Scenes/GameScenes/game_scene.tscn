@@ -1,8 +1,8 @@
-[gd_scene load_steps=42 format=4 uid="uid://csnjy7bt5tvi4"]
+[gd_scene load_steps=39 format=4 uid="uid://csnjy7bt5tvi4"]
 
-[ext_resource type="Script" uid="uid://dm012ocekevyp" path="res://Scripts/UI/UI_manager.gd" id="1_02qka"]
+[ext_resource type="Script" uid="uid://bsog6wmx7a6jr" path="res://Scripts/Game.gd" id="1_1eij6"]
+[ext_resource type="PackedScene" uid="uid://dbpvdvhdkvvya" path="res://Scenes/GameScenes/overlay_map.tscn" id="5_02qka"]
 [ext_resource type="Texture2D" uid="uid://c6jd2xhmhv7a4" path="res://Assets/Terrain_RE_ID.png" id="6_uvj3q"]
-[ext_resource type="Texture2D" uid="uid://dp0ryb03nfp7o" path="res://Assets/possible_movement.png" id="7_mqs2o"]
 [ext_resource type="Texture2D" uid="uid://c4nspdcoinhrj" path="res://Assets/roads.png" id="8_p4uwf"]
 [ext_resource type="Texture2D" uid="uid://dwyvjjh1028xn" path="res://Assets/possible_movement_unit_order.png" id="9_atg6p"]
 [ext_resource type="Script" uid="uid://8yu8rvxc1ndp" path="res://Scripts/Display/create_road_display.gd" id="10_yf828"]
@@ -65,35 +65,19 @@ tile_shape = 3
 tile_size = Vector2i(48, 48)
 sources/0 = SubResource("TileSetAtlasSource_hv1ua")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epnj5"]
-texture = ExtResource("7_mqs2o")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fu36u"]
+texture = ExtResource("9_atg6p")
+margins = Vector2i(0, 16)
 texture_region_size = Vector2i(48, 48)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoxdu"]
-texture = ExtResource("8_p4uwf")
-texture_region_size = Vector2i(48, 48)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_ogk07"]
+[sub_resource type="TileSet" id="TileSet_qtxxq"]
 tile_shape = 3
 tile_size = Vector2i(48, 48)
-sources/0 = SubResource("TileSetAtlasSource_epnj5")
-sources/1 = SubResource("TileSetAtlasSource_qoxdu")
+sources/0 = SubResource("TileSetAtlasSource_fu36u")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_teq3f"]
 texture = ExtResource("8_p4uwf")
@@ -124,32 +108,17 @@ tile_shape = 3
 tile_size = Vector2i(48, 48)
 sources/0 = SubResource("TileSetAtlasSource_ogk07")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fu36u"]
-texture = ExtResource("9_atg6p")
-margins = Vector2i(0, 16)
-texture_region_size = Vector2i(48, 48)
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_qtxxq"]
-tile_shape = 3
-tile_size = Vector2i(48, 48)
-sources/0 = SubResource("TileSetAtlasSource_fu36u")
-
 [node name="GameScene" type="Node2D"]
+script = ExtResource("1_1eij6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(305, 185)
 zoom = Vector2(1.5, 1.5)
 
-[node name="UIManager" type="Node" parent="."]
-script = ExtResource("1_02qka")
+[node name="UI_canvas" type="CanvasLayer" parent="."]
 
 [node name="PlayerManager" type="Node2D" parent="."]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("14_nys34")
 
 [node name="Tilemaps" type="Node2D" parent="."]
@@ -165,9 +134,12 @@ unique_name_in_owner = true
 tile_map_data = PackedByteArray("AAAAAAMAAAAAAAMAAAABAAUAAAADAAEAAAAAAAUAAAADAAEAAAADAAAAAAACAAEAAAACAAEAAAACAAEAAAADAAEAAAACAAEAAAAGAAIAAAACAAEAAAAGAAMAAAACAAEAAAAHAAMAAAACAAEAAAAHAAIAAAACAAEAAAAEAAgAAAADAAEAAAAHAAAAAAAAAAMAAAAAAAgAAAAAAAMAAAAJAAQAAAADAAEAAAA=")
 tile_set = SubResource("TileSet_epnj5")
 
-[node name="overlay_map" type="TileMapLayer" parent="Tilemaps"]
+[node name="overlay_map" parent="Tilemaps" instance=ExtResource("5_02qka")]
 unique_name_in_owner = true
-tile_set = SubResource("TileSet_ogk07")
+
+[node name="unit_movement_order" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_qtxxq")
 
 [node name="TD" type="Node2D" parent="Tilemaps"]
 
@@ -199,10 +171,6 @@ tile_set = SubResource("TileSet_capts")
 unique_name_in_owner = true
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAMAAAAHAAcAAAABAAMAAAA=")
 tile_set = SubResource("TileSet_j8vvb")
-
-[node name="unit_movement_order" type="TileMapLayer" parent="Tilemaps"]
-unique_name_in_owner = true
-tile_set = SubResource("TileSet_qtxxq")
 
 [node name="Display" type="Node2D" parent="."]
 

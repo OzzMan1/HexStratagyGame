@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Goods" load_steps=2 format=3 uid="uid://c43b36g0l6puw"]
+[gd_resource type="Resource" script_class="Good" load_steps=2 format=3 uid="uid://c43b36g0l6puw"]
 
 [ext_resource type="Script" uid="uid://cukcgv523u1m0" path="res://Scripts/ClassInstances/Goods/good.gd" id="1_2rpoq"]
 
@@ -6,4 +6,6 @@
 script = ExtResource("1_2rpoq")
 name = "timber"
 isRaw = true
+input = Dictionary[ExtResource("1_2rpoq"), int]({})
+output = 0
 metadata/_custom_type_script = "uid://cukcgv523u1m0"

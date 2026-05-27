@@ -27,7 +27,7 @@ func on_select(player_controller,selected_pos):
 	player_controller.unit_selection.select_unit(player_controller,selected_pos)
 	
 func deselect(player_controller):
-	player_controller.overlay_map.clear_overlay_maps()
+	player_controller.overlay_map.clear_overlay_maps(player_controller)
 
 	
 func update_current_number_of_moves(number_of_moves_used : int):

@@ -13,8 +13,6 @@ var td_connections : Dictionary[Vector2i, TileDevelopment]
 var possible_td_connections  : Dictionary[Vector2i,TileDevelopment]
 
 
-
-
 func on_select(player_controller,selected_pos):
 	player_controller.select_td.select_TD(player_controller,selected_pos,self)
 

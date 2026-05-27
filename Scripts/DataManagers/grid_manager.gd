@@ -8,8 +8,8 @@ extends Node2D
 
 # Data will be stored on tilemap coordinates 
 # Unit movement will be calculated through Axial coordiantes 
-var grid_x_max = 3
-var grid_y_max = 5
+var grid_x_max = 9
+var grid_y_max = 8
 
 var desert_rsrc = preload("res://Resources/Terrain/desert.tres")
 var water_rsrc = preload("res://Resources/Terrain/water.tres")

@@ -2,22 +2,16 @@ extends Node
 
 var player_controller: PlayerController 
 
-@onready var end_turn: Button = $End_turn
-
-@onready var build_td_menu: VBoxContainer = $HBoxContainer/BuildTDMenu
-@onready var select_td_menu: VBoxContainer = $HBoxContainer/SelectTDMenu
+@onready var select_td_menu: VBoxContainer = $SelectTDMenu
+@onready var build_td_menu: VBoxContainer = $BuildTDMenu
 @onready var change_good_menu: Control = $ChangeGoodMenu
 @onready var city_menu: Control = %city_menu
 
 func set_up(player : PlayerController):
 	player_controller = player
-
-
-func check_visibility(current_player):
-	if current_player == player_controller:
-		self.visible = true 
-	else:
-		self.visible = false
+	select_td_menu.player_controller = player
+	build_td_menu.player_controller = player
+	change_good_menu.player_controller = player
 
 
 func _on_end_turn_pressed() -> void:

@@ -3,7 +3,7 @@ extends TileDevelopment
 class_name ResourceExtraction 
 
 var number_of_raw_goods_produced : int 
-var td_type : String = "resource extractor"
+var td_type : String = "ResourceExtraction"
 
 
 var range = 4

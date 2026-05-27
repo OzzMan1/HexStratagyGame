@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbpvdvhdkvvya"]
+
+[ext_resource type="Texture2D" uid="uid://dp0ryb03nfp7o" path="res://Assets/possible_movement.png" id="1_qpe22"]
+[ext_resource type="Texture2D" uid="uid://c4nspdcoinhrj" path="res://Assets/roads.png" id="2_1dwaw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epnj5"]
+texture = ExtResource("1_qpe22")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoxdu"]
+texture = ExtResource("2_1dwaw")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ogk07"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_epnj5")
+sources/1 = SubResource("TileSetAtlasSource_qoxdu")
+
+[node name="overlay_map" type="TileMapLayer"]
+tile_set = SubResource("TileSet_ogk07")

@@ -70,7 +70,12 @@ func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, 
 		var prev = path_in_range_oddr[path_in_range_oddr.size()-1]
 		var target =path_in_range_oddr[0]
 
-		unit_manager.update_unit_position(player_controller,selected_unit,target )
-		unit_manager.update_unit_list(player_controller, selected_unit, target, prev)
-		## Move to new funciton
-		selected_unit.update_current_number_of_moves(path_in_range.size()-1)
+		move_unit.rpc(player_controller.player_name, 
+		selected_unit, prev, target, path_in_range)
+
+
+@rpc("any_peer", "call_local", "reliable") 
+func move_unit(player_name,selected_unit, prev, target, path):
+	if grid_manager.check_bounds(target) and prev != target:
+		EventBus.unit_built.emit(player_name, selected_unit, prev, target)
+		selected_unit.update_current_number_of_moves(path.size()-1)

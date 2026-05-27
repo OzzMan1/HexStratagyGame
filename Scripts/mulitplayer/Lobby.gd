@@ -51,7 +51,12 @@ func all_players_ready():
 
 @rpc("authority", "call_local", "reliable" )
 func start_game():
+	
+	if multiplayer.is_server():
+		GameManager.assign_players_index()
 	print("start load scene")
-	await GameManager.load_scene(GameManager.MAIN_GAME)
+
+	GameManager.load_scene(GameManager.MAIN_GAME)
+
 	print("load scene finished")
 	#NetworkManager.game_started.emit()

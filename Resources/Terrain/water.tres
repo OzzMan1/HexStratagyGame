@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c7yvha5y7xygw" path="res://Scripts/Resources/terrain_data.gd" id="1_n55gu"]
 
 [resource]
+resource_name = "water"
 script = ExtResource("1_n55gu")
 name = "water"
 movement_cost = 1000

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c7yvha5y7xygw" path="res://Scripts/Resources/terrain_data.gd" id="1_1hhk3"]
 
 [resource]
+resource_name = "hill"
 script = ExtResource("1_1hhk3")
 name = "hill"
 movement_cost = 2

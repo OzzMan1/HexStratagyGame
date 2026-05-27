@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://usoyn3yk7nsu" path="res://Scripts/Resources/resource_improvement.gd" id="1_5s3je"]
 
 [resource]
+resource_name = "forest"
 script = ExtResource("1_5s3je")
 resource_improvment_type = "forest"
 metadata/_custom_type_script = "uid://usoyn3yk7nsu"

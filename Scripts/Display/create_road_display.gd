@@ -60,14 +60,13 @@ func create_road_display( path : Array) -> Array:
 		
 		current =  path[i]
 		next = path[i+1]
-		print("current ", current)
+		#print("current ", current)
 		var dir = calculate_dir(current,next)
 		road_layer_arr[dir].set(current,dir_to_road_atlas_coord.get(dir))
 		dir = calculate_dir(next,current)
 		road_layer_arr[dir].set(next,dir_to_road_atlas_coord.get(dir))
 
-	for layer in road_layer_arr:
-		print(layer)
+
 	return road_layer_arr
 	
 

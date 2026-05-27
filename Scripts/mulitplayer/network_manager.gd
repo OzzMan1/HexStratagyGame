@@ -17,6 +17,7 @@ var player_name: String = "Player"
 signal player_connected
 
 
+
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.connected_to_server.connect(_on_connected_ok) 
@@ -26,9 +27,10 @@ func host_game():
 	peer.create_server(PORT,MAX_CONNECTIONS)
 	multiplayer.multiplayer_peer = peer
 	var peer_id = multiplayer.get_unique_id()
-	player_info =  { "name": player_name, "ready": false }
+	player_info =  { "name": player_name, "ready": false}
 	players[multiplayer.get_unique_id()] = player_info
 	player_connected.emit()
+	
 
 func join_game():
 	var peer = ENetMultiplayerPeer.new()
@@ -50,6 +52,6 @@ func _register_player(new_player_info):
 
 func _on_connected_ok():
 	var peer_id = multiplayer.get_unique_id()
-	player_info =  { "name": player_name, "ready": false }
+	player_info =  { "name": player_name, "ready": false}
 	players[peer_id] = player_info
 	player_connected.emit()

@@ -27,7 +27,9 @@ func update_good_produced(player_controller : PlayerController, new_good : Good,
 
 func update_economy(player_controller : PlayerController):
 	
-	intialise_economy(player_controller.player_data.all_players_TD.values())
+
+
+	intialise_economy(player_controller.get_all_TDs())
 	var topological_sort_arr = dependency_graph.topological_sort(player_controller.player_data.all_players_TD )
 	
 	for td in topological_sort_arr:

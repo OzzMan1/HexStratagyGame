@@ -17,7 +17,7 @@ extends Node
 
 var button_label_list = []
 
-@onready var menu: Control = $"../.."
+@onready var menu: Control = $".."
 
 
 signal interaction_started(interaction : Interaction, player : PlayerController)
@@ -51,7 +51,7 @@ func _on_td_connection_button_toggled(toggled_on: bool) -> void:
 	else: 
 		# Future 
 		# Call interaction stopped -> go to previous state
-		player_controller.overlay_ui.clear_overlay_maps() 
+		player_controller.overlay_map.clear_overlay_maps(player_controller) 
 		
 
 

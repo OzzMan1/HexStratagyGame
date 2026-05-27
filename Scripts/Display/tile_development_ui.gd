@@ -12,5 +12,9 @@ var RE_to_overlay_coord : Dictionary[String,Vector2i] = {
 	"road" : Vector2i(2,1),
 }
 
+
+func _ready() -> void:
+	EventBus.TDBuilt_overlay_update.connect(update_tile_development_tile_map)
+
 func update_tile_development_tile_map(tile, td):
 	tile_development_map.set_cell(tile,tile_developement_atlas_id,RE_to_overlay_coord.get(td))
