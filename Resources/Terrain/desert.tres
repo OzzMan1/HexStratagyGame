@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TerrainData" load_steps=2 format=3 uid="uid://46ww2pwfy7ay"]
+
+[ext_resource type="Script" uid="uid://c7yvha5y7xygw" path="res://Scripts/Resources/terrain_data.gd" id="1_10bb3"]
+
+[resource]
+resource_name = "desert"
+script = ExtResource("1_10bb3")
+name = "desert"
+movement_cost = 1
+metadata/_custom_type_script = "uid://c7yvha5y7xygw"

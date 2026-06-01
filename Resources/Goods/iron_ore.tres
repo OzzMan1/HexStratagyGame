@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Good" load_steps=2 format=3 uid="uid://c6tcegsqkt55d"]
+
+[ext_resource type="Script" uid="uid://cukcgv523u1m0" path="res://Scripts/ClassInstances/Goods/good.gd" id="1_pun1y"]
+
+[resource]
+script = ExtResource("1_pun1y")
+name = "iron_ore"
+isRaw = true
+input = Dictionary[ExtResource("1_pun1y"), int]({})
+output = 0
+metadata/_custom_type_script = "uid://cukcgv523u1m0"

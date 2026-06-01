@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Good" load_steps=3 format=3 uid="uid://7ut0p2ur1sq7"]
+
+[ext_resource type="Script" uid="uid://cukcgv523u1m0" path="res://Scripts/ClassInstances/Goods/good.gd" id="1_lkvhj"]
+[ext_resource type="Resource" uid="uid://c6tcegsqkt55d" path="res://Resources/Goods/iron_ore.tres" id="2_qkfip"]
+
+[resource]
+script = ExtResource("1_lkvhj")
+name = "iron_ingot"
+isRaw = false
+input = Dictionary[ExtResource("1_lkvhj"), int]({
+ExtResource("2_qkfip"): 10
+})
+output = 5
+metadata/_custom_type_script = "uid://cukcgv523u1m0"

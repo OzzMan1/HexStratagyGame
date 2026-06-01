@@ -1,0 +1,352 @@
+[gd_scene load_steps=39 format=4 uid="uid://0wj8aqudqite"]
+
+[ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="1_8pvmw"]
+[ext_resource type="Script" uid="uid://7jefat4lneom" path="res://Scripts/Player/player_controller.gd" id="1_c3mwy"]
+[ext_resource type="Texture2D" uid="uid://c6jd2xhmhv7a4" path="res://Assets/Terrain_RE_ID.png" id="1_fu36u"]
+[ext_resource type="Script" uid="uid://de0l8dy24335t" path="res://Scripts/UI/BuildTDMenu.gd" id="1_ogk07"]
+[ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="2_dw4fd"]
+[ext_resource type="PackedScene" uid="uid://dqj862qxe4ob0" path="res://Scenes/archer_1.tscn" id="2_vnucn"]
+[ext_resource type="Texture2D" uid="uid://c4nspdcoinhrj" path="res://Assets/roads.png" id="4_j8vvb"]
+[ext_resource type="Texture2D" uid="uid://dp0ryb03nfp7o" path="res://Assets/possible_movement.png" id="5_ckhy6"]
+[ext_resource type="Script" uid="uid://vr5pau7jkyu2" path="res://Scripts/GameSystems/TileDevelopment/build_td.gd" id="5_hv1ua"]
+[ext_resource type="Texture2D" uid="uid://dwyvjjh1028xn" path="res://Assets/possible_movement_unit_order.png" id="6_ckhy6"]
+[ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/GeneralSystems/PathFinder.gd" id="6_dun2r"]
+[ext_resource type="Script" uid="uid://ce1gx6wk2aqll" path="res://Scripts/GameSystems/UnitSystems/UnitMovement.gd" id="7_r3lo5"]
+[ext_resource type="Script" uid="uid://doroc5hi67t1m" path="res://Scripts/Display/tile_development_ui.gd" id="7_teq3f"]
+[ext_resource type="Script" uid="uid://bgp3ltync7xy3" path="res://Scripts/Display/road_display.gd" id="8_capts"]
+[ext_resource type="Script" uid="uid://ckha2g8x03qqq" path="res://Scripts/GameSystems/GeneralSystems/SelectionSystem.gd" id="8_qtxxq"]
+[ext_resource type="Script" uid="uid://c5qo1inocw736" path="res://Scripts/Display/overlay.gd" id="9_8fnbn"]
+[ext_resource type="Script" uid="uid://qnn8of0rdcpi" path="res://Scripts/GameSystems/EndTurn/TurnManager.gd" id="9_a6f85"]
+[ext_resource type="Script" uid="uid://dyqfo36eyv86m" path="res://Scripts/DataManagers/unit_manager.gd" id="12_fu36u"]
+[ext_resource type="Script" uid="uid://0gr6jm1ynktj" path="res://Scripts/Player/player_manager.gd" id="12_imcog"]
+[ext_resource type="Script" uid="uid://don1jd7v03yjp" path="res://Scripts/Player/player_data.gd" id="13_20eh2"]
+[ext_resource type="PackedScene" uid="uid://dajtjq7436wrb" path="res://Scenes/archer_2.tscn" id="14_imcog"]
+[ext_resource type="Script" uid="uid://wgps7k4iggq6" path="res://Scripts/GameSystems/TileDevelopment/create_road.gd" id="17_2mc6k"]
+[ext_resource type="Script" uid="uid://cfutnddqgqshx" path="res://Scripts/DataManagers/tile_development_manager.gd" id="17_epnj5"]
+[ext_resource type="Script" uid="uid://8yu8rvxc1ndp" path="res://Scripts/Display/create_road_display.gd" id="20_capts"]
+[ext_resource type="Script" uid="uid://b2ekeebrhrcbd" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="21_s4qac"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20eh2"]
+texture = ExtResource("1_fu36u")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(48, 48)
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vnucn"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/4 = SubResource("TileSetAtlasSource_20eh2")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hv1ua"]
+texture = ExtResource("1_fu36u")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(48, 48)
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_epnj5"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_hv1ua")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epnj5"]
+texture = ExtResource("5_ckhy6")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoxdu"]
+texture = ExtResource("4_j8vvb")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ogk07"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_epnj5")
+sources/1 = SubResource("TileSetAtlasSource_qoxdu")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_teq3f"]
+texture = ExtResource("4_j8vvb")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_capts"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_teq3f")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ogk07"]
+texture = ExtResource("1_fu36u")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(48, 48)
+0:4/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_j8vvb"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_ogk07")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fu36u"]
+texture = ExtResource("6_ckhy6")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(48, 48)
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qtxxq"]
+tile_shape = 3
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_fu36u")
+
+[node name="root" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(112, 110)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="menu" type="Control" parent="Canvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BuildTDMenu" type="VBoxContainer" parent="Canvas/menu/HBoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("1_ogk07")
+
+[node name="RE_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 0
+toggle_mode = true
+text = "Resource Extraction"
+
+[node name="I_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Industrial"
+
+[node name="T_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Trade"
+
+[node name="Road_button" type="Button" parent="Canvas/menu/HBoxContainer/BuildTDMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Road"
+
+[node name="SelectTDMenu" type="VBoxContainer" parent="Canvas/menu/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("2_dw4fd")
+
+[node name="GoodsProduced" type="Label" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Goods Produced: "
+
+[node name="Button" type="Button" parent="Canvas/menu/HBoxContainer/SelectTDMenu"]
+layout_mode = 2
+mouse_filter = 1
+text = "TD Connections"
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="map_layer" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAAQABAAAAAIAAAACAAUABAAAAAIAAAADAAQABAADAAIAAAAAAAAABAACAAIAAAADAAUABAADAAIAAAABAAEABAABAAIAAAABAAIABAABAAIAAAAAAAEABAACAAIAAAABAAUABAAAAAIAAAACAAIABAABAAIAAAADAAIABAACAAIAAAABAAMABAADAAIAAAAAAAUABAAAAAIAAAABAAQABAAAAAIAAAAAAAIABAADAAIAAAACAAMABAADAAIAAAACAAQABAADAAIAAAADAAMABAADAAIAAAABAAAABAACAAIAAAAAAAMABAADAAIAAAADAAAABAACAAIAAAACAAAABAACAAIAAAACAAEABAACAAIAAAADAAEABAACAAIAAAA=")
+tile_set = SubResource("TileSet_vnucn")
+navigation_enabled = false
+
+[node name="resource_improvements" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAAMAAAAAAAMAAAABAAUAAAADAAEAAAAAAAUAAAADAAEAAAADAAAAAAACAAEAAAACAAEAAAACAAEAAAADAAEAAAACAAEAAAA=")
+tile_set = SubResource("TileSet_epnj5")
+
+[node name="overlay_map" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_ogk07")
+
+[node name="TD" type="Node2D" parent="Tilemaps"]
+
+[node name="road_layer_left" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_right" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_bottom_left" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_top_right" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_top_left" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="road_layer_bottom_right" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_capts")
+
+[node name="tile_development_map" type="TileMapLayer" parent="Tilemaps/TD"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_j8vvb")
+
+[node name="unit_movement_order" type="TileMapLayer" parent="Tilemaps"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_qtxxq")
+
+[node name="Display" type="Node2D" parent="."]
+
+[node name="road_direction" type="Node2D" parent="Display"]
+unique_name_in_owner = true
+script = ExtResource("20_capts")
+
+[node name="TileDevelopmentUI" type="Node2D" parent="Display"]
+unique_name_in_owner = true
+script = ExtResource("7_teq3f")
+
+[node name="RoadDisplay" type="Node2D" parent="Display"]
+unique_name_in_owner = true
+script = ExtResource("8_capts")
+
+[node name="OverlayUI" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_8fnbn")
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="PlayerManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("12_imcog")
+
+[node name="PlayerController" type="Node2D" parent="PlayerManager"]
+unique_name_in_owner = true
+script = ExtResource("1_c3mwy")
+
+[node name="PlayerData" type="Node2D" parent="PlayerManager/PlayerController"]
+script = ExtResource("13_20eh2")
+archer_scene = ExtResource("2_vnucn")
+player_name = "Player 1"
+
+[node name="PlayerController2" type="Node2D" parent="PlayerManager"]
+script = ExtResource("1_c3mwy")
+
+[node name="PlayerData" type="Node2D" parent="PlayerManager/PlayerController2"]
+script = ExtResource("13_20eh2")
+archer_scene = ExtResource("14_imcog")
+player_name = "Player 2"
+
+[node name="GameSystems" type="Node2D" parent="."]
+
+[node name="GlobalSystems" type="Node2D" parent="GameSystems"]
+
+[node name="SelectionSystem" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("8_qtxxq")
+
+[node name="PathFinder" type="Node2D" parent="GameSystems/GlobalSystems"]
+unique_name_in_owner = true
+script = ExtResource("6_dun2r")
+
+[node name="UnitSystems" type="Node2D" parent="GameSystems"]
+unique_name_in_owner = true
+
+[node name="UnitMovement" type="Node2D" parent="GameSystems/UnitSystems"]
+unique_name_in_owner = true
+script = ExtResource("7_r3lo5")
+
+[node name="Combat(future)" type="Node2D" parent="GameSystems/UnitSystems"]
+
+[node name="TurnManagment" type="Node2D" parent="GameSystems/UnitSystems"]
+script = ExtResource("9_a6f85")
+
+[node name="TileDevelopmentSystems" type="Node2D" parent="GameSystems"]
+
+[node name="build_td" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("5_hv1ua")
+
+[node name="create_road" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("17_2mc6k")
+
+[node name="select_td" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
+unique_name_in_owner = true
+script = ExtResource("21_s4qac")
+
+[node name="DataManagers" type="Node2D" parent="."]
+
+[node name="GridManager" parent="DataManagers" instance=ExtResource("1_8pvmw")]
+unique_name_in_owner = true
+archer_scene = ExtResource("2_vnucn")
+
+[node name="UnitManager" type="Node2D" parent="DataManagers"]
+unique_name_in_owner = true
+script = ExtResource("12_fu36u")
+
+[node name="TileDevelopementManager" type="Node2D" parent="DataManagers"]
+unique_name_in_owner = true
+script = ExtResource("17_epnj5")
+
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/RE_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_re_button_toggled"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/I_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_i_button_toggled"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/T_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_t_button_toggled"]
+[connection signal="toggled" from="Canvas/menu/HBoxContainer/BuildTDMenu/Road_button" to="Canvas/menu/HBoxContainer/BuildTDMenu" method="_on_road_button_toggled"]

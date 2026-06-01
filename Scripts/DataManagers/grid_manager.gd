@@ -2,52 +2,55 @@ extends Node2D
 @onready var tile_map_layer: TileMapLayer = %map_layer
 @export var archer_scene: PackedScene
 
+@onready var terrain_map: TileMapLayer = %map_layer
+@onready var resource_improvements: TileMapLayer = %resource_improvements
 
 
 # Data will be stored on tilemap coordinates 
 # Unit movement will be calculated through Axial coordiantes 
-var grid_x_max = 3
-var grid_y_max = 5
-var terrain_grid : Dictionary = {
-	Vector2i(0,0): preload("res://Resources/plains.tres"),
-	Vector2i(0,1): preload("res://Resources/plains.tres"),
-	Vector2i(0,2): preload("res://Resources/plains.tres"),
-	Vector2i(0,3): preload("res://Resources/plains.tres"),
-	Vector2i(0,4): preload("res://Resources/plains.tres"),
-	Vector2i(0,5): preload("res://Resources/plains.tres"),
-	Vector2i(1,0): preload("res://Resources/plains.tres"),
-	Vector2i(1,1): preload("res://Resources/water.tres"),
-	Vector2i(1,2): preload("res://Resources/water.tres"),
-	Vector2i(1,3): preload("res://Resources/plains.tres"),
-	Vector2i(1,4): preload("res://Resources/plains.tres"),
-	Vector2i(1,5): preload("res://Resources/plains.tres"),
-	Vector2i(2,0): preload("res://Resources/plains.tres"),
-	Vector2i(2,1): preload("res://Resources/plains.tres"),
-	Vector2i(2,2): preload("res://Resources/water.tres"),
-	Vector2i(2,3): preload("res://Resources/plains.tres"),
-	Vector2i(2,4): preload("res://Resources/plains.tres"),
-	Vector2i(2,5): preload("res://Resources/plains.tres"),
-	Vector2i(3,0): preload("res://Resources/plains.tres"),
-	Vector2i(3,1): preload("res://Resources/plains.tres"),
-	Vector2i(3,2): preload("res://Resources/plains.tres"),
-	Vector2i(3,3): preload("res://Resources/plains.tres"),
-	Vector2i(3,4): preload("res://Resources/plains.tres"),
-	Vector2i(3,5): preload("res://Resources/plains.tres"),
+var grid_x_max = 9
+var grid_y_max = 8
+
+var desert_rsrc = preload("res://Resources/Terrain/desert.tres")
+var water_rsrc = preload("res://Resources/Terrain/water.tres")
+var hill_rsrc = preload("res://Resources/Terrain/hill.tres")
+var plains_rsrc = preload("res://Resources/Terrain/plains.tres")
+
+var forest_rsrc = preload("res://Resources/TileImprovements/forest.tres")
+var iron_rsrc = preload("res://Resources/TileImprovements/iron.tres")
+var stone_rsrc = preload("res://Resources/TileImprovements/stone.tres")
+
+
+var terrain_atlas_coords : Dictionary[Vector2i, TerrainData]= {
+	 Vector2i(0,2): desert_rsrc,
+	 Vector2i(1,2): water_rsrc,
+	 Vector2i(2,2): hill_rsrc,
+	 Vector2i(3,2): plains_rsrc,
 }
-var re_grid : Dictionary = {
-	Vector2i(0,3) : preload("res://Resources/iron.tres"),
-	Vector2i(1,5) : preload("res://Resources/stone.tres"),
-	Vector2i(0,5) : preload("res://Resources/stone.tres"),	
-	Vector2i(2,1) : preload("res://Resources/forest.tres"),
-	Vector2i(3,1) : preload("res://Resources/forest.tres"),
-	Vector2i(3,0) : preload("res://Resources/forest.tres")
+var rsrc_improvement_atlas_coords : Dictionary[Vector2i, ResourceImprovementData]= {
+	 Vector2i(2,1): forest_rsrc,
+	 Vector2i(0,3): iron_rsrc,
+	 Vector2i(3,1): stone_rsrc,
+}
 
-} 
-
+var terrain_grid : Dictionary[Vector2i,TerrainData]= {}
+var re_grid : Dictionary = {}
 
 
-# Unit Global list 
-var unit_list = {}
+func _ready() -> void:
+
+	set_up_grid(terrain_map, terrain_atlas_coords, terrain_grid)
+	set_up_grid(resource_improvements, rsrc_improvement_atlas_coords, re_grid)
+func set_up_grid(tile_map, rsrc_atlas_coord, grid ):
+	var cells = tile_map.get_used_cells()
+
+	for cell in cells: 
+		var atlas_coords = tile_map.get_cell_atlas_coords(cell)
+		if rsrc_atlas_coord.has(atlas_coords):
+			grid[cell] = rsrc_atlas_coord[atlas_coords]
+		else:
+			push_warning("No data mapped for atlas coords: %s at cell %s" % [atlas_coords, cell])
+
 
 func check_bounds(tile_pos: Vector2i) -> bool:
 	var x = tile_pos.x

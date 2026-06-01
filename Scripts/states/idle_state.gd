@@ -2,6 +2,7 @@ extends State
 
 class_name IdleState
 
+var state_name : String = "Idle"
 
 
 
@@ -14,23 +15,3 @@ func handle_input(player_controller, event) -> void:
 		var clicked = player_controller.selection_system.get_clicked_object(player_controller,pos)
 		if clicked != null:
 			player_controller.set_state(SelectState.new(pos, clicked))
-	if event.is_action_pressed("b"):	 
-		print("in build mode ")
-
-		player_controller.set_state(BuildState.new())
-		
-	
-
-	#  Go into selection state
-	# elif press build RE button
-		# player_controller.TD_build_system.build_RE()
-		# new idle state
-	# elif press escape
-		# new idle state 
-
-		#else:
-			#player_controller.unit_manager.spawn_unit_test(player_controller,player_controller.get_local_mouse_position())
-
-
-	#elif event.is_action_pressed("EndTurnTemp"):
-			#player_controller.end_turn_request()

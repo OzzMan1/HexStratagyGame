@@ -1,42 +1,39 @@
 extends State
 
+# This state handles player input when building something
+
 class_name BuildState
 
 
 var build_obj : Buildable
 
-
+var state_name : String = "Build"
 
 
 func handle_input(player_controller, event) -> void:
 	
 	build_obj = player_controller.player_data.build_obj
 	if event.is_action_pressed("click") and build_obj != null:
-		# if player build obj is not null	
-		
-		if build_obj is Road: 
-			var pos = player_controller.return_mouse_pos()
-			if player_controller.grid_manager.check_bounds(pos):
-				player_controller.set_state(SelectState.new(player_controller.return_mouse_pos(),build_obj))
-		
-		if build_obj is TileDevelopment:
-			var pos = player_controller.return_mouse_pos()
-			var clicked = player_controller.selection_system.get_clicked_object(player_controller,pos)
-			player_controller.build_td.build_td(player_controller,clicked,build_obj,pos)
+		# if player build obj is not null			
+		# Make this for obj 
+		var pos = player_controller.return_mouse_pos()
+		if player_controller.grid_manager.check_bounds(pos):
+			build_obj._on_build(player_controller, pos)
 			
-	elif event.is_action_pressed("b"):
-		player_controller.set_state(IdleState.new())
+
 
 func enter(player_controller) -> void:
-	player_controller.build_td_menu.visible = true
-	player_controller.build_td_menu.player_controller = player_controller
+	# pass in the menu 
+	player_controller.player_data.current_menu.visible = true
 
 	
 func exit(player_controller) -> void:
 	# cancel_overlay() 
-	player_controller.build_td_menu.toggle_of_all_buttons_except()
-	player_controller.build_td_menu.visible = false
-	player_controller.overlay_map.clear_overlay_maps()
-	pass
+	# deal with late	
+	if player_controller.player_data.current_menu.has_method("toggle_of_all_buttons_except"):	
+		player_controller.player_data.current_menu.toggle_of_all_buttons_except()
+	player_controller.player_data.current_menu.visible = false
+	player_controller.overlay_ui.clear_overlay_maps(player_controller)
+	
 
 	
