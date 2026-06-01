@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://drwspm1atc4m4"]
+[gd_scene load_steps=7 format=3 uid="uid://drwspm1atc4m4"]
 
 [ext_resource type="Script" uid="uid://bqmq1qq85man6" path="res://Scripts/UI/ui_menu.gd" id="1_acy2b"]
 [ext_resource type="Script" uid="uid://de0l8dy24335t" path="res://Scripts/UI/BuildTDMenu.gd" id="2_d5eeo"]
 [ext_resource type="Script" uid="uid://d4egdya2evwyp" path="res://Scripts/UI/select_td_menu.gd" id="3_u0fu6"]
 [ext_resource type="Script" uid="uid://b2f46kan1s8d4" path="res://Scripts/UI/change_good_menu.gd" id="4_38mxq"]
 [ext_resource type="Script" uid="uid://s4ru06mqxaum" path="res://Scripts/UI/city_menu.gd" id="5_qkvxe"]
+[ext_resource type="Script" uid="uid://bbesiixxy22m1" path="res://Scripts/UI/ResourceDisplay.gd" id="6_d5eeo"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 0.991088)
 size_flags_horizontal = 0
 script = ExtResource("1_acy2b")
 metadata/_edit_use_anchors_ = true
@@ -31,6 +33,7 @@ grow_vertical = 0
 
 [node name="End_turn" type="Button" parent="Buttons"]
 layout_mode = 2
+toggle_mode = true
 text = "End turn"
 
 [node name="Build_TD" type="Button" parent="Buttons"]
@@ -175,7 +178,57 @@ layout_mode = 2
 text = "Spearman
 "
 
+[node name="TurnNumber" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -91.0
+offset_bottom = -68.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0"
+
+[node name="Resources" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 50.0
+grow_horizontal = 0
+scale = Vector2(0.997923, 1)
+script = ExtResource("6_d5eeo")
+
+[node name="Wood" type="Label" parent="Resources"]
+layout_mode = 2
+text = "text"
+
+[node name="Stone" type="Label" parent="Resources"]
+layout_mode = 2
+text = "text"
+
+[node name="iron" type="Label" parent="Resources"]
+layout_mode = 2
+text = "text"
+
+[node name="iron_ingot" type="Label" parent="Resources"]
+layout_mode = 2
+text = "text"
+
+[node name="swords" type="Label" parent="Resources"]
+layout_mode = 2
+text = "text"
+
+[node name="tools" type="Label" parent="Resources"]
+layout_mode = 2
+text = "text"
+
 [connection signal="pressed" from="Buttons/End_turn" to="." method="_on_end_turn_pressed"]
+[connection signal="toggled" from="Buttons/End_turn" to="." method="_on_end_turn_toggled"]
 [connection signal="pressed" from="Buttons/Build_TD" to="." method="_on_build_td_pressed"]
 [connection signal="toggled" from="SelectTDMenu/td_connection_button" to="SelectTDMenu" method="_on_td_connection_button_toggled"]
 [connection signal="pressed" from="SelectTDMenu/change_good_button" to="SelectTDMenu" method="_on_change_good_button_pressed"]

@@ -25,8 +25,12 @@ var selected_td_pos : Vector2i
 
 
 var resources_amount = {
-	"stone" : 500,
-	"timber": 500,
+	"stone" : 100,
+	"timber": 100,
+	"iron_ore": 0,
+	"iron_ingot": 0,
+	"swords": 0,
+	"tools": 0,
 }
 
 func get_archer_scene():

@@ -3,6 +3,8 @@ extends Node
 var player_controller
 
 
+
+
 @onready var ui_canvas: CanvasLayer = $UI_canvas
 
 func _ready():
@@ -36,8 +38,8 @@ func create_UI(id):
 func generate_player_city_pos(player_pos: int):
 	match player_pos:
 		1:
-			return Vector2i(0,0)
+			return Vector2i(3,5)
 		2:
-			return Vector2i(7,7)
+			return Vector2i(6,5)
 
 	

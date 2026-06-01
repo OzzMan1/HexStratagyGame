@@ -17,16 +17,16 @@ func get_all_possible_td_connections(player_controller : PlayerController):
 
 	var start = player_controller.player_data.selected_td_pos
 	var graph = tile_developement_manager.road_list
-	var search_criteria = player_controller.player_data.all_players_TD
+	var search_criteria = tile_developement_manager.tile_development_list
 	var _range = player_controller.player_data.selected_td.range
 
 	var td_connection_list = bfs.BFS(player_controller,start,graph,search_criteria,_range)
 
 	for pos in td_connection_list:
 		# check if pos of td is owned by player
-		if player_controller.player_data.all_players_TD.get(pos) is not ResourceExtraction:
+		if tile_developement_manager.tile_development_list[pos]["TD"] is not ResourceExtraction:
 			player_controller.player_data.selected_td.possible_td_connections.set(pos, 
-			player_controller.player_data.all_players_TD.get(pos))
+			tile_developement_manager.tile_development_list[pos]["TD"] )
 	
 	player_controller.overlay_map.update_td_connection(player_controller.player_data.selected_td.possible_td_connections.keys(),
 	player_controller.player_data.selected_td.td_connections.keys())
@@ -34,7 +34,7 @@ func get_all_possible_td_connections(player_controller : PlayerController):
 
 func add_td_connection(player_controller,pos):
 	if check_add_td_to_connections(player_controller.player_data, pos):
-		var td_to_add = player_controller.player_data.all_players_TD.get(pos)
+		var td_to_add = tile_developement_manager.tile_development_list[pos]["TD"] 
 	
 		if player_controller.player_data.selected_td.td_connections.has(pos):
 			# erase from selected td connections

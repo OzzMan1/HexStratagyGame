@@ -26,7 +26,7 @@ static var terrain = {
 }
 
 static var unit_1 = preload("res://Scenes/archer_1.tscn")
-static var unit_2 = preload("res://Scenes/archer_1.tscn")
+static var unit_2 = preload("res://Scenes/archer_2.tscn")
 
 static var goods = {
 	"timber" : GoodsDatabase.timber,
@@ -35,3 +35,6 @@ static var goods = {
 	"tool" : GoodsDatabase.tool,
 	"iron_ingot" : GoodsDatabase.iron_ingot,
 }
+
+
+

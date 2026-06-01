@@ -27,7 +27,7 @@ func host_game():
 	peer.create_server(PORT,MAX_CONNECTIONS)
 	multiplayer.multiplayer_peer = peer
 	var peer_id = multiplayer.get_unique_id()
-	player_info =  { "name": player_name, "ready": false}
+	player_info =  { "name": player_name, "ready": false, "end_turn": false}
 	players[multiplayer.get_unique_id()] = player_info
 	player_connected.emit()
 	
@@ -52,6 +52,6 @@ func _register_player(new_player_info):
 
 func _on_connected_ok():
 	var peer_id = multiplayer.get_unique_id()
-	player_info =  { "name": player_name, "ready": false}
+	player_info =  { "name": player_name, "ready": false, "end_turn": false}
 	players[peer_id] = player_info
 	player_connected.emit()

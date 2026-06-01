@@ -27,7 +27,6 @@ class_name PlayerController
 @onready var select_td = get_tree().current_scene.find_child("select_td", true, false)
 @onready var td_connections = get_tree().current_scene.find_child("td_connections", true, false)
 @onready var td_economy = get_tree().current_scene.find_child("td_economy", true, false)
-@onready var td_system = get_tree().current_scene.find_child("td_system", true, false)
 @onready var build_system = get_tree().current_scene.find_child("build_system", true, false)
 
 # Global Systems
@@ -83,6 +82,7 @@ func _ready() -> void:
 	
 	EventBus.player_resources_updated.connect(update_player_resources)
 
+	EventBus.player_resources_updated.emit(player_data.resources_amount)
 
 func update_player_resources(player_resources):
 	player_data.resources_amount = player_resources
@@ -137,9 +137,9 @@ func get_all_TDs() -> Array:
 
 func get_all_ResourceExtractors():
 	var re_list = []
-	for td in player_data.all_players_TD.values():
-		if td is ResourceExtraction:
-			re_list.append(td)
+	for td in tile_developement_manager.tile_development_list:
+		if td["TD"] is ResourceExtraction:
+			re_list.append(td["TD"])
 	return re_list
 
 ############# STATE MANAGEMENT #########################

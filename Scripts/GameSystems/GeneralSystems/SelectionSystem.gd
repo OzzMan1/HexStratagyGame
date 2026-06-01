@@ -10,10 +10,9 @@ func get_objects_at_pos(player_controller : PlayerController, clicked_pos : Vect
 
 	var objects_at_pos = []
 
-	# Checking for Unit
-	# var target_to_unit = player_controller.player_data.target_to_unit
-	# if target_to_unit.has(clicked_pos):
-	# 	objects_at_pos.append(target_to_unit.get(clicked_pos))
+	if player_controller.unit_manager.unit_list.has(clicked_pos):
+		if player_controller.unit_manager.unit_list[clicked_pos]["player_name"] == player_controller.player_name:
+			objects_at_pos.append(player_controller.unit_manager.unit_list[clicked_pos]["Unit"])
 		
 		# Checking for Tile Development
 	if player_controller.tile_developement_manager.tile_development_list.has(clicked_pos):

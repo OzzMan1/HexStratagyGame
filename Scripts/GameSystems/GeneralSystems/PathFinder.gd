@@ -70,7 +70,7 @@ func shortest_path_to_all_tiles(player_controller : PlayerController,  start, co
 		for v in neighbours(player_controller,current_pos, mapping_to_check):
 			# Get terrain cost
 			#var terrain_cost = (grid_manager.terrain_grid.get(axial_to_oddr(v))).movement_cost
-			
+		
 			var cost = cost_func.call(player_controller,axial_to_oddr(v))
 			
 			# check if current distance of the neighbour is greater than new cost (terrain + current_node)

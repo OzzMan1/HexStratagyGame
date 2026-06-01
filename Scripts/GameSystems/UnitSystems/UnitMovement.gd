@@ -6,15 +6,18 @@ extends Node
 @onready var path_finder: Node2D = %PathFinder
 @onready var overlay_tilemap = %OverlayUI
 @onready var unit_manager = %UnitManager
+@onready var combat: Node2D = %Combat
 
 
 
 func cost_function(player_controller, position):
-	if grid_manager.unit_list.has(position):
-		return INF
-	else:
-		return grid_manager.terrain_grid.get(position).movement_cost
+	if unit_manager.unit_list.has(position):
+		var unit_data = unit_manager.unit_list[position]
 
+		if unit_data.get("player_name", "") == player_controller.player_name:
+			return INF
+
+	return grid_manager.terrain_grid.get(position).movement_cost
 
 # Select unit -> Show path 
 
@@ -70,12 +73,38 @@ func set_unit_path(player_controller : PlayerController,  selected_unit : Unit, 
 		var prev = path_in_range_oddr[path_in_range_oddr.size()-1]
 		var target =path_in_range_oddr[0]
 
-		move_unit.rpc(player_controller.player_name, 
-		selected_unit, prev, target, path_in_range)
+		# If target is enemy unit 
+			# Request attack 
+		if unit_manager.unit_list.has(target):
+			if unit_manager.unit_list[target]["player_name"] != player_controller.player_name:
+				request_attack.rpc(player_controller.player_name, target, path_in_range_oddr)
+		else:
+			request_move_unit.rpc(
+			player_controller.player_name, 
+			prev, 
+			target, 
+			path_in_range)
+
+		
+@rpc("any_peer", "call_local", "reliable") 
+func request_attack(player_name, target_pos, path):
+# Request attack 
+	# Check if in range and enemy unit 
+	# Attack System 
+	# Broad cast result
+	if multiplayer.is_server():
+		if grid_manager.check_bounds(target_pos) and unit_manager.unit_list.has(target_pos):
+			if unit_manager.unit_list[target_pos]["player_name"] != player_name:
+				combat.start_combat(player_name, path)
 
 
 @rpc("any_peer", "call_local", "reliable") 
-func move_unit(player_name,selected_unit, prev, target, path):
-	if grid_manager.check_bounds(target) and prev != target:
-		EventBus.unit_built.emit(player_name, selected_unit, prev, target)
-		selected_unit.update_current_number_of_moves(path.size()-1)
+func request_move_unit(player_name , prev, target, path):
+	if multiplayer.is_server():
+		if grid_manager.check_bounds(target) and prev != target:
+			move_unit.rpc(player_name, prev, target, path)
+
+
+@rpc("any_peer", "call_local", "reliable") 
+func move_unit(player_name , prev, target, path):
+	EventBus.unit_moved.emit(player_name, prev, target, path.size()-1)

@@ -1,6 +1,7 @@
 extends Node
 
 @onready var dependency_graph: Node2D = %Dependency_graph
+@onready var tile_developement_manager = get_tree().current_scene.find_child("TileDevelopementManager", true, false)
 
 func update_good_produced(player_controller : PlayerController, new_good : Good, ):
 	
@@ -30,7 +31,7 @@ func update_economy(player_controller : PlayerController):
 
 
 	intialise_economy(player_controller.get_all_TDs())
-	var topological_sort_arr = dependency_graph.topological_sort(player_controller.player_data.all_players_TD )
+	var topological_sort_arr = dependency_graph.topological_sort(tile_developement_manager.tile_development_list)
 	
 	for td in topological_sort_arr:
 		# We want to calculate the goods produced only for TDs that are making goods (apart from RE)

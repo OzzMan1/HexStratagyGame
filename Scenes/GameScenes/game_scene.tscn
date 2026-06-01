@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://c5qo1inocw736" path="res://Scripts/Display/overlay.gd" id="13_ndfmf"]
 [ext_resource type="Script" uid="uid://0gr6jm1ynktj" path="res://Scripts/Player/player_manager.gd" id="14_nys34"]
 [ext_resource type="PackedScene" uid="uid://dqj862qxe4ob0" path="res://Scenes/archer_1.tscn" id="17_1x3ex"]
+[ext_resource type="Script" uid="uid://cqq6o8qr7bxw7" path="res://Scripts/GameSystems/GeneralSystems/combat_system.gd" id="18_1eij6"]
 [ext_resource type="Script" uid="uid://ckha2g8x03qqq" path="res://Scripts/GameSystems/GeneralSystems/SelectionSystem.gd" id="19_aqnxp"]
 [ext_resource type="Script" uid="uid://cxc4i3ke4a8nm" path="res://Scripts/GameSystems/GeneralSystems/PathFinder.gd" id="20_t3aav"]
 [ext_resource type="Script" path="res://Scripts/GameSystems/GeneralSystems/BFS.gd" id="21_yj1qu"]
@@ -23,7 +24,6 @@
 [ext_resource type="Script" uid="uid://b2ekeebrhrcbd" path="res://Scripts/GameSystems/TileDevelopment/select_td.gd" id="28_skhme"]
 [ext_resource type="Script" uid="uid://dr3mawcjckm0j" path="res://Scripts/GameSystems/TileDevelopment/td_connections.gd" id="29_a6xwo"]
 [ext_resource type="Script" uid="uid://b13prvwl71uf8" path="res://Scripts/GameSystems/TileDevelopment/td_economy.gd" id="30_1ol4r"]
-[ext_resource type="Script" uid="uid://cliqbll3eh0u3" path="res://Scripts/GameSystems/TileDevelopment/td_system.gd" id="31_2e2dr"]
 [ext_resource type="Script" uid="uid://qnn8of0rdcpi" path="res://Scripts/GameSystems/EndTurn/TurnManager.gd" id="32_k55q4"]
 [ext_resource type="PackedScene" uid="uid://5te6mo3yhs3j" path="res://Scenes/game_manager.tscn" id="33_fwp57"]
 [ext_resource type="Script" uid="uid://dyqfo36eyv86m" path="res://Scripts/DataManagers/unit_manager.gd" id="34_yp5f6"]
@@ -169,7 +169,7 @@ tile_set = SubResource("TileSet_capts")
 
 [node name="tile_development_map" type="TileMapLayer" parent="Tilemaps/TD"]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAAAAAAAAABAAMAAAAHAAcAAAABAAMAAAA=")
+tile_map_data = PackedByteArray("AAADAAUAAAABAAMAAAAGAAUAAAABAAMAAAA=")
 tile_set = SubResource("TileSet_j8vvb")
 
 [node name="Display" type="Node2D" parent="."]
@@ -227,7 +227,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("25_kut41")
 
-[node name="Combat(future)" type="Node2D" parent="GameSystems/UnitSystems"]
+[node name="Combat" type="Node2D" parent="GameSystems/UnitSystems"]
+unique_name_in_owner = true
+script = ExtResource("18_1eij6")
 
 [node name="UnitSelection" type="Node2D" parent="GameSystems/UnitSystems"]
 unique_name_in_owner = true
@@ -250,10 +252,6 @@ script = ExtResource("29_a6xwo")
 [node name="td_economy" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
 unique_name_in_owner = true
 script = ExtResource("30_1ol4r")
-
-[node name="td_system" type="Node2D" parent="GameSystems/TileDevelopmentSystems"]
-unique_name_in_owner = true
-script = ExtResource("31_2e2dr")
 
 [node name="TurnManager" type="Node2D" parent="GameSystems"]
 unique_name_in_owner = true

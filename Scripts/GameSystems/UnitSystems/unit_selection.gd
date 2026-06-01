@@ -7,7 +7,12 @@ extends Node
 
 func select_unit(player_controller : PlayerController, pos : Vector2i):	
 	#Get reference to unit at pos 
-	var current_selected_unit = player_controller.unit_manager.unit_list.get(pos)
+	print("SELECTING UNIT")
+	print(player_controller.player_name)
+	print("position ", pos)
+	
+	
+	var current_selected_unit = player_controller.unit_manager.unit_list[pos]["Unit"]
 	
 	var axial_pos = player_controller.path_finder.oddr_to_axial(pos)
 	var results = player_controller.path_finder.shortest_path_to_all_tiles(player_controller,axial_pos,player_controller.unit_movement.cost_function)
@@ -15,7 +20,7 @@ func select_unit(player_controller : PlayerController, pos : Vector2i):
 	var distance = results[1]
 	
 	
-	var new_tiles_in_range = player_controller.path_finder.find_in_range(current_selected_unit.current_num_of_moves, distance)
+	var new_tiles_in_range = player_controller.path_finder.find_in_range(current_selected_unit.current_moves, distance)
 	current_selected_unit.prev_list = prev 
 	current_selected_unit.tiles_in_range = new_tiles_in_range
 	

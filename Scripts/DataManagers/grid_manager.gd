@@ -51,8 +51,6 @@ func set_up_grid(tile_map, rsrc_atlas_coord, grid ):
 		else:
 			push_warning("No data mapped for atlas coords: %s at cell %s" % [atlas_coords, cell])
 
-# Unit Global list 
-var unit_list = {}
 
 func check_bounds(tile_pos: Vector2i) -> bool:
 	var x = tile_pos.x

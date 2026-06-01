@@ -5,7 +5,8 @@ func topological_sort(graph):
 
 	var starting_nodes = []
 	
-	for td in graph.values():
+	for graph_data in graph.values():
+		var td = graph_data["TD"]
 		if td is ResourceExtraction:
 			starting_nodes.append(td)
 		elif td is Industrial or td is Trade:

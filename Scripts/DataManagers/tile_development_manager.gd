@@ -19,3 +19,8 @@ func update_road_list(road_path: Array):
 	for pos in road_path: 
 		road_list.set(pos,road)
 
+func update_good_stockpile():
+	for id in tile_development_list:
+		tile_development_list[id]["TD"].add_goods_to_stockpile()
+	
+			

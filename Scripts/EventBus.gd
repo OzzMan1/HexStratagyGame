@@ -20,4 +20,11 @@ signal player_resources_updated(player_resources)
 
 #### COMMANDS 
 # Unit
-signal unit_moved(player_name, unit, prev, target)
+signal unit_moved(player_name, prev, target, path)
+
+
+###TURN MANAGERMENT
+signal turn_number_updated(turn_number: int)
+
+
+
